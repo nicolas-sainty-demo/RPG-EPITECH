@@ -5,19 +5,9 @@
 ** check_if_collision
 */
 
-#include <SFML/Graphics/Sprite.h>
-
 #include <stddef.h>
 
-int is_collision_square_without_rotation(sfRectangleShape *const sqr_1\
-, sfRectangleShape *const sqr_2);
-
-int is_collision_circle_square(sfCircleShape *const cir\
-, sfRectangleShape *const sqr, int const radius);
-
-sfRectangleShape *init_hitbox_square(sfSprite *const sprite);
-
-sfCircleShape *init_hitbox_circle(int const radius, sfSprite *sprite);
+#include "collision.h"
 
 void free_hitbox_square(sfRectangleShape *hitbox_sprite);
 
