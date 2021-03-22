@@ -5,7 +5,17 @@
 ** main
 */
 
+#include "window_fonction.h"
+
+int core(void)
+{
+    the_window windows = init_window(1920, 1080);
+
+    default_page(&windows);
+    return (0);
+}
+
 int main(int argc, char const *argv[])
 {
-    return 0;
+    return (core());
 }

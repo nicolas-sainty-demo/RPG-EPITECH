@@ -5,7 +5,10 @@
 ## Makefile
 ##
 
-SRC	=	main.c
+SRC	=	main.c						\
+		init/window/init_window.c	\
+		scen/default_page.c			\
+		time/speed_of_game.c
 
 SRC_PRI = ./src/
 
