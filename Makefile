@@ -5,10 +5,14 @@
 ## Makefile
 ##
 
-SRC	=	main.c						\
-		init/window/init_window.c	\
-		scen/default_page.c			\
-		time/speed_of_game.c
+SRC	=	main.c									\
+		init/window/init_window.c				\
+		scen/default_page.c						\
+		time/speed_of_game.c					\
+		collision/collision_square.c			\
+		collision/collision_circle_square.c		\
+		collision/init_hitbox_with_sprite.c		\
+		collision/check_if_collision.c
 
 SRC_PRI = ./src/
 
