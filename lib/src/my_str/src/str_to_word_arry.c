@@ -55,7 +55,7 @@ static int copy(const char *str, const char c, char **tab)
 char **str_to_a_tab(const char *str, const char c)
 {
     char **tab = malloc(sizeof(char *) * (nbr_of_this_char(str, c) + 3));
-    
+
     if (tab == NULL || str == NULL)
         return (NULL);
     copy(str, c, tab);
