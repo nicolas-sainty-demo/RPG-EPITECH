@@ -28,7 +28,7 @@ static void update(the_window *windows)
 
 void default_page(the_window *windows)
 {
-   while (sfRenderWindow_isOpen(windows->window)) {
+    while (sfRenderWindow_isOpen(windows->window)) {
         speed_of_game((float)1/60);
         update(windows);
         sfRenderWindow_display(windows->window);
