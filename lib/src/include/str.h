@@ -24,7 +24,7 @@ int my_strlen(const char *str);
 int my_strlen_to_c(const char *str, char c);
 int my_strcmp(char *str, char *dest);
 int my_strcmp_to_c(char *str, char *dest, char c);
-char **str_to_word_arry(char *str);
+char **str_to_a_tab(const char *str, const char c);
 int **str_to_int_arry(char *str);
 int my_get_nbr(char *char_nbr, int base);
 int nbr_of_c(const char *str, char c);

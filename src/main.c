@@ -6,6 +6,8 @@
 */
 
 #include "window_fonction.h"
+#include "str.h"
+#include "from_file.h"
 
 int core(void)
 {
@@ -17,5 +19,6 @@ int core(void)
 
 int main(int argc, char const *argv[])
 {
+    return(0);
     return (core());
 }

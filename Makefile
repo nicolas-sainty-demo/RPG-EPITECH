@@ -7,6 +7,9 @@
 
 SRC	=	main.c						\
 		init/window/init_window.c	\
+		init/from_file/get_string_after_c.c	\
+		init/from_file/get_the_int_after_c.c	\
+		init/from_file/get_the_vector_i_after_c.c	\
 		scen/default_page.c			\
 		time/speed_of_game.c
 
@@ -18,7 +21,7 @@ NAME    =       my_rpg
 
 CFLAGS	=	-l csfml-audio -l csfml-graphics -l csfml-system -l csfml-window -l m \
 			-Wall -Wextra -g\
-			-I include -I lib/include
+			-I include -I lib/src/include
 
 LFLAGS	=	-L. -lstr -ltools
 

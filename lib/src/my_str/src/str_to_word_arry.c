@@ -7,69 +7,57 @@
 
 #include <stdlib.h>
 
-static int char_nbr_in(char *str, char c)
+int my_strlen(const char *str);
+
+int nbr_of_this_char(const char *str, const char c)
 {
     int i = 0;
 
-    for (int j = 0; str[j] != '\0'; j += 1) {
-        if (str[j] == c) {
-            i += 1;
-        }
+    if (str == NULL)
+        return (0);
+    for (int j = 0; str[j] != '\0'; j++) {
+        if (str[j] == c)
+            i++;
     }
     return (i);
 }
 
-static int str_len_for_c(char *str, char c, int i)
+int len_of_words(const char c, int i, const char *str)
 {
-    int len = 0;
+    int ret = 0;
 
     while (str[i] != '\0' && str[i] != c) {
-        i += 1;
-        len += 1;
+        i++;
+        ret++;
     }
-    return (len);
+    return (ret);
 }
 
-static void cpy_arry(char *str, char ***tab)
+static int copy(const char *str, const char c, char **tab)
 {
-    int x = 0;
-    int y = 0;
-    int i = 0;
+    int j = 0;
+    int k = 0;
 
-    while (str != NULL && str[i] != '\0') {
-        (*tab)[y] = malloc(sizeof(char) * str_len_for_c(str, '\n', i) + 1);
-        while (str[i] != '\0' && str[i] != '\n') {
-            (*tab)[y][x] = str[i];
-            i += 1;
-            x += 1;
+    for (int i = 0; i < my_strlen(str); i++) {
+        tab[j] = malloc(sizeof(char) * (len_of_words(c, i , str) + 1));
+        if (tab[j] == NULL)
+            return (84);
+        while (tab[j] != NULL && str[i] != c && str[i] != '\0') {
+            tab[j][k++] = str[i++];
         }
-        (*tab)[y][x] = '\0';
-        x = 0;
-        y += 1;
-        if (str[i] != '\0')
-            i += 1;
+        tab[j++][k] = '\0';
+        k = 0;
     }
-    (*tab)[y] = NULL;
+    tab[j] = NULL;
+    return (0);
 }
 
-void clear_tab(char **tab)
+char **str_to_a_tab(const char *str, const char c)
 {
-    for (int y = 0; tab[y] != NULL; y += 1) {
-        for (int x = 0; tab[y][x] != '\0'; x += 1) {
-            if (tab[y][x] == 'X' || tab[y][x] == 'Z')
-                tab[y][x] = ' ';
-            if (tab[y][x] == 'P')
-                tab[y][x] = ' ';
-        }
-    }
-}
-
-char **str_to_word_arry(char *str)
-{
-    char **tab = malloc(sizeof(char *) * (char_nbr_in(str, '\n') + 2));
-
+    char **tab = malloc(sizeof(char *) * (nbr_of_this_char(str, c) + 3));
+    
     if (tab == NULL || str == NULL)
         return (NULL);
-    cpy_arry(str, &tab);
+    copy(str, c, tab);
     return (tab);
 }
