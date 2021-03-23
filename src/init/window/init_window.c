@@ -16,5 +16,6 @@ the_window init_window(const int x, const int y)
     (windows.Videomode, "Nom de la fenaitre", sfClose | sfNone, NULL);
     sfRenderWindow_setFramerateLimit(windows.window, 60);
     sfRenderWindow_setMouseCursorVisible(windows.window, sfTrue);
+    windows.scene = NULL;
     return (windows);
 }

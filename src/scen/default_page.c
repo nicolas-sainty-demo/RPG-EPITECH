@@ -7,6 +7,7 @@
 
 #include "window_struc.h"
 #include "window_fonction.h"
+#include "map.h"
 #include "collision.h"
 
 #include <stdlib.h>
@@ -14,6 +15,9 @@
 static void draw(the_window *windows)
 {
     sfRenderWindow_clear(windows->window, sfBlack);
+    draw_map(windows->window, windows->scene->map, 16);
+    sfRenderWindow_drawSprite\
+    (windows->window, windows->scene->player->sprite, NULL);
     sfRenderWindow_display(windows->window);
 }
 

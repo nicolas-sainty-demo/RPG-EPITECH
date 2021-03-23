@@ -9,12 +9,14 @@
 #define WINDOW_STRUC_H_
 
 #include "cfml_include.h"
+#include "scene.h"
 
 typedef struct the_window
 {
     sfEvent event;
     sfRenderWindow *window;
     sfVideoMode Videomode;
+    scene_t *scene;
 } the_window;
 
 #endif /* !WINDOW_STRUC_H_ */

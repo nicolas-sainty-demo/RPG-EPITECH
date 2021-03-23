@@ -16,15 +16,16 @@ SRC	=	main.c											\
 		init/from_file/get_sprite_after_c.c				\
 		init/from_file/player/get_inventaire_from_file.c	\
 		init/from_file/player/get_player_from_file.c	\
+		init/from_file/map/get_map_from_file.c			\
 		scen/default_page.c								\
 		time/speed_of_game.c							\
 		collision/collision_square.c					\
 		collision/collision_circle_square.c				\
 		collision/init_hitbox_with_sprite.c				\
+		draw/map.c                                \
 		collision/collision_circle.c					\
 		collision/debug/display_collision.c				\
 		collision/check_if_collision.c
-
 
 SRC_PRI = ./src/
 
