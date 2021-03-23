@@ -12,7 +12,9 @@ SRC	=	src/my_strcat.c					\
 		src/str_to_int_arry.c			\
 		src/str_to_int.c				\
 		src/str_to_word_arry.c			\
-		src/strdup_int.c
+		src/strdup_int.c				\
+		src/free_char_tab.c				\
+		src/my_str_is_num.c
 
 OBJ	=	$(SRC:.c=.o)
 

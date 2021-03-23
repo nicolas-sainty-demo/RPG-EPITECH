@@ -5,11 +5,11 @@
 ** my_strcmp
 */
 
-int my_strlen(char *const str);
+int my_strlen(const char *str);
 
 int my_strlen_to_c(const char *str, char c);
 
-int my_strcmp(char *str, char *dest)
+int my_strcmp(const char *str, const char *dest)
 {
     int i = 0;
     int a = my_strlen(str);
