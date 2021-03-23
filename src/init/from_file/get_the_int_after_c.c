@@ -9,15 +9,6 @@
 #include "str.h"
 #include "stdlib.h"
 
-static int str_is_num(const char *str)
-{
-    for (int i = 0; str[i] != '\0'; i += 1) {
-        if (str[i] < '0' || str[i] > '9')
-            return (0);
-    }
-    return (1);
-}
-
 int get_the_int_after_c(const char *str, const char c)
 {
     char *str_nbr = get_string_after_c(str, c);

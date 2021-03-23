@@ -10,15 +10,6 @@
 #include "stdlib.h"
 #include <SFML/System/Vector2.h>
 
-static int str_is_num(const char *str)
-{
-    for (int i = 0; str[i] != '\0'; i += 1) {
-        if (str[i] < '0' || str[i] > '9')
-            return (0);
-    }
-    return (1);
-}
-
 sfVector2i get_the_vector_i_after_c(const char *str, const char c)
 {
     sfVector2i vector = { 0 };
