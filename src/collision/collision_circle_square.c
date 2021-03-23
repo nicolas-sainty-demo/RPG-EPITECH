@@ -6,7 +6,8 @@
 */
 
 #include <math.h>
-#include <SFML/Graphics.h>
+#include <SFML/Graphics/RectangleShape.h>
+#include <SFML/Graphics/CircleShape.h>
 
 static int clamp(int value, int min, int max)
 {

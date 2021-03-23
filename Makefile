@@ -22,9 +22,10 @@ SRC	=	main.c											\
 		collision/collision_square.c					\
 		collision/collision_circle_square.c				\
 		collision/init_hitbox_with_sprite.c				\
-		collision/check_if_collision.c					\
-		draw/map.c
-
+		draw/map.c                                \
+		collision/collision_circle.c					\
+		collision/debug/display_collision.c				\
+		collision/check_if_collision.c
 
 SRC_PRI = ./src/
 

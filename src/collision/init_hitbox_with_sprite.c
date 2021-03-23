@@ -33,15 +33,19 @@ void free_hitbox_square(sfRectangleShape *hitbox_sprite)
 sfCircleShape *init_hitbox_circle(int const radius, sfSprite *sprite)
 {
     sfCircleShape *hitbox_circle = sfCircleShape_create();
-    sfVector2f pos_sprite = { 0 };
+    sfVector2f center_pos_sprite = { 0 };
+    sfFloatRect boundary_sprite;
 
     if (!hitbox_circle || !sprite)
         return (NULL);
-    pos_sprite = sfSprite_getPosition(sprite);
+    center_pos_sprite = sfSprite_getPosition(sprite);
+    boundary_sprite = sfSprite_getGlobalBounds(sprite);
+    center_pos_sprite.x += (boundary_sprite.width/2);
+    center_pos_sprite.y += (boundary_sprite.height/2);
     sfCircleShape_setRadius(hitbox_circle, radius);
     sfCircleShape_setFillColor(hitbox_circle, sfWhite);
     sfCircleShape_setPosition(hitbox_circle, (sfVector2f)
-    {pos_sprite.x + radius, pos_sprite.y + radius});
+    {center_pos_sprite.x - radius, center_pos_sprite.y - radius});
     return (hitbox_circle);
 }
 
