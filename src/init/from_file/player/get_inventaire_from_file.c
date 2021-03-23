@@ -22,3 +22,17 @@ void get_char_from_file\
         *string = NULL;
     free(file);
 }
+
+void get_char_tab_from_file\
+(char ***tab, const char *name_dir, const char *name_of_file, const char c)
+{
+    char *buffer = NULL;
+
+    get_char_from_file(&buffer, name_dir, name_of_file);
+    if (buffer == NULL) {
+        tab = NULL;
+        return;
+    }
+    *tab = str_to_a_tab(buffer, c);
+    free(buffer);
+}

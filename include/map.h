@@ -12,10 +12,13 @@
 
 typedef struct map
 {
-    sfSprite *sprite;
-    unsigned char **tils;
+    sfSprite *sprite_sol;
+    sfIntRect basic_rec;
+    char **sol;
     char **tils_colition;
 } map_t;
 
+void draw_map\
+(const sfRenderWindow *window, const map_t *map, const int tils_size);
 
 #endif /* !MAP_H_ */

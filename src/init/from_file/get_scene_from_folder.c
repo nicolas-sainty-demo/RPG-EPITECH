@@ -18,6 +18,7 @@ static void extract_the_folder\
 {
     struct dirent *dirdir = NULL;
     scene->player = malloc(sizeof(player_t));
+    scene->map = malloc(sizeof(map_t));
 
     dirdir = readdir(folder);
     while (dirdir != NULL) {
@@ -25,6 +26,9 @@ static void extract_the_folder\
             if (my_strcmp(dirdir->d_name, "player"))
                 get_player_from_file\
                 (scene->player, my_strcat(scene_name, "/player"));
+            if (my_strcmp(dirdir->d_name, "map"))
+                get_map_from_file\
+                (scene->map, my_strcat(scene_name, "/map"));
         }
         dirdir = readdir(folder);
     }

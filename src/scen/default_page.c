@@ -7,6 +7,7 @@
 
 #include "window_struc.h"
 #include "window_fonction.h"
+#include "map.h"
 
 int check_if_collision_btw_square_without_rotation(sfSprite *const sprite_1\
 , sfSprite *const sprite_2);
@@ -19,6 +20,9 @@ int check_if_collision_btw_circle_square(int const radius\
 static void draw(the_window *windows)
 {
     sfRenderWindow_clear(windows->window, sfBlack);
+    draw_map(windows->window, windows->scene->map, 16);
+    sfRenderWindow_drawSprite\
+    (windows->window, windows->scene->player->sprite, NULL);
 }
 
 static void update(the_window *windows)

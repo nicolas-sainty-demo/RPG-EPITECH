@@ -23,9 +23,10 @@ static void set_info(char **info, player_t *player)
             player->anime = (char)get_the_int_after_c(info[i], '=');
         if (my_strcmp_to_c(info[i], "sprite", '='))
             player->sprite = get_sprite_after_c(info[i], '=');
-        if (my_strcmp_to_c(info[i], "sprite_rec", '='))
+        if (my_strcmp_to_c(info[i], "sprite_rec", '=')) {
             sfSprite_setTextureRect\
-            (player->sprite, get_sf_int_rect_after_c("sprite_rec", 'c'));
+            (player->sprite, get_sf_int_rect_after_c(info[i], '='));
+        }
     }
 }
 

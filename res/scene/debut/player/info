@@ -2,3 +2,4 @@ inventaire=!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 hp=100
 anime=10
 sprite=res/image/stick_man/stickman.png
+sprite_rec=0,0,64,64
