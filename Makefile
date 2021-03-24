@@ -54,7 +54,8 @@ NAME    =       my_rpg
 
 CFLAGS	=	-l csfml-audio -l csfml-graphics -l csfml-system -l csfml-window -l m \
 			-Wall -Wextra -g\
-			-I include -I lib/src/include
+			-I include -I lib/src/include -I include/gameplay/ \
+			-I include/gameplay/combat
 
 LFLAGS	=	-L. -lstr -ltools
 
