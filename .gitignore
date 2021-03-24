@@ -242,6 +242,6 @@ tags
 .vscode
 *.json
 NormEZ.rb
-
+*.out
 
 # End of https://www.toptal.com/developers/gitignore/api/c,vscode,emacs,vim,clion
