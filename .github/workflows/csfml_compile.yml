@@ -31,5 +31,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: fecth res
         run: apt-get install xvfb firefox
-      - name: exec Units_tests
-        run: xvfb-run make tests_run
+      - run: yum -y install xorg-x11-server-Xvfb
+      - name: Run units_tests
+        run: xvfb-run --auto-servernum make tests_run
