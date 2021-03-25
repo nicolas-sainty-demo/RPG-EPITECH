@@ -54,3 +54,7 @@ fclean:	clean
 	rm -f $(NAME)
 
 re:	fclean all
+
+
+tests_run:
+	echo "no tests"
