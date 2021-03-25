@@ -88,5 +88,4 @@ $(NAME_CRIT):
 
 re_crit: fclean tests_run
 
-
 .PHONY: all clean fclean tests_run re re_crit
