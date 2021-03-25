@@ -29,8 +29,6 @@ jobs:
     container: epitechcontent/epitest-docker:latest
     steps:
       - uses: actions/checkout@v2
-      - name: fecth res
-        run: apt-get install xvfb firefox
       - run: yum -y install xorg-x11-server-Xvfb
       - name: Run units_tests
         run: xvfb-run --auto-servernum make tests_run
