@@ -5,31 +5,39 @@
 ## Makefile
 ##
 
-SRC	=	main.c											\
-		reader.c										\
-		init/window/init_window.c						\
-		init/from_file/get_string_after_c.c				\
-		init/from_file/get_the_int_after_c.c			\
-		init/from_file/get_the_vector_i_after_c.c		\
-		init/from_file/get_sf_int_rect_after_c.c		\
-		init/from_file/get_scene_from_folder.c			\
-		init/from_file/get_sprite_after_c.c				\
-		init/from_file/player/get_inventaire_from_file.c	\
-		init/from_file/player/get_player_from_file.c	\
-		init/from_file/map/get_map_from_file.c			\
-		scen/default_page.c								\
-		time/speed_of_game.c							\
-		collision/collision_square.c					\
-		collision/collision_circle_square.c				\
-		collision/init_hitbox_with_sprite.c				\
-		draw/map.c                                \
-		collision/collision_circle.c					\
-		collision/debug/display_collision.c				\
-		collision/check_if_collision.c
 
-SRC_PRI = ./src/
+SRC		=	main.c											\
+			reader.c										\
+			scen/default_page.c								\
+			time/speed_of_game.c							\
+			draw/map.c
 
-OBJ     =       $(addprefix $(SRC_PRI), $(SRC:.c=.o))
+SRC_COLLISION	=	collision_square.c					\
+					collision_circle_square.c				\
+					init_hitbox_with_sprite.c				\
+					collision_circle.c					\
+					debug/display_collision.c				\
+					check_if_collision.c
+
+SRC_INIT	=	from_file/get_string_after_c.c						\
+				from_file/get_the_int_after_c.c						\
+				from_file/get_the_vector_i_after_c.c				\
+				from_file/get_sf_int_rect_after_c.c					\
+				from_file/get_scene_from_folder.c					\
+				from_file/get_sprite_after_c.c						\
+				from_file/player/get_inventaire_from_file.c			\
+				from_file/player/get_player_from_file.c				\
+				from_file/map/get_map_from_file.c					\
+				window/init_window.c
+
+SRC_PRE = ./src/
+
+INIT_PRE = ./src/init/
+
+COLLISION_PRE	=	./src/collision/
+
+OBJ     =	$(addprefix $(SRC_PRE), $(SRC:.c=.o)) $(addprefix $(INIT_PRE), $(SRC_INIT:.c=.o))\
+			$(addprefix $(COLLISION_PRE), $(SRC_COLLISION:.c=.o))
 
 NAME    =       my_rpg
 
@@ -47,14 +55,37 @@ $(NAME):	$(OBJ)
 
 clean:
 	$(MAKE) -C lib/ clean
+	rm -f *.gcno
+	rm -f *.gcda
+	rm -f ./unit_tests
 	rm -f $(OBJ)
 
 fclean:	clean
 	$(MAKE) -C lib/ fclean
 	rm -f $(NAME)
 
+
 re:	fclean all
 
+# ------------------------------------------------------------------------ #
 
-tests_run:
-	echo "no tests"
+# UNITS TESTS PARTS
+
+NAME_CRIT	=	unit_tests
+
+SRC_CRIT	=	tests/src_tests/collision/test_collision_square.c		\
+				tests/src_tests/collision/test_collision_circle.c
+
+SRC_FOR_CRIT	=	$(addprefix $(COLLISION_PRE), $(SRC_COLLISION))
+
+T_LDFLAGS	+= -lcriterion
+
+tests_run : $(NAME_CRIT)
+
+$(NAME_CRIT):
+	$(CC) -o $(NAME_CRIT) $(SRC_CRIT) $(SRC_FOR_CRIT) $(CFLAGS) $(T_LDFLAGS) --coverage
+	./unit_tests
+
+re_crit: fclean tests_run
+
+.PHONY: all clean fclean tests_run re re_crit
