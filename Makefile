@@ -30,7 +30,7 @@ SRC		=	main.c											\
 			inventory/tab_of_int.c							\
 			draw/map.c
 
-SRC_COLLISION	=	collision_square.c					\
+SRC_COLLISION	=	collision_square.c						\
 					collision_circle_square.c				\
 					init_hitbox_with_sprite.c				\
 					collision_circle.c						\
