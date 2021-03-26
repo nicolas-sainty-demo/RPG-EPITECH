@@ -14,8 +14,8 @@ float calc_distance(const float p1, const float p2)
     return (sqrt(pow(p1, 2) + pow(p2, 2)));
 }
 
-sfVector2f calc_speed_vector(int speed, sfVector2f depart_pos\
-, sfVector2f arrival_pos)
+sfVector2f calc_speed_vector(const int speed, const sfVector2f depart_pos\
+, const sfVector2f arrival_pos)
 {
     sfVector2f vector_speed = { 0 };
     float delta_x = arrival_pos.x - depart_pos.x;
