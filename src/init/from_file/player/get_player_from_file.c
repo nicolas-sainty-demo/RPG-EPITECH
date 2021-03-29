@@ -27,6 +27,10 @@ static void set_info(char **info, player_t *player)
             sfSprite_setTextureRect\
             (player->sprite, get_sf_int_rect_after_c(info[i], '='));
         }
+        if (my_strcmp_to_c(info[i], "position", '=')) {
+            sfVector2i pos = get_the_vector_i_after_c(info[i], '=');
+            sfSprite_setPosition(player->sprite, (sfVector2f){pos.x, pos.y});
+        }
     }
 }
 
@@ -50,6 +54,14 @@ static void extract_the_folder_player\
     free(buffer);
 }
 
+static void set_player_variable(player_t *player)
+{
+    player->animation_clock = sfClock_create();
+    player->flip = sfFalse;
+    player->anime = 0;
+    player->speed = 500;
+}
+
 int get_player_from_file(player_t *player, char *name_of_dir)
 {
     DIR *folder = NULL;
@@ -66,5 +78,6 @@ int get_player_from_file(player_t *player, char *name_of_dir)
     closedir(folder);
     set_info(info, player);
     free_char_tab(info);
+    set_player_variable(player);
     return (0);
 }

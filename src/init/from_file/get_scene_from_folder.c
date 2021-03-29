@@ -13,12 +13,26 @@
 #include <sys/types.h>
 #include <stdio.h>
 
+map_t *creat_map(void)
+{
+    map_t *map = malloc(sizeof(map_t));
+
+    map->layer_a = NULL;
+    map->layer_b = NULL;
+    map->layer_c = NULL;
+    map->map_layer_a = NULL;
+    map->map_layer_b = NULL;
+    map->map_layer_c = NULL;
+    map->tils_colition = NULL;
+    return (map);
+}
+
 static void extract_the_folder\
 (DIR *folder, scene_t *scene, const char *scene_name)
 {
     struct dirent *dirdir = NULL;
     scene->player = malloc(sizeof(player_t));
-    scene->map = malloc(sizeof(map_t));
+    scene->map = creat_map();
 
     dirdir = readdir(folder);
     while (dirdir != NULL) {

@@ -6,6 +6,7 @@
 */
 
 #include "window_struc.h"
+#include <SFML/Graphics/View.h>
 
 the_window init_window(const int x, const int y)
 {
@@ -17,5 +18,8 @@ the_window init_window(const int x, const int y)
     sfRenderWindow_setFramerateLimit(windows.window, 60);
     sfRenderWindow_setMouseCursorVisible(windows.window, sfTrue);
     windows.scene = NULL;
+    windows.camera = sfView_create();
+    sfRenderWindow_setView(windows.window, windows.camera);
+    sfView_setSize(windows.camera, (sfVector2f){x, y});
     return (windows);
 }
