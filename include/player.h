@@ -9,6 +9,16 @@
 #define PLAYER_H_
 
 #include <SFML/Graphics/Sprite.h>
+#include <SFML/System/Clock.h>
+#include <SFML/System/Time.h>
+
+typedef enum animation
+{
+    player_stay = 0,
+    player_run_bot = 1,
+    player_run = 2,
+    player_run_top = 3
+} animation_t;
 
 typedef struct player
 {
@@ -16,7 +26,11 @@ typedef struct player
     sfSprite *sprite;
     char anime;
     int hp;
+    sfClock *animation_clock;
+    sfBool flip;
+    int speed;
 } player_t;
 
+void anim_player(player_t *player);
 
 #endif /* !PLAYER_H_ */

@@ -14,4 +14,9 @@ the_window init_window(const int x, const int y);
 void speed_of_game(float s);
 void default_page(the_window *windows);
 
+float time_to_float(sfClock *time);
+
+void draw_heal_bar(sfVector2f size, sfVector2f heal_min_max, \
+sfVector2f position, sfRenderWindow *window);
+
 #endif /* !WINDOW_FONCTION_H_ */

@@ -10,11 +10,11 @@
 
 #include <SFML/Graphics/Sprite.h>
 
-typedef struct entity_passif
+typedef struct entity_passive
 {
     sfSprite *sprite;
     char anime;
-} entity_passif_t;
+} entity_passive_t;
 
 typedef struct entity_enemy
 {

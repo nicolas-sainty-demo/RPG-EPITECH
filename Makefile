@@ -10,6 +10,11 @@ SRC		=	main.c											\
 			reader.c										\
 			scen/default_page.c								\
 			time/speed_of_game.c							\
+			time/time_to_float.c							\
+			draw/heal_bare.c								\
+			move/player/move_player.c						\
+			move/player/get_player_colition_map.c			\
+			animation/player.c								\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c					\
@@ -28,6 +33,7 @@ SRC_INIT	=	from_file/get_string_after_c.c						\
 				from_file/player/get_inventaire_from_file.c			\
 				from_file/player/get_player_from_file.c				\
 				from_file/map/get_map_from_file.c					\
+				from_file/map/set_info.c							\
 				window/init_window.c
 
 SRC_PRE = ./src/

@@ -17,6 +17,7 @@ typedef struct the_window
     sfRenderWindow *window;
     sfVideoMode Videomode;
     scene_t *scene;
+    sfView *camera;
 } the_window;
 
 #endif /* !WINDOW_STRUC_H_ */
