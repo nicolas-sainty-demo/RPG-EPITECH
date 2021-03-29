@@ -9,16 +9,16 @@
 #include "window_fonction.h"
 #include "map.h"
 #include "collision.h"
-
+#include "move.h"
+#include <SFML/Graphics/RectangleShape.h>
+#include <SFML/Graphics/View.h>
 #include <stdlib.h>
+#include "draw.h"
 
 static void draw(the_window *windows)
 {
-    sfRenderWindow_clear(windows->window, sfBlack);
-    draw_map(windows->window, windows->scene->map, 16);
-    sfRenderWindow_drawSprite\
-    (windows->window, windows->scene->player->sprite, NULL);
     sfRenderWindow_display(windows->window);
+    sfRenderWindow_clear(windows->window, sfBlack);
 }
 
 static void update(the_window *windows)
@@ -29,6 +29,12 @@ static void update(the_window *windows)
 void default_page(the_window *windows)
 {
     while (sfRenderWindow_isOpen(windows->window)) {
+        sfRenderWindow_setView(windows->window, windows->camera);
+        draw_map(windows, windows->scene->map);
+        sfRenderWindow_drawSprite\
+        (windows->window, windows->scene->player->sprite, NULL);
+        anim_player(windows->scene->player);
+        move_player(windows);
         speed_of_game((float)1/60);
         update(windows);
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
