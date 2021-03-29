@@ -19,6 +19,6 @@ typedef struct map
 } map_t;
 
 void draw_map\
-(const sfRenderWindow *window, const map_t *map, const int tils_size);
+(sfRenderWindow *window, const map_t *map, const int tils_size);
 
 #endif /* !MAP_H_ */

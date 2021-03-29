@@ -15,7 +15,8 @@ SRC		=	main.c											\
 			projectile/draw_projectile.c					\
 			projectile/init_projectile.c					\
 			projectile/update_projectile.c					\
-			projectile/manipulation_projectile.c
+			projectile/manipulation_projectile.c			\
+			projectile/event_projectile.c
 
 SRC_COLLISION	=	collision_square.c						\
 					collision_circle_square.c				\

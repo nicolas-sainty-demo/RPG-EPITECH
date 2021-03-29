@@ -8,7 +8,7 @@
 #ifndef WINDOW_STRUC_H_
 #define WINDOW_STRUC_H_
 
-#include "cfml_include.h"
+#include <SFML/Graphics/RenderWindow.h>
 #include "scene.h"
 
 typedef struct the_window

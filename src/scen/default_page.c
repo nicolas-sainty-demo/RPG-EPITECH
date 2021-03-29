@@ -27,8 +27,7 @@ static void update(the_window *windows)
 
 void default_page(the_window *windows)
 {
-    projectile_t proj1 = init_projectile("res/projectile/bullet.png", 20, 5);
-
+    projectile_t **proj = init_tab_projectile("res/projectile/bullet.png", 20, 10, 5);
 
     while (sfRenderWindow_isOpen(windows->window)) {
         speed_of_game((float)1/60);
@@ -36,18 +35,10 @@ void default_page(the_window *windows)
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
             if (windows->event.type == sfEvtClosed)
                 sfRenderWindow_close(windows->window);
-            if ((windows->event.type = sfEvtMouseButtonPressed) &&\
-             sfMouse_isButtonPressed(sfMouseLeft) && proj1.state != shooted) {
-                sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(windows->window);
-                if (proj1.state == no_shoot)  {
-                    printf("in\n");
-                    proj1.final_pos = (sfVector2f){pos_mouse.x, pos_mouse.y};
-                    shoot_projectile(&proj1, (sfVector2f){500, 500}, proj1.final_pos);
-                }
-            }
+            event_projectile(windows->event, windows->window, proj);
         }
-        update_projectile(&proj1);
-        draw_projectile(windows->window, proj1);
+        update_all_projectiles(proj);
+        draw_all_projectiles(windows->window, proj);
         sfRenderWindow_display(windows->window);
     }
 

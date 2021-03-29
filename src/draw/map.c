@@ -7,9 +7,10 @@
 
 #include "map.h"
 #include <stdlib.h>
+#include <SFML/Graphics/RenderWindow.h>
 
 void draw_map\
-(const sfRenderWindow *window, const map_t *map, const int tils_size)
+(sfRenderWindow *window, const map_t *map, const int tils_size)
 {
     sfVector2f size = sfSprite_getScale(map->sprite_sol);
 

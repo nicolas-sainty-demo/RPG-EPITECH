@@ -5,6 +5,8 @@
 ** update_projectile
 */
 
+#include <stddef.h>
+
 #include "errors_define.h"
 
 #include "projectile.h"
@@ -27,4 +29,11 @@ void update_projectile(projectile_t *projectile)
         display_error(ERROR_NO_MALLOC_);
     else
         check_state_projectile(projectile);
+}
+
+void update_all_projectiles(projectile_t **projectile)
+{
+    for (int i = 0; projectile[i] != NULL; i++) {
+        update_projectile(projectile[i]);
+    }
 }

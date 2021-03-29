@@ -9,9 +9,18 @@
 
 #include <SFML/Graphics/RenderWindow.h>
 
-void draw_projectile(sfRenderWindow *win, projectile_t basic_projectile)
+void draw_projectile(sfRenderWindow *win, projectile_t *const basic_projectile)
 {
-    if (basic_projectile.state == shooted) {
-        sfRenderWindow_drawSprite(win, basic_projectile.spt_projectile, NULL);
+    if (basic_projectile->state == shooted) {
+        sfRenderWindow_drawSprite(win, basic_projectile->spt_projectile, NULL);
     }
+}
+
+void draw_all_projectiles(sfRenderWindow *win\
+, projectile_t *const *basic_projectile)
+{
+    for (int i = 0; basic_projectile[i] != NULL; i++) {
+        draw_projectile(win, basic_projectile[i]);
+    }
+    
 }
