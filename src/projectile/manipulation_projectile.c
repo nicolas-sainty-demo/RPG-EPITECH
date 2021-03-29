@@ -27,17 +27,17 @@ void move_projectile(projectile_t *projectile, sfFloatRect bounds_spt)
 {
     projectile->init_pos.x += projectile->vector_speed.x;
     projectile->init_pos.y += projectile->vector_speed.y;
-    sfSprite_setPosition(projectile->spt_projectile,\
-     (sfVector2f){projectile->init_pos.x - (bounds_spt.width/2)\
-     , projectile->init_pos.y - (bounds_spt.height/2)});
+    sfSprite_setPosition(projectile->spt_projectile\
+    , (sfVector2f){projectile->init_pos.x - (bounds_spt.width/2)\
+    , projectile->init_pos.y - (bounds_spt.height/2)});
 }
 
 void is_projectile_arrived(projectile_t *prjt, sfFloatRect bounds)
 {
     if (prjt->init_pos.x > prjt->final_pos.x - (bounds.width/4)\
-     && prjt->init_pos.y > prjt->final_pos.y - (bounds.height/4)
+    && prjt->init_pos.y > prjt->final_pos.y - (bounds.height/4)
     && prjt->init_pos.x < prjt->final_pos.x + (bounds.width/4)\
-     && prjt->init_pos.y < prjt->final_pos.y + (bounds.height/4)) {
+    && prjt->init_pos.y < prjt->final_pos.y + (bounds.height/4)) {
         prjt->state = arrived;
     }
 }

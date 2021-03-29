@@ -23,8 +23,8 @@ projectile_t *init_projectile(char *path_projectile, int radius, int speed)
     basic_projectile->spt_projectile = sfSprite_create();
     basic_projectile->text_projectile = \
     sfTexture_createFromFile(path_projectile, NULL);
-    if (!basic_projectile->spt_projectile || !basic_projectile->text_projectile\
-     || !basic_projectile->clock)
+    if (!basic_projectile->spt_projectile || \
+    !basic_projectile->text_projectile || !basic_projectile->clock)
         return (NULL);
     sfSprite_setTexture(basic_projectile->spt_projectile, \
     basic_projectile->text_projectile, sfTrue);
@@ -38,8 +38,8 @@ projectile_t **init_tab_projectile(char *const path_projectile\
 , const int radius, const int speed, const int nb_of_projectiles)
 {
     int i = 0;
-    projectile_t **tab_projectile = malloc(sizeof(projectile_t)\
-     * (nb_of_projectiles+1));
+    projectile_t **tab_projectile = malloc(sizeof(projectile_t) * \
+    (nb_of_projectiles+1));
 
     if (!tab_projectile) {
         display_error(ERROR_NO_MALLOC_);

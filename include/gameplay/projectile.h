@@ -15,7 +15,9 @@
 
 #define AREA_ENDING_PROJECTILE 10
 
-#define RELOAD_MUN_ 5
+#define RELOAD_MUN_ 4
+
+#define NB_OF_MUN_ 10
 
 enum state_projectile_e
 {

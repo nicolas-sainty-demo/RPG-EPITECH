@@ -27,7 +27,7 @@ static void update(the_window *windows)
 
 void default_page(the_window *windows)
 {
-    projectile_t **proj = init_tab_projectile("res/projectile/bullet.png", 20, 10, 5);
+    projectile_t **proj = init_tab_projectile("res/projectile/bullet.png", 20, 10, NB_OF_MUN_);
 
     while (sfRenderWindow_isOpen(windows->window)) {
         speed_of_game((float)1/60);

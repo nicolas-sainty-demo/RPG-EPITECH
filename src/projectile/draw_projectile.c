@@ -22,5 +22,4 @@ void draw_all_projectiles(sfRenderWindow *win\
     for (int i = 0; basic_projectile[i] != NULL; i++) {
         draw_projectile(win, basic_projectile[i]);
     }
-    
 }

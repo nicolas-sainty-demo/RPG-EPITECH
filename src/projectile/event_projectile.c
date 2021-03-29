@@ -13,7 +13,7 @@
 static void is_shoot(sfEvent event, sfRenderWindow *window\
 , projectile_t *proj)
 {
-    if ((event.type == sfEvtMouseButtonPressed) &&\
+    if ((event.type == sfEvtMouseButtonPressed) && \
         sfMouse_isButtonPressed(sfMouseLeft) && proj->state != shooted) {
         sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(window);
         if (proj->state == no_shoot)  {

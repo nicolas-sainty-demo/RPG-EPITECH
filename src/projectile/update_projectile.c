@@ -13,8 +13,8 @@
 
 void check_state_projectile(projectile_t *projectile)
 {
-    sfFloatRect bounds_spt =\
-     sfSprite_getGlobalBounds(projectile->spt_projectile);
+    sfFloatRect bounds_spt = \
+    sfSprite_getGlobalBounds(projectile->spt_projectile);
 
     if (projectile->state == shooted) {
         move_projectile(projectile, bounds_spt);
