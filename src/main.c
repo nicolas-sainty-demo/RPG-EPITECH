@@ -18,6 +18,23 @@ int core(void)
     return (0);
 }
 
+int my_strstr(char *const haystack, char *const needle)
+{
+    int i = 0;
+    int j = 0;
+
+    if (!haystack || !needle)
+        return (0);
+    while (haystack[i] && needle[j]) {
+        if (haystack[i] == needle[j])
+            j++;
+        i++;
+    }
+    if (j == my_strlen(needle))
+        return (1);
+    return (0);
+}
+
 int is_env(char **env)
 {
     int is_display = 0;
@@ -25,7 +42,7 @@ int is_env(char **env)
     if (env == NULL)
         return (84);
     for (int i = 0; env[i]; i++) {
-        if (my_strcmp(env[i], "DISPLAY"))
+        if (my_strstr(env[i], "DISPLAY"))
             is_display++;
     }
     if (is_display)
