@@ -18,7 +18,24 @@ int core(void)
     return (0);
 }
 
-int main(int argc, char const *argv[])
+int is_env(char **env)
 {
+    int is_display = 0;
+
+    if (env == NULL)
+        return (84);
+    for (int i = 0; env[i]; i++) {
+        if (my_strcmp(env[i], "DISPLAY"))
+            is_display++;
+    }
+    if (is_display)
+        return (0);
+    return (84);
+}
+
+int main(int argc, char const *argv[], char **env)
+{
+    if (is_env(env) == 84)
+        return (84);
     return (core());
 }
