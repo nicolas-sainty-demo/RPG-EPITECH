@@ -12,6 +12,8 @@
 #include "move.h"
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/View.h>
+#include "projectile.h"
+
 #include <stdlib.h>
 #include "draw.h"
 #include "from_file.h"
@@ -33,6 +35,7 @@ void default_page(the_window *windows)
     windows->scene = get_scene_from_folder("res/scene/debut");
 
     while (sfRenderWindow_isOpen(windows->window)) {
+        sfRenderWindow_clear(windows->window, sfBlack);
         sfRenderWindow_setView(windows->window, windows->camera);
         draw_map(windows, windows->scene->map);
         sfRenderWindow_drawSprite\
@@ -48,10 +51,15 @@ void default_page(the_window *windows)
         anim_player(windows->scene->player);
         move_player(windows);
         speed_of_game((float)1/60);
-        update(windows);
+        // update(windows);
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
             if (windows->event.type == sfEvtClosed)
                 sfRenderWindow_close(windows->window);
+            event_projectile(windows->event, windows->scene->player->proj,\
+             windows);
         }
+        update_all_projectiles(windows->scene->player->proj);
+        draw_all_projectiles(windows->window, windows->scene->player->proj);
+        sfRenderWindow_display(windows->window);
     }
 }

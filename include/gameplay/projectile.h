@@ -12,16 +12,8 @@
 #include <SFML/System/Clock.h>
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/Window/Event.h>
-
 #include "projectile_struct.h"
 #include "window_struc.h"
-
-
-#define AREA_ENDING_PROJECTILE 10
-
-#define RELOAD_MUN_ 4
-
-#define NB_OF_MUN_ 10
 
 // init_part
 projectile_t *init_projectile(char *path_projectile, int radius, int speed);

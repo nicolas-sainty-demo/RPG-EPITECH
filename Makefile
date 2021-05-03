@@ -29,7 +29,7 @@ SRC		=	main.c											\
 SRC_COLLISION	=	collision_square.c					\
 					collision_circle_square.c				\
 					init_hitbox_with_sprite.c				\
-					collision_circle.c					\
+					collision_circle.c						\
 					debug/display_collision.c				\
 					check_if_collision.c
 
@@ -63,7 +63,7 @@ NAME    =       my_rpg
 CFLAGS	=	-l csfml-audio -l csfml-graphics -l csfml-system -l csfml-window -l m \
 			-Wall -Wextra -g\
 			-I include -I lib/src/include -I include/gameplay/ \
-			-I include/gameplay/combat
+			-I include/gameplay/combat -I include/tools
 
 LFLAGS	=	-L. -lstr -ltools
 
