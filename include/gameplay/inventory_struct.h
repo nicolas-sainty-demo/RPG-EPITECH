@@ -21,4 +21,9 @@ typedef struct inventory_s
     sfTexture *inventory_te_item;
 }inventory;
 
+typedef struct items_dropped_s
+{
+    ;
+} items_dropped_t;
+
 #endif /* !INVENTORY_STRUCT_H_ */

@@ -25,10 +25,10 @@ SRC		=	main.c											\
 			projectile/free_projectile.c					\
 			init/player/player_projectile.c					\
 			inventory/init_struct.c							\
-			inventory/make_tab.c							\
 			inventory/open_inventory.c						\
 			inventory/tab_of_int.c							\
 			system_combat/collision_proj_ennemy.c		\
+			system_combat/drop_item.c					\
 			ennemies/update_ennemies.c					\
 			ennemies/draw_ennemies.c					\
 			ennemies/show_healbar_ennemies.c			\

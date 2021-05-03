@@ -24,6 +24,8 @@
 
 bool is_collision_proj_ennemy(the_window *window);
 
+void print_item(the_window *windows);
+
 static void draw(the_window *windows)
 {
     draw_map(windows, windows->scene->map);
@@ -35,6 +37,7 @@ static void draw(the_window *windows)
         , windows->scene->passive[i]->sprite, NULL);
         anim_passive(windows->scene->passive[i]);
     }
+    print_item(windows);
     draw_all_projectiles(windows->window, windows->scene->player->proj);
 }
 
@@ -53,6 +56,7 @@ void default_page(the_window *windows)
     int **tab;
     windows->state = 0;
     windows->scene = get_scene_from_folder("res/scene/debut");
+    windows->scene->pos_items = NULL;
 
     while (sfRenderWindow_isOpen(windows->window)) {
         sfRenderWindow_clear(windows->window, sfBlack);

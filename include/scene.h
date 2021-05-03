@@ -18,6 +18,7 @@ typedef struct scene
     entity_passive_t **passive;
     map_t *map;
     player_t *player;
+    sfVector2f **pos_items;
 } scene_t;
 
 #endif /* !SCENE_H_ */

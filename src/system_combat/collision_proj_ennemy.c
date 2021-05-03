@@ -23,10 +23,7 @@ bool is_collision_proj_ennemy(the_window *window)
             (RADIUS_PROJ, window->scene->player->proj[i]->spt_projectile\
             , window->scene->enemy[j]->sprite)) {
                 display_square_hitbox_debug(window->scene->enemy[j]->sprite, window->window, sfRed);
-                printf("damage-->%d\n", window->scene->player->damage);
-                printf("collision\n { %d, ", window->scene->enemy[j]->hp);
                 window->scene->enemy[j]->hp -=  window->scene->player->damage;
-                printf("%d \n}", window->scene->enemy[j]->hp);
                 window->scene->player->proj[i]->state = arrived;
                 return (true);
             }
