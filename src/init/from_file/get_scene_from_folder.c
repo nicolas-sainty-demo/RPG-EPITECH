@@ -13,27 +13,22 @@
 #include <sys/types.h>
 #include <stdio.h>
 
-map_t *creat_map(void)
+int set_entyte_from_folader\
+(entity_enemy_t **enemy, entity_passive_t **passive, const char *scene_name)
 {
-    map_t *map = malloc(sizeof(map_t));
-
-    map->layer_a = NULL;
-    map->layer_b = NULL;
-    map->layer_c = NULL;
-    map->map_layer_a = NULL;
-    map->map_layer_b = NULL;
-    map->map_layer_c = NULL;
-    map->tils_colition = NULL;
-    return (map);
+    if (set_enemy_from_foalders(enemy, my_strcat(scene_name, "/entity/enemy/")) == 84)
+        return (84);
+    if (set_passive_from_foalder(passive, my_strcat(scene_name, "/entity/passif/")) == 84)
+        return (84);
+    return (0);
 }
 
-static void extract_the_folder\
+static int extract_the_folder\
 (DIR *folder, scene_t *scene, const char *scene_name)
 {
     struct dirent *dirdir = NULL;
-    scene->player = malloc(sizeof(player_t));
-    scene->map = creat_map();
 
+    set_defo_scene(scene, scene_name);
     dirdir = readdir(folder);
     while (dirdir != NULL) {
         if (dirdir->d_name[0] != '.') {
@@ -43,23 +38,30 @@ static void extract_the_folder\
             if (my_strcmp(dirdir->d_name, "map"))
                 get_map_from_file\
                 (scene->map, my_strcat(scene_name, "/map"));
+            if (my_strcmp(dirdir->d_name, "entity"))
+                if (set_entyte_from_folader\
+                (scene->enemy, scene->passive, scene_name) == 84)
+                    return (84);
         }
         dirdir = readdir(folder);
     }
+    return (0);
 }
 
 scene_t *get_scene_from_folder(const char *scene_name)
 {
     scene_t *scene = malloc(sizeof(scene_t));
     DIR *folder;
+    int return_ = 0;
 
     if (scene == NULL || scene_name == NULL)
         return (NULL);
     folder = opendir(scene_name);
-    if (folder == NULL) {
+    if (folder == NULL)
         return (NULL);
-    }
-    extract_the_folder(folder, scene, scene_name);
+    return_ = extract_the_folder(folder, scene, scene_name);
     closedir(folder);
+    if (return_ == 84)
+        return (NULL);
     return (scene);
 }

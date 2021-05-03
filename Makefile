@@ -15,16 +15,25 @@ SRC		=	main.c											\
 			move/player/move_player.c						\
 			move/player/get_player_colition_map.c			\
 			animation/player.c								\
-			draw/map.c										\
+			animation/enemy.c								\
+			math/distance.c									\
+			projectile/draw_projectile.c					\
+			projectile/init_projectile.c					\
+			projectile/update_projectile.c					\
+			projectile/manipulation_projectile.c			\
+			projectile/event_projectile.c					\
+			projectile/free_projectile.c					\
+			init/player/player_projectile.c					\
 			inventory/init_struct.c							\
 			inventory/make_tab.c							\
 			inventory/open_inventory.c						\
-			inventory/tab_of_int.c
+			inventory/tab_of_int.c							\
+			draw/map.c
 
 SRC_COLLISION	=	collision_square.c					\
 					collision_circle_square.c				\
 					init_hitbox_with_sprite.c				\
-					collision_circle.c					\
+					collision_circle.c						\
 					debug/display_collision.c				\
 					check_if_collision.c
 
@@ -36,8 +45,12 @@ SRC_INIT	=	from_file/get_string_after_c.c						\
 				from_file/get_sprite_after_c.c						\
 				from_file/player/get_inventaire_from_file.c			\
 				from_file/player/get_player_from_file.c				\
+				from_file/player/get_nbr_of_fil_in_folder.c			\
 				from_file/map/get_map_from_file.c					\
 				from_file/map/set_info.c							\
+				from_file/passif/set_passive_from_foalder.c			\
+				from_file/enemy/set_enemy_from_foalders.c			\
+				from_file/defo/set_default.c						\
 				window/init_window.c
 
 SRC_PRE = ./src/
@@ -53,7 +66,8 @@ NAME    =       my_rpg
 
 CFLAGS	=	-l csfml-audio -l csfml-graphics -l csfml-system -l csfml-window -l m \
 			-Wall -Wextra -g\
-			-I include -I lib/src/include
+			-I include -I lib/src/include -I include/gameplay/ \
+			-I include/gameplay/combat -I include/tools
 
 LFLAGS	=	-L. -lstr -ltools
 

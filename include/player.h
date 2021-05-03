@@ -12,6 +12,8 @@
 #include <SFML/System/Clock.h>
 #include <SFML/System/Time.h>
 
+#include "projectile_struct.h"
+
 typedef enum animation
 {
     player_stay = 0,
@@ -29,6 +31,7 @@ typedef struct player
     sfClock *animation_clock;
     sfBool flip;
     int speed;
+    projectile_t **proj;
 } player_t;
 
 void anim_player(player_t *player);

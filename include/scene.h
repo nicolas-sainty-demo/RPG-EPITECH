@@ -15,6 +15,7 @@
 typedef struct scene
 {
     entity_enemy_t **enemy;
+    entity_passive_t **passive;
     map_t *map;
     player_t *player;
 } scene_t;
