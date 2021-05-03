@@ -60,4 +60,5 @@ void default_page(the_window *windows)
         }
         sfRenderWindow_display(windows->window);
     }
+    free_projectile(windows->scene->player->proj);
 }
