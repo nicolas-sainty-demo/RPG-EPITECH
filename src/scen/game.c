@@ -114,6 +114,25 @@ static void update(the_window *windows)
     draw(windows);
 }
 
+void pick_the_item(the_window *windows)
+{
+    items_t *item = is_item_in_range(windows);
+    int i = 0;
+
+    if (item == NULL)
+        return;
+    while (windows->scene->player->inventaire[i] != '\0' \
+    && windows->scene->player->inventaire[i] != '!') {
+        i += 1;
+    }
+    if (i >= 20) {
+        printf("FULL\n");
+        return;
+    }
+    windows->scene->player->inventaire[i] = item->type;
+    delete_node(&windows->scene->pos_items, item);
+}
+
 void gameplay_scene(the_window *windows)
 {
     update(windows);
