@@ -21,12 +21,12 @@
 
 static void draw(the_window *windows)
 {
-    sfRenderWindow_display(windows->window);
-    sfRenderWindow_clear(windows->window, sfBlack);
+    draw_all_projectiles(windows->window, windows->scene->player->proj);
 }
 
 static void update(the_window *windows)
 {
+    update_all_projectiles(windows->scene->player->proj);
     draw(windows);
 }
 
@@ -51,15 +51,13 @@ void default_page(the_window *windows)
         anim_player(windows->scene->player);
         move_player(windows);
         speed_of_game((float)1/60);
-        // update(windows);
+        update(windows);
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
             if (windows->event.type == sfEvtClosed)
                 sfRenderWindow_close(windows->window);
             event_projectile(windows->event, windows->scene->player->proj,\
              windows);
         }
-        update_all_projectiles(windows->scene->player->proj);
-        draw_all_projectiles(windows->window, windows->scene->player->proj);
         sfRenderWindow_display(windows->window);
     }
 }
