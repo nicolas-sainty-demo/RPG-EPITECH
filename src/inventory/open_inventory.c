@@ -28,7 +28,8 @@ void set_and_draw(the_window *windows, sfVector2f view)
     sfSprite_setPosition(windows->inv->inventory_sprite, windows->inv->pos_inv);
     sfRenderWindow_drawSprite(windows->window, windows->inv->inventory_sprite, NULL);
     for (int i = 0; i != 22; i++) {
-        printf("%i\n", i);
+        sfSprite_setTextureRect(windows->inv->inventory_sp_item, (sfIntRect)\
+        {(windows->scene->player->inventaire[i] - 33) * 90, 0, 90, 90});
         sfSprite_setPosition(windows->inv->inventory_sp_item, inventory_space[i]);
         sfRenderWindow_drawSprite(windows->window, windows->inv->inventory_sp_item, NULL);
     }
