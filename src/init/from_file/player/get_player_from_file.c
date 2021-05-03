@@ -12,6 +12,8 @@
 #include <sys/types.h>
 #include "from_file.h"
 
+void init_elem_player(player_t *player);
+
 static void set_info(char **info, player_t *player)
 {
     for (int i = 0; info[i] != NULL; i += 1) {
@@ -30,6 +32,9 @@ static void set_info(char **info, player_t *player)
         if (my_strcmp_to_c(info[i], "position", '=')) {
             sfVector2i pos = get_the_vector_i_after_c(info[i], '=');
             sfSprite_setPosition(player->sprite, (sfVector2f){pos.x, pos.y});
+        }
+        if (my_strcmp_to_c(info[i], "projectile", '=')) {
+            get_string_after_c(info[i], '=');
         }
     }
 }
@@ -74,6 +79,7 @@ int get_player_from_file(player_t *player, char *name_of_dir)
         return (84);
     }
     extract_the_folder_player(folder, &info, name_of_dir);
+    init_elem_player(player);
     free (name_of_dir);
     closedir(folder);
     set_info(info, player);

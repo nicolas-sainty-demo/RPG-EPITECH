@@ -16,12 +16,20 @@ SRC		=	main.c											\
 			move/player/get_player_colition_map.c			\
 			animation/player.c								\
 			animation/enemy.c								\
+			math/distance.c									\
+			projectile/draw_projectile.c					\
+			projectile/init_projectile.c					\
+			projectile/update_projectile.c					\
+			projectile/manipulation_projectile.c			\
+			projectile/event_projectile.c					\
+			projectile/free_projectile.c					\
+			init/player/player_projectile.c				\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c					\
 					collision_circle_square.c				\
 					init_hitbox_with_sprite.c				\
-					collision_circle.c					\
+					collision_circle.c						\
 					debug/display_collision.c				\
 					check_if_collision.c
 
@@ -54,7 +62,8 @@ NAME    =       my_rpg
 
 CFLAGS	=	-l csfml-audio -l csfml-graphics -l csfml-system -l csfml-window -l m \
 			-Wall -Wextra -g\
-			-I include -I lib/src/include
+			-I include -I lib/src/include -I include/gameplay/ \
+			-I include/gameplay/combat -I include/tools
 
 LFLAGS	=	-L. -lstr -ltools
 
