@@ -4,6 +4,6 @@ rec=0,0,32,32
 size=3,3
 type=0
 hp=50
-speed=100
+speed=2
 damage=10
 animeFrame=3

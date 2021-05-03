@@ -87,5 +87,6 @@ int get_player_from_file(player_t *player, char *name_of_dir)
     set_info(info, player);
     free_char_tab(info);
     set_player_variable(player);
+    player->hp_max = player->hp;
     return (0);
 }

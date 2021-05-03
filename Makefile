@@ -27,11 +27,13 @@ SRC		=	main.c											\
 			inventory/init_struct.c							\
 			inventory/open_inventory.c						\
 			inventory/tab_of_int.c							\
-			system_combat/collision_proj_ennemy.c		\
-			system_combat/handle_item.c					\
-			ennemies/update_ennemies.c					\
-			ennemies/draw_ennemies.c					\
-			ennemies/show_healbar_ennemies.c			\
+			system_combat/collision_proj_ennemy.c			\
+			system_combat/handle_item.c						\
+			ennemies/update_ennemies.c						\
+			ennemies/draw_ennemies.c						\
+			ennemies/show_healbar_ennemies.c				\
+			ennemies/ennemies_attack.c						\
+			ennemies/path_finding.c							\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c						\
@@ -55,6 +57,7 @@ SRC_INIT	=	from_file/get_string_after_c.c						\
 				from_file/map/set_info.c							\
 				from_file/passif/set_passive_from_foalder.c			\
 				from_file/enemy/set_enemy_from_foalders.c			\
+				from_file/enemy/additionnal_info_ennemies.c			\
 				from_file/defo/set_default.c						\
 				window/init_window.c
 

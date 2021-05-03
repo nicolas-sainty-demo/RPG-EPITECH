@@ -32,3 +32,14 @@ void print_item(the_window *windows)
         tmp_head = tmp_head->next;
     }
 }
+
+void free_items(items_t *head)
+{
+    items_t *tmp = head;
+
+    while (head) {
+        tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+}

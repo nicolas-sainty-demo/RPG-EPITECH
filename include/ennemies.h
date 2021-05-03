@@ -21,4 +21,6 @@ void draw_ennemies(the_window *windows);
 
 void update_ennemies(the_window *windows);
 
+void path_fining(the_window *windows);
+
 #endif /* !ENNEMIES_H_ */
