@@ -17,12 +17,12 @@ sfVector2f calc_speed_vector(const int speed, const sfVector2f depart_pos\
 void shoot_projectile(projectile_t *projectile, \
 sfVector2f init_pos, sfVector2f final_pos)
 {
-    projectile->state = shooted;
-
     projectile->init_pos = init_pos;
     projectile->final_pos = final_pos;
     projectile->vector_speed = \
     calc_speed_vector(projectile->speed_given, init_pos, final_pos);
+    projectile->state = shooted;
+    sfSprite_setPosition(projectile->spt_projectile, POS_INITIAL_PROJ);
 }
 
 void move_projectile(projectile_t *projectile, sfFloatRect bounds_spt)

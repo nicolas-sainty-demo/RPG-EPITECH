@@ -20,8 +20,10 @@ static int get_primordial_variable(char **info, entity_enemy_t *enemy, int i)
     }
     if (my_strcmp_to_c(info[i], "speed=", '='))
         enemy->speed = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "hp=", '='))
+    if (my_strcmp_to_c(info[i], "hp=", '=')) {
         enemy->hp = get_the_int_after_c(info[i], '=');
+        enemy->hp_max =enemy-> hp;
+    }
     if (my_strcmp_to_c(info[i], "damage=", '='))
         enemy->damage = get_the_int_after_c(info[i], '=');
     if (my_strcmp_to_c(info[i], "type=", '='))

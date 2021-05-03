@@ -33,7 +33,7 @@ void anim_passive(entity_passive_t *passive)
     int time = (int)(time_to_float(passive->animation_clock) * 10);
     sfIntRect rec = sfSprite_getTextureRect(passive->sprite);
 
-    printf("%d %d\n", time, passive->anime);
+    // printf("%d %d\n", time, passive->anime);
     if (time >= passive->anime) {
         time = 0;
         sfClock_restart(passive->animation_clock);

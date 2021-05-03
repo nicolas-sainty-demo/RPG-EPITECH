@@ -31,6 +31,7 @@ projectile_t *init_projectile(char *path_projectile, int radius, int speed)
     basic_projectile->state = no_shoot;
     basic_projectile->speed_given = speed;
     basic_projectile->radius = radius;
+    sfSprite_setPosition(basic_projectile->spt_projectile, POS_INITIAL_PROJ);
     return (basic_projectile);
 }
 

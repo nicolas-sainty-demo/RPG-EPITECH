@@ -29,6 +29,9 @@ SRC		=	main.c											\
 			inventory/open_inventory.c						\
 			inventory/tab_of_int.c							\
 			system_combat/collision_proj_ennemy.c		\
+			ennemies/update_ennemies.c					\
+			ennemies/draw_ennemies.c					\
+			ennemies/show_healbar_ennemies.c			\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c						\
@@ -59,6 +62,7 @@ SRC_PRE = ./src/
 INIT_PRE = ./src/init/
 
 COLLISION_PRE	=	./src/collision/
+
 
 OBJ     =	$(addprefix $(SRC_PRE), $(SRC:.c=.o)) $(addprefix $(INIT_PRE), $(SRC_INIT:.c=.o))\
 			$(addprefix $(COLLISION_PRE), $(SRC_COLLISION:.c=.o))
