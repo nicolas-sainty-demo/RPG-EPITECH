@@ -5,6 +5,7 @@
 ** default_page
 */
 
+#include <stdbool.h>
 #include "window_struc.h"
 #include "window_fonction.h"
 #include "map.h"
@@ -81,6 +82,7 @@ void default_page(the_window *windows)
                 windows->state = 1;
             }
         }
+        is_collision_proj_ennemy(windows);
         sfRenderWindow_display(windows->window);
     }
     free_projectile(windows->scene->player->proj);

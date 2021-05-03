@@ -28,6 +28,7 @@ SRC		=	main.c											\
 			inventory/make_tab.c							\
 			inventory/open_inventory.c						\
 			inventory/tab_of_int.c							\
+			system_combat/collision_proj_ennemy.c		\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c						\

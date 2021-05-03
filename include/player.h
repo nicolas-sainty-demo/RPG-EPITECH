@@ -31,6 +31,7 @@ typedef struct player
     sfClock *animation_clock;
     sfBool flip;
     int speed;
+    int damage;
     projectile_t **proj;
 } player_t;
 
