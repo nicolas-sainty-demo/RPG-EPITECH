@@ -16,6 +16,13 @@ SRC		=	main.c											\
 			move/player/get_player_colition_map.c			\
 			animation/player.c								\
 			animation/enemy.c								\
+			math/distance.c									\
+			projectile/draw_projectile.c					\
+			projectile/init_projectile.c					\
+			projectile/update_projectile.c					\
+			projectile/manipulation_projectile.c			\
+			projectile/event_projectile.c					\
+			projectile/free_projectile.c					\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c					\
