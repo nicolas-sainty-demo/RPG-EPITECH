@@ -13,6 +13,7 @@
 
 typedef struct entity_passive
 {
+    char **conversation;
     sfSprite *sprite;
     char anime;
     sfClock *animation_clock;
