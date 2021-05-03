@@ -5,6 +5,7 @@
 ** default_page
 */
 
+#include <stdbool.h>
 #include "window_struc.h"
 #include "window_fonction.h"
 #include "map.h"
@@ -18,6 +19,7 @@
 #include "draw.h"
 #include "from_file.h"
 
+bool is_collision_proj_ennemy(the_window *window);
 
 static void draw(the_window *windows)
 {
@@ -58,6 +60,7 @@ void default_page(the_window *windows)
             event_projectile(windows->event, windows->scene->player->proj,\
              windows);
         }
+        is_collision_proj_ennemy(windows);
         sfRenderWindow_display(windows->window);
     }
     free_projectile(windows->scene->player->proj);
