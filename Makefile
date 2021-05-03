@@ -15,6 +15,7 @@ SRC		=	main.c											\
 			move/player/move_player.c						\
 			move/player/get_player_colition_map.c			\
 			animation/player.c								\
+			animation/enemy.c								\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c					\
@@ -32,8 +33,12 @@ SRC_INIT	=	from_file/get_string_after_c.c						\
 				from_file/get_sprite_after_c.c						\
 				from_file/player/get_inventaire_from_file.c			\
 				from_file/player/get_player_from_file.c				\
+				from_file/player/get_nbr_of_fil_in_folder.c			\
 				from_file/map/get_map_from_file.c					\
 				from_file/map/set_info.c							\
+				from_file/passif/set_passive_from_foalder.c			\
+				from_file/enemy/set_enemy_from_foalders.c			\
+				from_file/defo/set_default.c						\
 				window/init_window.c
 
 SRC_PRE = ./src/
