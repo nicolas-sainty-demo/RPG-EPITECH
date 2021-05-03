@@ -140,6 +140,13 @@ void gameplay_scene(the_window *windows)
     path_finding(windows);
     pick_the_item(windows);
     windows->usekey = sfFalse;
+    for (int i = 0; windows->scene->passive[i]; i += 1) {
+        sfRenderWindow_drawSprite(windows->window, windows->scene->passive[i]->sprite, NULL);
+        anim_passive(windows->scene->passive[i]);
+        if (check_if_collision_btw_square_without_rotation\
+        (windows->scene->passive[i]->sprite, windows->scene->player->sprite) && windows->usekey)
+            speek(windows, windows->scene->passive[i]->conversation);
+    }
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
         if (windows->event.type == sfEvtClosed)
             sfRenderWindow_close(windows->window);
