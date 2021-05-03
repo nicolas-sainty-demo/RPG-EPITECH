@@ -18,6 +18,9 @@
 #include "draw.h"
 #include "from_file.h"
 
+#include "text.h"
+
+float speek(the_window *windows, char **conversation);
 
 static void draw(the_window *windows)
 {
@@ -33,6 +36,7 @@ static void update(the_window *windows)
 void default_page(the_window *windows)
 {
     windows->scene = get_scene_from_folder("res/scene/debut");
+    sfBool usekey = sfFalse;
 
     while (sfRenderWindow_isOpen(windows->window)) {
         sfRenderWindow_clear(windows->window, sfBlack);
@@ -47,16 +51,22 @@ void default_page(the_window *windows)
         for (int i = 0; windows->scene->passive[i]; i += 1) {
             sfRenderWindow_drawSprite(windows->window, windows->scene->passive[i]->sprite, NULL);
             anim_passive(windows->scene->passive[i]);
+            if (check_if_collision_btw_square_without_rotation(windows->scene->passive[i]->sprite, windows->scene->player->sprite) && usekey)
+                speek(windows, windows->scene->passive[i]->conversation);
         }
         anim_player(windows->scene->player);
         move_player(windows);
         speed_of_game((float)1/60);
         update(windows);
+        display_square_hitbox_debug(windows->scene->player->sprite, windows->window, sfBlue);
+        usekey = sfFalse;
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
             if (windows->event.type == sfEvtClosed)
                 sfRenderWindow_close(windows->window);
-            event_projectile(windows->event, windows->scene->player->proj,\
-             windows);
+            event_projectile(windows->event, windows->scene->player->proj, \
+            windows);
+            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyF)
+                usekey = sfTrue;
         }
         sfRenderWindow_display(windows->window);
     }

@@ -6,6 +6,7 @@
 */
 
 #include "from_file.h"
+#include "str.h"
 #include <dirent.h>
 #include <sys/types.h>
 #include <stdlib.h>
@@ -14,10 +15,17 @@
 static void get_basic_variable(char **info, entity_passive_t *passive, int i)
 {
     sfVector2i to_convert = {0};
+    char *text = NULL;
+    char *segond_info = NULL;
 
     if (my_strcmp_to_c(info[i], "rec=", '='))
         sfSprite_setTextureRect\
         (passive->sprite, get_sf_int_rect_after_c(info[i], '='));
+    if (my_strcmp_to_c(info[i], "speek=", '=')) {
+        text = get_string_after_c(info[i], '=');
+        if (my_reader(text, &segond_info) == 0)
+            passive->conversation = str_to_a_tab(segond_info, '/');
+    }
     if (my_strcmp_to_c(info[i], "position=", '=')) {
         to_convert = get_the_vector_i_after_c(info[i], '=');
         sfSprite_setPosition\
@@ -54,6 +62,7 @@ static int get_primordial_variable\
 int get_passif_from_info(char **info, entity_passive_t *passive)
 {
     for (int i = 0; info[i] != NULL; i += 1) {
+        passive->conversation = NULL;
         if (get_primordial_variable(info, passive, i) == 84)
             return (84);
         get_basic_variable(info, passive, i);
@@ -68,7 +77,6 @@ int set_passive_from_foalder(entity_passive_t **passive, char *name_of_dir)
     struct dirent *dirdir = NULL;
     int return_ = 0;
 
-    printf("%s\n", name_of_dir);
     folder = opendir(name_of_dir);
     if (folder == NULL)
         return (84);
