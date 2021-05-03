@@ -72,5 +72,8 @@ void draw_all_projectiles(sfRenderWindow *win\
 
 void free_projectile(projectile_t **projectiles);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> de03adb61e46568c4392926037f7d3d82d6085a8
 #endif /* !PROJECTILE_H_ */
