@@ -23,10 +23,11 @@
 #include "dead_menu.h"
 #include "pause.h"
 #include "main_menu.h"
-
-#define PARTICl_RAND (sfVector2f){0, 360}
+#include "text.h"
 
 void gameplay_scene(the_window *windows);
+
+float speek(the_window *windows, char **conversation);
 
 float inventory_scene(the_window *windows);
 

@@ -10,6 +10,7 @@ SRC		=	main.c											\
 			reader.c										\
 			scen/default_page.c								\
 			scen/game.c										\
+			scen/speek.c									\
 			time/speed_of_game.c							\
 			time/time_to_float.c							\
 			draw/heal_bare.c								\
@@ -73,6 +74,7 @@ SRC_INIT	=	from_file/get_string_after_c.c						\
 				from_file/enemy/set_enemy_from_foalders.c			\
 				from_file/enemy/additionnal_info_ennemies.c			\
 				from_file/defo/set_default.c						\
+				from_file/init_text.c								\
 				window/init_window.c
 
 SRC_PRE = ./src/
