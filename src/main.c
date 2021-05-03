@@ -6,12 +6,16 @@
 */
 
 #include "window_fonction.h"
+#include "gameplay/inventory.h"
 #include "str.h"
 #include "from_file.h"
 
 int core(void)
 {
     the_window windows = init_window(1920, 1080);
+    inventory *inv = init_struct();
+    init_inventory(inv);
+    windows.inv = inv;
 
     windows.scene = get_scene_from_folder("res/scene/debut");
     default_page(&windows);

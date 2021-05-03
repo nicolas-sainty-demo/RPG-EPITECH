@@ -15,7 +15,11 @@ SRC		=	main.c											\
 			move/player/move_player.c						\
 			move/player/get_player_colition_map.c			\
 			animation/player.c								\
-			draw/map.c
+			draw/map.c										\
+			inventory/init_struct.c							\
+			inventory/make_tab.c							\
+			inventory/open_inventory.c						\
+			inventory/tab_of_int.c
 
 SRC_COLLISION	=	collision_square.c					\
 					collision_circle_square.c				\
