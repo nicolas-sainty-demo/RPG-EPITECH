@@ -29,6 +29,7 @@ typedef struct entity_enemy
     char anime;
     int type;
     int hp;
+    int hp_max;
     int speed;
     int damage;
     sfClock *animation_clock;
