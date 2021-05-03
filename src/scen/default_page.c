@@ -18,6 +18,7 @@
 #include "draw.h"
 #include "from_file.h"
 
+<<<<<<< HEAD
 #include "gameplay/inventory.h"
 #include "ennemies.h"
 
@@ -35,6 +36,11 @@ void draw_heal_bar_player(player_t *player, the_window *window)
     sfVector2f pos_2 = sfRenderWindow_mapPixelToCoords(window->window, pos, window->camera);
     draw_heal_bar((sfVector2f){200, 50}, heal_min_max, pos_2, window->window);
 }
+=======
+#include "text.h"
+
+float speek(the_window *windows, char **conversation);
+>>>>>>> b71be77 ([ADD] speak to png o_o)
 
 static void draw(the_window *windows)
 {
@@ -73,6 +79,7 @@ void default_page(the_window *windows)
     int **tab;
     windows->state = 0;
     windows->scene = get_scene_from_folder("res/scene/debut");
+<<<<<<< HEAD
     windows->scene->pos_items = NULL;
 
     while (sfRenderWindow_isOpen(windows->window)) {
@@ -93,6 +100,39 @@ void default_page(the_window *windows)
             if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyE) {
                 windows->state = 1;
             }
+=======
+    sfBool usekey = sfFalse;
+
+    while (sfRenderWindow_isOpen(windows->window)) {
+        sfRenderWindow_clear(windows->window, sfBlack);
+        sfRenderWindow_setView(windows->window, windows->camera);
+        draw_map(windows, windows->scene->map);
+        sfRenderWindow_drawSprite\
+        (windows->window, windows->scene->player->sprite, NULL);
+        for (int i = 0; windows->scene->enemy[i]; i += 1) {
+            sfRenderWindow_drawSprite(windows->window, windows->scene->enemy[i]->sprite, NULL);
+            anim_enemy(windows->scene->enemy[i]);
+        }
+        for (int i = 0; windows->scene->passive[i]; i += 1) {
+            sfRenderWindow_drawSprite(windows->window, windows->scene->passive[i]->sprite, NULL);
+            anim_passive(windows->scene->passive[i]);
+            if (check_if_collision_btw_square_without_rotation(windows->scene->passive[i]->sprite, windows->scene->player->sprite) && usekey)
+                speek(windows, windows->scene->passive[i]->conversation);
+        }
+        anim_player(windows->scene->player);
+        move_player(windows);
+        speed_of_game((float)1/60);
+        update(windows);
+        display_square_hitbox_debug(windows->scene->player->sprite, windows->window, sfBlue);
+        usekey = sfFalse;
+        while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
+            if (windows->event.type == sfEvtClosed)
+                sfRenderWindow_close(windows->window);
+            event_projectile(windows->event, windows->scene->player->proj, \
+            windows);
+            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyF)
+                usekey = sfTrue;
+>>>>>>> b71be77 ([ADD] speak to png o_o)
         }
         is_collision_proj_ennemy(windows);
         path_fining(windows);
