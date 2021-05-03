@@ -28,7 +28,7 @@ SRC		=	main.c											\
 			inventory/open_inventory.c						\
 			inventory/tab_of_int.c							\
 			system_combat/collision_proj_ennemy.c		\
-			system_combat/drop_item.c					\
+			system_combat/handle_item.c					\
 			ennemies/update_ennemies.c					\
 			ennemies/draw_ennemies.c					\
 			ennemies/show_healbar_ennemies.c			\
@@ -38,6 +38,7 @@ SRC_COLLISION	=	collision_square.c						\
 					collision_circle_square.c				\
 					init_hitbox_with_sprite.c				\
 					collision_circle.c						\
+					collision_square_point.c				\
 					debug/display_collision.c				\
 					check_if_collision.c
 

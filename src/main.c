@@ -8,6 +8,7 @@
 #include "window_fonction.h"
 #include "gameplay/inventory.h"
 #include "str.h"
+#include <time.h>
 
 int core(void)
 {
@@ -54,6 +55,7 @@ int is_env(char **env)
 
 int main(int argc, char const *argv[], char **env)
 {
+    srand(time(NULL));
     if (is_env(env) == 84)
         return (84);
     return (core());

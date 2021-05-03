@@ -238,8 +238,10 @@ tags
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
-
 .vscode
+
+
+# End of https://www.toptal.com/developers/gitignore/api/c,vscode,emacs,vim,clion
 *.json
 NormEZ.rb
 
@@ -248,5 +250,4 @@ NormEZ.rb
 
 my_rpg
 unit_tests
-
-# End of https://www.toptal.com/developers/gitignore/api/c,vscode,emacs,vim,clion
+vgcore.*

@@ -67,3 +67,19 @@ int check_if_collision_btw_circles(sfSprite *const sprite_circle_1\
     free_hitbox_circle(hitbox_circle_2);
     return (error);
 }
+
+int check_if_square_contains_point(sfSprite *const sprite_square\
+, sfVector2f pt)
+{
+    sfRectangleShape *hitbox_square = NULL;
+    int error = 0;
+
+    if (!sprite_square)
+        return (84);
+    hitbox_square = init_hitbox_square(sprite_square);
+    if (!hitbox_square)
+        return (84);
+    error = is_collision_square_point(hitbox_square, pt);
+    free_hitbox_square(hitbox_square);
+    return (error);
+}

@@ -14,7 +14,6 @@
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/View.h>
 #include "projectile.h"
-
 #include <stdlib.h>
 #include "draw.h"
 #include "from_file.h"
