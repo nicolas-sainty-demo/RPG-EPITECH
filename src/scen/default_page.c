@@ -20,8 +20,11 @@
 #include "particules.h"
 #include "gameplay/inventory.h"
 #include "ennemies.h"
+#include "text.h"
 
 #define PARTICl_RAND (sfVector2f){0, 360}
+
+float speek(the_window *windows, char **conversation);
 
 bool is_collision_proj_ennemy(the_window *window);
 
