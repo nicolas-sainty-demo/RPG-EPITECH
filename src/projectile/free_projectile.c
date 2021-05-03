@@ -6,6 +6,7 @@
 */
 
 #include <SFML/Graphics/Texture.h>
+#include <malloc.h>
 
 #include "projectile.h"
 

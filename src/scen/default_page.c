@@ -54,5 +54,4 @@ void default_page(the_window *windows)
                 sfRenderWindow_close(windows->window);
         }
     }
-
 }

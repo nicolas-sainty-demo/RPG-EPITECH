@@ -23,6 +23,7 @@ SRC		=	main.c											\
 			projectile/manipulation_projectile.c			\
 			projectile/event_projectile.c					\
 			projectile/free_projectile.c					\
+			init/player/player_projectile.c				\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c					\

@@ -13,32 +13,15 @@
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/Window/Event.h>
 
+#include "projectile_struct.h"
+#include "window_struc.h"
+
+
 #define AREA_ENDING_PROJECTILE 10
 
 #define RELOAD_MUN_ 4
 
 #define NB_OF_MUN_ 10
-
-enum state_projectile_e
-{
-    no_shoot,
-    shooted,
-    arrived,
-    reload
-};
-
-typedef struct projectile_s
-{
-    sfClock *clock;
-    sfVector2f init_pos;
-    sfVector2f final_pos;
-    int speed_given;
-    sfVector2f vector_speed;
-    sfSprite *spt_projectile;
-    sfTexture *text_projectile;
-    enum state_projectile_e state;
-    int radius;
-} projectile_t;
 
 // init_part
 projectile_t *init_projectile(char *path_projectile, int radius, int speed);
@@ -66,8 +49,7 @@ void update_projectile(projectile_t *projectile);
 
 void update_all_projectiles(projectile_t **projectile);
 
-void event_projectile(sfEvent event, sfRenderWindow *window\
-, projectile_t **proj, sfVector2f pos_player);
+void event_projectile(sfEvent event, projectile_t **proj, the_window *windows);
 
 // just draw
 

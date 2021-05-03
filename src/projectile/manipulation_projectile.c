@@ -19,10 +19,8 @@ sfVector2f init_pos, sfVector2f final_pos)
 
     projectile->init_pos = init_pos;
     projectile->final_pos = final_pos;
-    printf("FINAL\nx-->%f_____y-->%f\n", projectile->final_pos.x, projectile->final_pos.y);
     projectile->vector_speed = \
     calc_speed_vector(projectile->speed_given, init_pos, final_pos);
-    printf("SPEED\nx-->%f_____y-->%f\n", projectile->vector_speed.x, projectile->vector_speed.y);
 }
 
 void move_projectile(projectile_t *projectile, sfFloatRect bounds_spt)
