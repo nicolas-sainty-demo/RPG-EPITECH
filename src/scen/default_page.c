@@ -32,7 +32,8 @@ void draw_heal_bar_player(player_t *player, the_window *window)
     sfVector2f heal_min_max = {player->hp, player->hp_max};
     sfVector2i pos = {30, 30};
 
-    sfVector2f pos_2 = sfRenderWindow_mapPixelToCoords(window->window, pos, window->camera);
+    sfVector2f pos_2 = \
+    sfRenderWindow_mapPixelToCoords(window->window, pos, window->camera);
     draw_heal_bar((sfVector2f){200, 50}, heal_min_max, pos_2, window->window);
 }
 
