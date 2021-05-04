@@ -10,6 +10,9 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
+
+void set_type_radius(entity_enemy_t *ennemie);
 
 static int get_primordial_variable(char **info, entity_enemy_t *enemy, int i)
 {
@@ -20,8 +23,10 @@ static int get_primordial_variable(char **info, entity_enemy_t *enemy, int i)
     }
     if (my_strcmp_to_c(info[i], "speed=", '='))
         enemy->speed = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "hp=", '='))
+    if (my_strcmp_to_c(info[i], "hp=", '=')) {
         enemy->hp = get_the_int_after_c(info[i], '=');
+        enemy->hp_max =enemy-> hp;
+    }
     if (my_strcmp_to_c(info[i], "damage=", '='))
         enemy->damage = get_the_int_after_c(info[i], '=');
     if (my_strcmp_to_c(info[i], "type=", '='))
@@ -37,8 +42,9 @@ static int get_basic_variable(char **info, entity_enemy_t *enemy, int i)
 
     if (my_strcmp_to_c(info[i], "position=", '=')) {
         to_convert = get_the_vector_i_after_c(info[i], '=');
+        enemy->current_pos = (sfVector2f){to_convert.x, to_convert.y};
         sfSprite_setPosition\
-        (enemy->sprite, (sfVector2f){to_convert.x, to_convert.y});
+        (enemy->sprite, enemy->current_pos);
     }
     if (my_strcmp_to_c(info[i], "rec=", '='))
         sfSprite_setTextureRect\
@@ -70,7 +76,7 @@ int get_an_enemy_from_file\
             (*dirdir) = readdir(folder);
         get_char_tab_from_file(&info, name_of_dir, (*dirdir)->d_name, '\n');
         if (info == NULL) {
-            printf("info is NULL");
+            write(2, "info is NULL", 12);
             return (84);
         }
         if (get_enemy_from_info(info, enemy) == 84)
@@ -95,6 +101,7 @@ int set_enemy_from_foalders(entity_enemy_t **enemy, char *name_of_dir)
         return_v = get_an_enemy_from_file(&dirdir, folder, name_of_dir, enemy[i]);
         if (return_v == 84)
             break;
+        set_type_radius(enemy[i]);
     }
     closedir(folder);
     free(name_of_dir);

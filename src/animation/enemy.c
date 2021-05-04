@@ -18,6 +18,8 @@ void anim_enemy(entity_enemy_t *enemy)
         sfClock_restart(enemy->animation_clock);
     }
     if (enemy->flip == sfFalse) {
+        if (rec.width < 0)
+            rec.width *= -1;
         sfSprite_setTextureRect(enemy->sprite, (sfIntRect)\
         {time * rec.width, rec.height * 0, rec.width, rec.height});
     } else {
@@ -26,6 +28,8 @@ void anim_enemy(entity_enemy_t *enemy)
         sfSprite_setTextureRect(enemy->sprite, (sfIntRect)\
         {time * rec.width + rec.width, rec.height * 0, -1 * rec.width, rec.height});
     }
+    if (rec.width < 0)
+        rec.width *= -1;
 }
 
 void anim_passive(entity_passive_t *passive)
@@ -33,7 +37,6 @@ void anim_passive(entity_passive_t *passive)
     int time = (int)(time_to_float(passive->animation_clock) * 10);
     sfIntRect rec = sfSprite_getTextureRect(passive->sprite);
 
-    printf("%d %d\n", time, passive->anime);
     if (time >= passive->anime) {
         time = 0;
         sfClock_restart(passive->animation_clock);

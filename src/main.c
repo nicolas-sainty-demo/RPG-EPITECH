@@ -6,11 +6,16 @@
 */
 
 #include "window_fonction.h"
+#include "gameplay/inventory.h"
 #include "str.h"
+#include <time.h>
 
 int core(void)
 {
     the_window windows = init_window(1920, 1080);
+    inventory *inv = init_struct();
+    init_inventory(inv);
+    windows.inv = inv;
 
     default_page(&windows);
     return (0);
@@ -50,6 +55,7 @@ int is_env(char **env)
 
 int main(int argc, char const *argv[], char **env)
 {
+    srand(time(NULL));
     if (is_env(env) == 84)
         return (84);
     return (core());

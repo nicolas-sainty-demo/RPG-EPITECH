@@ -32,8 +32,13 @@ void set_enemy_default(entity_enemy_t **enemy, int nbr_of_enemy)
     enemy[nbr_of_enemy] = NULL;
     for (int i = 0; i < nbr_of_enemy; i += 1) {
         enemy[i] = malloc(sizeof(entity_enemy_t));
+        if (!enemy[i])
+            return;
+        enemy[i]->delay_attack = sfClock_create();
         enemy[i]->animation_clock = sfClock_create();
         enemy[i]->flip = 1;
+        enemy[i]->attack = ready;
+        enemy[i]->speed_vector = (sfVector2f){0, 0};
         enemy[i]->anime = 1;
         enemy[i]->damage = 1;
         enemy[i]->hp = 1;

@@ -23,15 +23,38 @@ typedef struct entity_passive
     int damage;
 } entity_passive_t;
 
+enum state_ennemies
+{
+    passive,
+    movement,
+    attack
+};
+
+enum attack_ennemies
+{
+    ready,
+    launch,
+    end,
+    cooldown
+};
+
 typedef struct entity_enemy
 {
     sfSprite *sprite;
     char anime;
     int type;
+    int radius;
     int hp;
+    int hp_max;
     int speed;
     int damage;
+    int coold;
+    enum attack_ennemies attack;
+    enum state_ennemies state;
+    sfVector2f current_pos;
+    sfVector2f speed_vector;
     sfClock *animation_clock;
+    sfClock *delay_attack;
     sfBool flip;
 } entity_enemy_t;
 

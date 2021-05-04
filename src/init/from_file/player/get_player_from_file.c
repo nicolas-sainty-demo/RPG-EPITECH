@@ -29,6 +29,8 @@ static void set_info(char **info, player_t *player)
             sfSprite_setTextureRect\
             (player->sprite, get_sf_int_rect_after_c(info[i], '='));
         }
+        if (my_strcmp_to_c(info[i], "damage", '='))
+            player->damage = get_the_int_after_c(info[i], '=');
         if (my_strcmp_to_c(info[i], "position", '=')) {
             sfVector2i pos = get_the_vector_i_after_c(info[i], '=');
             sfSprite_setPosition(player->sprite, (sfVector2f){pos.x, pos.y});
@@ -85,5 +87,6 @@ int get_player_from_file(player_t *player, char *name_of_dir)
     set_info(info, player);
     free_char_tab(info);
     set_player_variable(player);
+    player->hp_max = player->hp;
     return (0);
 }

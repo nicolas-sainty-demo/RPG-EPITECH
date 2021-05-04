@@ -23,6 +23,9 @@ int is_collision_circle_square(sfCircleShape *const cir\
 int is_collision_circles(sfCircleShape *const cir_1\
 , int const radius_1, sfCircleShape *const cir_2, int const radius_2);
 
+int is_collision_square_point(sfRectangleShape *const sqr_1\
+, sfVector2f pt);
+
 sfRectangleShape *init_hitbox_square(sfSprite *const sprite);
 
 sfCircleShape *init_hitbox_circle(int const radius, sfSprite *sprite);
@@ -35,6 +38,9 @@ int check_if_collision_btw_circle_square(int const radius\
 
 int check_if_collision_btw_circles(sfSprite *const sprite_circle_1\
 , int const radius_1, sfSprite *const sprite_circle_2, int const radius_2);
+
+int check_if_square_contains_point(sfSprite *const sprite_square\
+, sfVector2f pt);
 
 void free_hitbox_circle(sfCircleShape *hitbox_circle);
 

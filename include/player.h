@@ -28,9 +28,11 @@ typedef struct player
     sfSprite *sprite;
     char anime;
     int hp;
+    int hp_max;
     sfClock *animation_clock;
     sfBool flip;
     int speed;
+    int damage;
     projectile_t **proj;
 } player_t;
 

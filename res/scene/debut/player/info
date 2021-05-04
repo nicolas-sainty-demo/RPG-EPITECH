@@ -1,7 +1,7 @@
-inventaire=!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+inventaire=!"#!!!!!!!!!!!!!!!!!!!"
 hp=100
 anime=0
 sprite=res/image/stick_man/stickman.png
 sprite_rec=0,0,64,64
 position=500,500
-projectile=
+damage=10
