@@ -28,6 +28,7 @@ typedef enum state_window_e
 
 typedef struct the_window
 {
+    sfBool usekey;
     sfEvent event;
     sfRenderWindow *window;
     sfVideoMode Videomode;

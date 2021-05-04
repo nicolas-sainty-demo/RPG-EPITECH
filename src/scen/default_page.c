@@ -51,12 +51,30 @@ void secondary_scenes(the_window *windows)
         pause_menu(windows);
 }
 
+void pick_the_item(the_window *windows)
+{
+    items_t *item = is_item_in_range(windows);
+    int i = 0;
+
+    if (item == NULL)
+        return;
+    while (windows->scene->player->inventaire[i] != '\0' \
+    && windows->scene->player->inventaire[i] != '!') {
+        i += 1;
+    }
+    if (i >= 20) {
+        printf("FULL\n");
+        return;
+    }
+    windows->scene->player->inventaire[i] = item->type;
+}
+
 void default_page(the_window *windows)
 {
     windows->state = in_menu;
+    windows->usekey = sfFalse;
     windows->scene = get_scene_from_folder("res/scene/debut");
     windows->scene->pos_items = NULL;
-
     while (sfRenderWindow_isOpen(windows->window)) {
         sfRenderWindow_clear(windows->window, sfBlack);
         speed_of_game((float)1/60);

@@ -119,6 +119,8 @@ void gameplay_scene(the_window *windows)
     update(windows);
     is_collision_proj_ennemy(windows);
     path_finding(windows);
+    pick_the_item(windows);
+    windows->usekey = sfFalse;
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
         if (windows->event.type == sfEvtClosed)
             sfRenderWindow_close(windows->window);
@@ -130,5 +132,8 @@ void gameplay_scene(the_window *windows)
         if (windows->event.type == sfEvtKeyPressed \
         && windows->event.key.code == sfKeyTab)
             windows->state = in_pause;
+        if (windows->event.type == sfEvtKeyPressed \
+        && windows->event.key.code == sfKeyF)
+                windows->usekey = sfTrue;
     }
 }
