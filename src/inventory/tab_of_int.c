@@ -55,5 +55,5 @@ int display_tab(const int rows, const int cols, int **tab)
         }
         printf("\n");
     }
-    ;
+    return (0);
 }

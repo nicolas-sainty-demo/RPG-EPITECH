@@ -8,6 +8,7 @@
 #include "window_struc.h"
 #include "window_fonction.h"
 #include "gameplay/inventoryfile.h"
+#include <stdio.h>
 
 void init_inventory(inventory *inv)
 {

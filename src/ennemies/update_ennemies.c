@@ -7,6 +7,7 @@
 
 #include "window_struc.h"
 #include <malloc.h>
+#include <stdlib.h>
 
 int get_tab_len(entity_enemy_t *const *ennemies)
 {
@@ -40,9 +41,9 @@ int realloc_my_tab_ennemies(entity_enemy_t ***ennemies, int const j)
 items_t *create_node(sfVector2f new_pos)
 {
     items_t *item = malloc(sizeof(items_t));
-    int static random = 0;
+    static int random = 0;
     int nb = rand() % 3;
-    char string[] = {34, 35, 36};
+    char string[] = {34, 35, 36, 37, 38, 39, 40};
 
     while (random == nb)
         nb = rand() % 3;
@@ -80,7 +81,9 @@ int drop_the_item(items_t **pos_items, sfSprite *sprite)
 
     pos.x += b.width/2;
     pos.y += b.height/2;
-    add_node(pos_items, pos);
+    if (add_node(pos_items, pos) == 84)
+        return (84);
+    return (0);
 }
 
 void update_ennemies(the_window *windows)
@@ -88,7 +91,8 @@ void update_ennemies(the_window *windows)
     for (int i = 0; windows->scene->enemy && windows->scene->enemy[i]; i++) {
         if (windows->scene->enemy[i]->hp <= 0) {
             printf("in\n");
-            drop_the_item(&windows->scene->pos_items, windows->scene->enemy[i]->sprite);
+            drop_the_item\
+            (&windows->scene->pos_items, windows->scene->enemy[i]->sprite);
             realloc_my_tab_ennemies(&windows->scene->enemy, i);
             break;
         }

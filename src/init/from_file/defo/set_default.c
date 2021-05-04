@@ -38,6 +38,7 @@ void set_enemy_default(entity_enemy_t **enemy, int nbr_of_enemy)
         enemy[i]->animation_clock = sfClock_create();
         enemy[i]->flip = 1;
         enemy[i]->attack = ready;
+        enemy[i]->speed_vector = (sfVector2f){0, 0};
         enemy[i]->anime = 1;
         enemy[i]->damage = 1;
         enemy[i]->hp = 1;
