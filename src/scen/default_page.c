@@ -50,6 +50,10 @@ static void draw(the_window *windows)
         sfRenderWindow_drawSprite(windows->window\
         , windows->scene->passive[i]->sprite, NULL);
         anim_passive(windows->scene->passive[i]);
+        if (check_if_collision_btw_square_without_rotation\
+        (windows->scene->passive[i]->sprite, windows->scene->player->sprite) \
+        && windows->usekey == sfTrue)
+            speek(windows, windows->scene->passive[i]->conversation);
     }
     print_item(windows);
     draw_all_projectiles(windows->window, windows->scene->player->proj);
@@ -111,13 +115,32 @@ static void update(the_window *windows)
     draw(windows);
 }
 
+void pick_the_item(the_window *windows)
+{
+    items_t *item = is_item_in_range(windows);
+    int i = 0;
+
+    if (item == NULL)
+        return;
+    while (windows->scene->player->inventaire[i] != '\0' \
+    && windows->scene->player->inventaire[i] != '!') {
+        i += 1;
+    }
+    if (i >= 20) {
+        printf("FULL\n");
+        return;
+    }
+    windows->scene->player->inventaire[i] = item->type;
+}
+
 void default_page(the_window *windows)
 {
     int **tab;
+
+    windows->usekey = sfFalse;
     windows->state = 0;
     windows->scene = get_scene_from_folder("res/scene/debut");
     windows->scene->pos_items = NULL;
-
     while (sfRenderWindow_isOpen(windows->window)) {
         sfRenderWindow_clear(windows->window, sfBlack);
         speed_of_game((float)1/60);
@@ -128,6 +151,8 @@ void default_page(the_window *windows)
             inventory_scene(tab, windows);
             windows->state = 0;
         }
+        pick_the_item(windows);
+        windows->usekey = sfFalse;
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
             if (windows->event.type == sfEvtClosed)
                 sfRenderWindow_close(windows->window);
@@ -136,6 +161,8 @@ void default_page(the_window *windows)
             if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyE) {
                 windows->state = 1;
             }
+            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyF)
+                windows->usekey = sfTrue;
         }
         is_collision_proj_ennemy(windows);
         path_fining(windows);
