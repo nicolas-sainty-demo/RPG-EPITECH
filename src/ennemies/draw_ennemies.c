@@ -5,6 +5,7 @@
 ** draw_ennemies
 */
 
+#include "projectile.h"
 #include "window_struc.h"
 
 void show_healbar(the_window *windows, int const i);
@@ -22,5 +23,8 @@ void draw_ennemies(the_window *windows)
         if (windows->scene->enemy[i]->hp != \
         windows->scene->enemy[i]->hp_max && windows->scene->enemy[i]->hp > 0)
             show_healbar(windows, i);
+        if (windows->scene->enemy[i]->type) {
+            draw_projectile(windows->window, windows->scene->enemy[i]->proj);
+        }
     }
 }

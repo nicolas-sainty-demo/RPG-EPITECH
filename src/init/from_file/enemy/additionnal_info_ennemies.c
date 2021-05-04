@@ -11,15 +11,15 @@
 void add_proj(entity_enemy_t *ennemie)
 {
     if (ennemie->type == 1) {
-        init_projectile(PATH_PROJ, RADIUS_PROJ, SPEED_PROJ);
+        ennemie->proj = init_projectile(PATH_PROJ, RADIUS_PROJ, SPEED_PROJ);
     }
 }
 
 void add_additionnal_info(entity_enemy_t *ennemie)
 {
-    int area_vision[] = {300, 200, 400};
-    int area_shoot[] = {0, 100, 0};
-    int cooldown[] = {4, 2, 10};
+    int area_vision[] = {300, 500, 400};
+    int area_shoot[] = {0, 300, 0};
+    int cooldown[] = {4, 0, 10};
 
     for (int i = 0; i < 3; i++) {
         if (ennemie->type >= 0 && ennemie->type <= 2) {
