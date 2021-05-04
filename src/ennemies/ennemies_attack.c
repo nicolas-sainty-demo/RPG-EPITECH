@@ -10,7 +10,8 @@
 
 void cooldown_ennemie(entity_enemy_t *ennemies)
 {
-    int time = sfTime_asSeconds(sfClock_getElapsedTime(ennemies->delay_attack));
+    int time = \
+    sfTime_asSeconds(sfClock_getElapsedTime(ennemies->delay_attack));
 
     if (ennemies->attack == end) {
         sfClock_restart(ennemies->delay_attack);
@@ -27,11 +28,20 @@ int is_player_in_range(entity_enemy_t *ennemies, sfSprite *player)
     return (sfFalse);
 }
 
+void deal_range_damage(entity_enemy_t *ennemies, player_t *player)
+{
+    ;
+}
+
 void ennemies_deal_damage(entity_enemy_t *ennemies, player_t *player)
 {
     if (ennemies->attack == ready && \
         is_player_in_range(ennemies, player->sprite)) {
-        player->hp -= ennemies->damage;
+        if (ennemies->type == 0) {
+            player->hp -= ennemies->damage;
+        }
+        // if (ennemies->type == 1)
+            // deal_range_damage();
         ennemies->attack = end;
     }
     cooldown_ennemie(ennemies);
