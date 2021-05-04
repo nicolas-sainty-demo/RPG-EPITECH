@@ -43,7 +43,8 @@ typedef struct entity_enemy
     sfSprite *sprite;
     char anime;
     int type;
-    int radius;
+    int area_vision;
+    int area_shoot;
     int hp;
     int hp_max;
     int speed;

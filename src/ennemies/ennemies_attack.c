@@ -40,8 +40,8 @@ void ennemies_deal_damage(entity_enemy_t *ennemies, player_t *player)
         if (ennemies->type == 0) {
             player->hp -= ennemies->damage;
         }
-        // if (ennemies->type == 1)
-            // deal_range_damage();
+        if (ennemies->type == 1)
+            deal_range_damage();
         ennemies->attack = end;
     }
     cooldown_ennemie(ennemies);

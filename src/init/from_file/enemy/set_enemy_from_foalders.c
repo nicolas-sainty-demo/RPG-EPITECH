@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void set_type_radius(entity_enemy_t *ennemie);
+void add_additionnal_info(entity_enemy_t *ennemie);
 
 static int get_primordial_variable(char **info, entity_enemy_t *enemy, int i)
 {
@@ -101,7 +101,7 @@ int set_enemy_from_foalders(entity_enemy_t **enemy, char *name_of_dir)
         return_v = get_an_enemy_from_file(&dirdir, folder, name_of_dir, enemy[i]);
         if (return_v == 84)
             break;
-        set_type_radius(enemy[i]);
+        add_additionnal_info(enemy[i]);
     }
     closedir(folder);
     free(name_of_dir);
