@@ -41,11 +41,11 @@ int is_collision_circle_square(sfCircleShape *const cir\
     sfVector2f c_cir = sfCircleShape_getPosition(cir);
     sfVector2f c_sqr = sfRectangleShape_getPosition(sqr);
     sfFloatRect info_sqr = sfRectangleShape_getGlobalBounds(sqr);
+    float distance = 0;
 
     c_cir.x = c_cir.x + radius;
     c_cir.y = c_cir.y + radius;
-
-    float distance = do_calc(c_cir, c_sqr, info_sqr);
+    distance = do_calc(c_cir, c_sqr, info_sqr);
     if (distance <= radius) {
         return (1);
     }

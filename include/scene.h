@@ -8,9 +8,9 @@
 #ifndef SCENE_H_
 #define SCENE_H_
 
-#include "entity.h"
 #include "player.h"
 #include "map.h"
+#include "entity.h"
 
 typedef struct items_s
 {
