@@ -68,7 +68,6 @@ int set_passive_from_foalder(entity_passive_t **passive, char *name_of_dir)
     struct dirent *dirdir = NULL;
     int return_ = 0;
 
-    printf("%s\n", name_of_dir);
     folder = opendir(name_of_dir);
     if (folder == NULL)
         return (84);

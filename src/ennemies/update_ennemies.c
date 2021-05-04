@@ -90,7 +90,6 @@ void update_ennemies(the_window *windows)
 {
     for (int i = 0; windows->scene->enemy && windows->scene->enemy[i]; i++) {
         if (windows->scene->enemy[i]->hp <= 0) {
-            printf("in\n");
             drop_the_item\
             (&windows->scene->pos_items, windows->scene->enemy[i]->sprite);
             realloc_my_tab_ennemies(&windows->scene->enemy, i);

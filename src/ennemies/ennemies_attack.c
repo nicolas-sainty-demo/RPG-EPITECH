@@ -32,7 +32,6 @@ void ennemies_deal_damage(entity_enemy_t *ennemies, player_t *player)
     if (ennemies->attack == ready && \
         is_player_in_range(ennemies, player->sprite)) {
         player->hp -= ennemies->damage;
-        printf("hp------>%d__hp_max--->%d\n", player->hp, player->hp_max);
         ennemies->attack = end;
     }
     cooldown_ennemie(ennemies);
