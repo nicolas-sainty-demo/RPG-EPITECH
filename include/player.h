@@ -29,6 +29,7 @@ typedef struct player
     char anime;
     int hp;
     int hp_max;
+    int defence;
     sfClock *animation_clock;
     sfBool flip;
     int speed;

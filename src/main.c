@@ -9,6 +9,7 @@
 #include "gameplay/inventory.h"
 #include "str.h"
 #include <time.h>
+#include <SFML/Graphics.h>
 
 int core(void)
 {

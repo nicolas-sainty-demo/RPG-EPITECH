@@ -12,6 +12,7 @@
 #include <dirent.h>
 #include <sys/types.h>
 #include <stdio.h>
+#include "particules.h"
 
 map_t *creat_map(void)
 {

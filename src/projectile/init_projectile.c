@@ -13,12 +13,16 @@
 
 #include "projectile.h"
 
-projectile_t *init_projectile(char *path_projectile, int radius, int speed)
+#define RELOAD_MUN_ 5
+
+projectile_t *init_projectile(char *path_projectile, int radius, int speed\
+, int reload_time)
 {
     projectile_t *basic_projectile = malloc(sizeof(projectile_t));
 
     if (!basic_projectile)
         return (NULL);
+    basic_projectile->particl = init_particl(300, 5000);
     basic_projectile->clock = sfClock_create();
     basic_projectile->spt_projectile = sfSprite_create();
     basic_projectile->text_projectile = \
@@ -31,6 +35,7 @@ projectile_t *init_projectile(char *path_projectile, int radius, int speed)
     basic_projectile->state = no_shoot;
     basic_projectile->speed_given = speed;
     basic_projectile->radius = radius;
+    basic_projectile->reload_time = reload_time;
     sfSprite_setPosition(basic_projectile->spt_projectile, POS_INITIAL_PROJ);
     return (basic_projectile);
 }
@@ -47,7 +52,8 @@ projectile_t **init_tab_projectile(char *const path_projectile\
         return (NULL);
     }
     for ( ; i < nb_of_projectiles; i++) {
-        tab_projectile[i] = init_projectile(path_projectile, radius, speed);
+        tab_projectile[i] = init_projectile(path_projectile, radius, speed\
+        , RELOAD_MUN_);
         if (!tab_projectile[i]) {
             display_error(ERROR_NO_MALLOC_);
             return (NULL);

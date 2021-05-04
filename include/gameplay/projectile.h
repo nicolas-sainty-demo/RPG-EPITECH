@@ -22,7 +22,8 @@
 #define POS_INITIAL_PROJ (sfVector2f){-10, -10}
 
 // init_part
-projectile_t *init_projectile(char *path_projectile, int radius, int speed);
+projectile_t *init_projectile(char *path_projectile, int radius, int speed\
+, int reload_time);
 
 projectile_t **init_tab_projectile(char *const path_projectile\
 , const int radius, const int speed, const int nb_of_projectiles);
@@ -54,7 +55,6 @@ void draw_projectile(sfRenderWindow *win\
 
 void draw_all_projectiles(sfRenderWindow *win\
 , projectile_t *const *basic_projectile);
-
 
 void free_projectile(projectile_t **projectiles);
 

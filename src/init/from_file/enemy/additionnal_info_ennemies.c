@@ -10,8 +10,11 @@
 
 void add_proj(entity_enemy_t *ennemie)
 {
+    int reload_time = 3;
+
     if (ennemie->type == 1) {
-        ennemie->proj = init_projectile(PATH_PROJ, RADIUS_PROJ, SPEED_PROJ);
+        ennemie->proj = init_projectile\
+        (PATH_PROJ, RADIUS_PROJ, SPEED_PROJ, reload_time);
     }
 }
 

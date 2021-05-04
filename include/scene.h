@@ -11,6 +11,7 @@
 #include "player.h"
 #include "map.h"
 #include "entity.h"
+#include "particules.h"
 
 typedef struct items_s
 {

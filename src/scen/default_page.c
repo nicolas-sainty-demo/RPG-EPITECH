@@ -17,7 +17,7 @@
 #include <stdlib.h>
 #include "draw.h"
 #include "from_file.h"
-
+#include "particules.h"
 #include "gameplay/inventory.h"
 #include "ennemies.h"
 
@@ -50,7 +50,29 @@ static void draw(the_window *windows)
     }
     print_item(windows);
     draw_all_projectiles(windows->window, windows->scene->player->proj);
+    for (int i = 0; windows->scene->player->proj[i]; i++) {
+        sfRenderWindow_drawPrimitives(windows->window, windows->scene->player->proj[i]->particl.m_vertices,\
+            windows->scene->player->proj[i]->particl.nb_particules, sfPoints, NULL);
+    }
+    
     draw_heal_bar_player(windows->scene->player, windows);
+}
+
+void update_the_particules(the_window *windows, projectile_t **proj)
+{
+    sfTime elapsed;
+    int i = 0;
+    particules_t particl;
+
+    while (proj[i]) {
+        particl = proj[i]->particl;
+        elapsed = sfClock_restart(proj[i]->particl.clock);
+        if (proj[i]->state == reload) {
+            printf("%d\n", i);
+            update_particules(elapsed, &particl, proj[i]->init_pos);
+        }
+        i++;
+    }
 }
 
 static void update(the_window *windows)
@@ -66,6 +88,7 @@ static void update(the_window *windows)
     sfRenderWindow_setView(windows->window, windows->camera);
     anim_player(windows->scene->player);
     move_player(windows);
+    update_the_particules(windows, windows->scene->player->proj);
     draw(windows);
 }
 
