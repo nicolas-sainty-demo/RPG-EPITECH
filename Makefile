@@ -30,6 +30,7 @@ SRC		=	main.c											\
 			inventory/tab_of_int.c							\
 			system_combat/collision_proj_ennemy.c			\
 			system_combat/handle_item.c						\
+			system_combat/drop_items.c						\
 			ennemies/update_ennemies.c						\
 			ennemies/draw_ennemies.c						\
 			ennemies/show_healbar_ennemies.c				\
