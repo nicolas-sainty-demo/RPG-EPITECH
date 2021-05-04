@@ -131,6 +131,7 @@ void pick_the_item(the_window *windows)
         return;
     }
     windows->scene->player->inventaire[i] = item->type;
+    delete_node(&windows->scene->pos_items, item);
 }
 
 void default_page(the_window *windows)
