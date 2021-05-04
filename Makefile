@@ -34,6 +34,7 @@ SRC		=	main.c											\
 			ennemies/show_healbar_ennemies.c				\
 			ennemies/ennemies_attack.c						\
 			ennemies/path_finding.c							\
+			particules/particules.c							\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c						\
