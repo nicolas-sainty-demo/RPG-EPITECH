@@ -9,6 +9,7 @@
 #include "window_fonction.h"
 #include "gameplay/inventoryfile.h"
 #include <stdio.h>
+#include "str.h"
 
 void init_inventory(inventory *inv)
 {
@@ -22,7 +23,7 @@ void init_inventory(inventory *inv)
     sfSprite_setTexture(inv->inventory_sp_item, inv->inventory_te_item, sfTrue);
 }
 
-void set_and_draw(the_window *windows, sfVector2f view)
+void set_and_draw(the_window *windows, const int position_cursor, char **item_select, const int key_press)
 {
     sfSprite_setOrigin(windows->inv->inventory_sprite, (sfVector2f){452, 323});
     sfRenderWindow_clear(windows->window, sfBlack);
@@ -33,36 +34,95 @@ void set_and_draw(the_window *windows, sfVector2f view)
         {(windows->scene->player->inventaire[i] - 33) * 90, 0, 90, 90});
         sfSprite_setPosition(windows->inv->inventory_sp_item, inventory_space[i]);
         sfRenderWindow_drawSprite(windows->window, windows->inv->inventory_sp_item, NULL);
+        if (i == position_cursor) {
+            if (key_press == SELECT_KEY)
+                *item_select = &windows->scene->player->inventaire[i];
+            sfSprite_setTextureRect(windows->inv->inventory_sp_item, (sfIntRect)\
+            {(26) * 90, 0, 90, 90});
+            sfRenderWindow_drawSprite(windows->window, windows->inv->inventory_sp_item, NULL);
+        }
     }
+    sfSprite_setTextureRect(windows->inv->inventory_sp_item, (sfIntRect)\
+    {(**item_select - 33) * 90, 0, 90, 90});
+    sfSprite_setPosition(windows->inv->inventory_sp_item, selec_space);
+    sfRenderWindow_drawSprite(windows->window, windows->inv->inventory_sp_item, NULL);
     sfRenderWindow_display(windows->window);
 }
 
-void verif_close(the_window *windows)
+void verif_key(the_window *windows, int *key_press)
 {
-    if (windows->event.key.code == sfKeyE)
-        windows->state = 0;
+    if (windows->event.type == sfEvtKeyPressed) {
+        if (windows->event.key.code == sfKeyE)
+            windows->state = 0;
+        if (windows->event.key.code == sfKeyA)
+            *key_press = SELECT_KEY;
+        if (windows->event.key.code == sfKeyF)
+            *key_press = USE_KEY;
+        if (windows->event.key.code == sfKeyJ)
+            *key_press = DROP_KEY;
+    }
+}
+
+int cursor_move(the_window *windows)
+{
+    if (windows->event.type == sfEvtClosed)
+        sfRenderWindow_close(windows->window);
+    if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyD)
+        return (1);
+    if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyQ)
+        return (-1);
+    if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyS)
+        return (5);
+    if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyZ)
+        return (-5);
+    return (0);
+}
+
+void switch_in_invantory(char *a, char *b)
+{
+    char c = *a;
+    *a = *b;
+    *b = c;
+}
+
+void use_item(const int key_press, char *item_select, the_window *windows, int position_cursor)
+{
+    switch_in_invantory(item_select, &windows->scene->player->inventaire[position_cursor]);
+}
+
+void use_and_drop_item(const int key_press, char *item_select, the_window *windows, int position_cursor)
+{
+    if (key_press == DROP_KEY)
+        *item_select = '!';
+    if (key_press == USE_KEY)
+        use_item(key_press, item_select, windows, position_cursor);
 }
 
 float inventory_scene(int **tab_stock, the_window *windows)
 {
-    sfEvent *test;
-    sfMouseButton mouse;
+    char basic_char = '!';
+    char *item_select = &basic_char;
+    int key_press = 0;
+    int position_cursor = 0;
     sfClock *timed = sfClock_create();
     sfVector2f camera_center = sfView_getCenter(windows->camera);
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
 
-    while (windows->state == 1) {
-        set_and_draw(windows, camera_center);
+    while (windows->state == 1 && sfRenderWindow_isOpen(windows->window)) {
+        printf("%d\n", key_press);
+        set_and_draw(windows, position_cursor, &item_select, key_press);
+        use_and_drop_item(key_press, item_select, windows, position_cursor);
+        key_press = 0;
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
-            if (windows->event.type == sfEvtClosed)
-                sfRenderWindow_close(windows->window);
-            if (windows->event.type == sfEvtMouseButtonPressed)
+            position_cursor += cursor_move(windows);
+            if (windows->event.type == sfEvtMouseButtonPressed) {
                 printf("%f\t\t%f\n", sfRenderWindow_mapPixelToCoords(windows->window, sfMouse_getPositionRenderWindow(windows->window), windows->camera).x, sfRenderWindow_mapPixelToCoords(windows->window, sfMouse_getPositionRenderWindow(windows->window), windows->camera).y);
-            if (windows->event.type == sfEvtKeyPressed) {
-                verif_close(windows);
             }
+            verif_key(windows, &key_press);
         }
+        if (position_cursor < 0 || position_cursor > 21)
+            position_cursor = 0;
     }
     sfView_setCenter(windows->camera, camera_center);
     float save = time_to_float(timed);
