@@ -15,6 +15,7 @@ SRC	=	src/my_strcat.c					\
 		src/strdup_int.c				\
 		src/free_char_tab.c				\
 		src/my_str_is_num.c				\
+		src/c_is_in_str.c				\
 		src/display_error.c
 
 OBJ	=	$(SRC:.c=.o)

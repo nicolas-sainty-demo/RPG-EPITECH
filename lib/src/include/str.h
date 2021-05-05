@@ -35,5 +35,6 @@ char *int_to_str(int nb);
 char *my_strcat(const char *dest, const char *str);
 int str_is_num(const char *str);
 void free_char_tab(char **tab);
+int c_is_in_str(char c, char *str);
 
 #endif /* !STR_H_ */
