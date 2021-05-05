@@ -54,7 +54,8 @@ static void draw(the_window *windows)
         sfRenderWindow_drawPrimitives(windows->window, windows->scene->player->proj[i]->particl.m_vertices,\
             windows->scene->player->proj[i]->particl.nb_particules, sfPoints, NULL);
     }
-    
+    sfRenderWindow_drawPrimitives(windows->window, \
+    windows->scene->player->particl.m_vertices, windows->scene->player->particl.nb_particules, sfPoints, NULL);
     draw_heal_bar_player(windows->scene->player, windows);
 }
 
@@ -68,10 +69,30 @@ void update_the_particules(the_window *windows, projectile_t **proj)
         particl = proj[i]->particl;
         elapsed = sfClock_restart(proj[i]->particl.clock);
         if (proj[i]->state == reload) {
-            printf("%d\n", i);
-            update_particules(elapsed, &particl, proj[i]->init_pos);
+            update_particules(elapsed, &particl, proj[i]->init_pos, (sfVector2f){0, 360});
         }
         i++;
+    }
+}
+
+void update_particules_for_player(player_t *player)
+{
+    sfVector2f pos = sfSprite_getPosition(player->sprite);
+    sfFloatRect bound_p = sfSprite_getGlobalBounds(player->sprite);
+    sfTime elapsed = sfClock_restart(player->particl.clock);
+    static int is_reset = 0;
+
+    pos.x += bound_p.width/2;
+    pos.y += bound_p.height;
+    if (player->anime != player_stay) {
+        update_particules_player(elapsed, &player->particl, pos, (sfVector2f){0, 360});
+        is_reset = 0;
+    }
+    else if (player->anime == player_stay && is_reset == 0) {
+        is_reset = 1;
+        for (int i = 0; i < player->particl.nb_particules; i++) {
+            reset_particule_player(&player->particl, i, (sfVector2f){0, 360});        
+        }
     }
 }
 
@@ -83,11 +104,11 @@ static void update(the_window *windows)
         sfSprite_setPosition(windows->scene->enemy[i]->sprite\
         , windows->scene->enemy[i]->current_pos);
         ennemies_deal_damage(windows->scene->enemy[i], windows->scene->player);
-        
     }
     sfRenderWindow_setView(windows->window, windows->camera);
     anim_player(windows->scene->player);
     move_player(windows);
+    update_particules_for_player(windows->scene->player);
     update_the_particules(windows, windows->scene->player->proj);
     draw(windows);
 }

@@ -56,7 +56,8 @@ void deal_range_damage(entity_enemy_t *ennemie, player_t *player)
 void ennemies_deal_damage(entity_enemy_t *ennemies, player_t *player)
 {
     if (ennemies->attack == ready) {
-        if (ennemies->type == 0 && is_player_in_range(ennemies, player->sprite)) {
+        if (ennemies->type == 0 && \
+        is_player_in_range(ennemies, player->sprite)) {
             player->hp -= ennemies->damage;
         }
         if (ennemies->type == 1)

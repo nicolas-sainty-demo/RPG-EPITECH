@@ -22,7 +22,7 @@ projectile_t *init_projectile(char *path_projectile, int radius, int speed\
 
     if (!basic_projectile)
         return (NULL);
-    basic_projectile->particl = init_particl(300, 5000);
+    basic_projectile->particl = init_particl(300, 5000, sfRed);
     basic_projectile->clock = sfClock_create();
     basic_projectile->spt_projectile = sfSprite_create();
     basic_projectile->text_projectile = \

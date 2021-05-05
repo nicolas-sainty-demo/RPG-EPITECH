@@ -9,7 +9,13 @@
 #include <math.h>
 #include "particules.h"
 
-particules_t init_particl(unsigned int count, unsigned int time_to_live)
+int my_rand(int min, int max)
+{
+    return ((rand() % (max - min)) + min);
+}
+
+particules_t init_particl(unsigned int count, unsigned int time_to_live\
+, sfColor color)
 {
     particules_t particles;
 
@@ -23,7 +29,7 @@ particules_t init_particl(unsigned int count, unsigned int time_to_live)
         particles.m_particules[i].velocity = (sfVector2f){0, 0};
         particles.m_vertices[i].position = (sfVector2f){0, 0};
         particles.m_vertices[i].texCoords = (sfVector2f){0, 0};
-        particles.m_vertices[i].color = sfRed;
+        particles.m_vertices[i].color = color;
     }
     particles.time_to_live = time_to_live;
     particles.m_lifetime = sfSeconds(10);
@@ -33,9 +39,10 @@ particules_t init_particl(unsigned int count, unsigned int time_to_live)
     return (particles);
 }
 
-void reset_particule(particules_t *particles, unsigned int index)
+void reset_particule(particules_t *particles, unsigned int index\
+, sfVector2f min_max)
 {
-    float angle = ((rand() % 360) * 3.14) / 180;
+    float angle = ((my_rand(min_max.x, min_max.y)) * 3.14) / 180;
     float speed = (rand() % 50) + 50;
     particles->m_particules[index].velocity = \
     (sfVector2f){cos(angle) * speed, sin(angle) * speed};
@@ -45,7 +52,7 @@ void reset_particule(particules_t *particles, unsigned int index)
 }
 
 void update_particules(sfTime elapsed, particules_t *particl, \
-sfVector2f pos)
+sfVector2f pos, sfVector2f min_max)
 {
     float ratio = 0;
     particl->m_emmiter = pos;
@@ -54,7 +61,40 @@ sfVector2f pos)
         particl->m_particules[i].lifetime.microseconds -= elapsed.microseconds;
         if (particl->m_particules[i].lifetime.microseconds \
         <= sfTime_Zero.microseconds)
-            reset_particule(particl, i);
+            reset_particule(particl, i, min_max);
+        particl->m_vertices[i].position.x +=  \
+        particl->m_particules[i].velocity.x * sfTime_asSeconds(elapsed);
+        particl->m_vertices[i].position.y +=  \
+        particl->m_particules[i].velocity.y * sfTime_asSeconds(elapsed);
+        ratio = sfTime_asSeconds(particl->m_particules[i].lifetime) \
+        / sfTime_asSeconds(particl->m_lifetime);
+        particl->m_vertices[i].color.a = (sfUint8){ratio * 255};
+    }
+}
+
+void reset_particule_player(particules_t *particles, unsigned int index\
+, sfVector2f min_max)
+{
+    float angle = ((my_rand(min_max.x, min_max.y)) * 3.14) / 180;
+    float speed = (rand() % 50) + 50;
+    particles->m_particules[index].velocity = \
+    (sfVector2f){cos(angle) * speed, sin(angle) * speed};
+    particles->m_particules[index].lifetime = \
+    sfMilliseconds((rand() % particles->time_to_live) + 1000);
+    particles->m_vertices[index].position = particles->m_emmiter;
+}
+
+void update_particules_player(sfTime elapsed, particules_t *particl, \
+sfVector2f pos, sfVector2f min_max)
+{
+    float ratio = 0;
+    particl->m_emmiter = pos;
+
+    for (unsigned i = 0; i < particl->nb_particules; i++) {
+        particl->m_particules[i].lifetime.microseconds -= elapsed.microseconds;
+        if (particl->m_particules[i].lifetime.microseconds \
+        <= sfTime_Zero.microseconds)
+            reset_particule_player(particl, i, min_max);
         particl->m_vertices[i].position.x +=  \
         particl->m_particules[i].velocity.x * sfTime_asSeconds(elapsed);
         particl->m_vertices[i].position.y +=  \

@@ -86,14 +86,18 @@ int drop_the_item(items_t **pos_items, sfSprite *sprite)
     return (0);
 }
 
-void update_ennemies(the_window *windows)
+void handle_death_ennemies(entity_enemy_t ***ennemies, the_window *windows)
 {
-    for (int i = 0; windows->scene->enemy && windows->scene->enemy[i]; i++) {
-        if (windows->scene->enemy[i]->hp <= 0) {
-            drop_the_item\
-            (&windows->scene->pos_items, windows->scene->enemy[i]->sprite);
-            realloc_my_tab_ennemies(&windows->scene->enemy, i);
+    for (int i = 0; (*ennemies) && (*ennemies)[i]; i++) {
+        if ((*ennemies)[i]->hp <= 0) {
+            drop_the_item(&windows->scene->pos_items, (*ennemies)[i]->sprite);
+            realloc_my_tab_ennemies(ennemies, i);
             break;
         }
     }
+}
+
+void update_ennemies(the_window *windows)
+{
+    handle_death_ennemies(&windows->scene->enemy, windows);
 }
