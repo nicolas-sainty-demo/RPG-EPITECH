@@ -31,10 +31,16 @@ typedef struct particules_s
     sfClock *clock;
 } particules_t;
 
-particules_t init_particl(unsigned int count, unsigned int time_to_live);
-void reset_particule(particules_t *particles, unsigned int index);
+particules_t init_particl(unsigned int count, unsigned int time_to_live\
+, sfColor color);
+void reset_particule(particules_t *particles, unsigned int index\
+, sfVector2f min_max);
 void update_particules(sfTime elapsed, particules_t *particl, \
-sfVector2f pos);
+sfVector2f pos, sfVector2f min_max);
+void update_particules_player(sfTime elapsed, particules_t *particl, \
+sfVector2f pos, sfVector2f min_max);
+void reset_particule_player(particules_t *particles, unsigned int index\
+, sfVector2f min_max);
 void free_particules(particules_t particl);
 
 #endif /* !PARTICULES_H_ */
