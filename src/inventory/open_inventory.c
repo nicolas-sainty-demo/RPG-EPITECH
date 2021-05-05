@@ -60,6 +60,8 @@ void verif_key(the_window *windows, int *key_press)
             *key_press = USE_KEY;
         if (windows->event.key.code == sfKeyJ)
             *key_press = DROP_KEY;
+        if (windows->event.key.code == sfKeyG)
+            *key_press = EAT_KEY;
     }
 }
 
@@ -85,23 +87,23 @@ void switch_in_invantory(char *a, char *b)
     *b = c;
 }
 
-void use_item(const int key_press, char *item_select, the_window *windows, int position_cursor)
-{
-    switch_in_invantory(item_select, &windows->scene->player->inventaire[position_cursor]);
-}
-
 void use_and_drop_item(const int key_press, char *item_select, the_window *windows, int position_cursor)
 {
     if (key_press == DROP_KEY)
         *item_select = '!';
     if (key_press == USE_KEY)
-        use_item(key_press, item_select, windows, position_cursor);
+        switch_in_invantory(item_select, &windows->scene->player->inventaire[position_cursor]);
+    if (key_press == EAT_KEY) {
+        if (c_is_in_str(*item_select, food_list)) {
+            printf("CRUNCHE!!!\n");
+            *item_select = '!';
+        }
+    }
 }
 
 float inventory_scene(int **tab_stock, the_window *windows)
 {
-    char basic_char = '!';
-    char *item_select = &basic_char;
+    char *item_select = &windows->scene->player->inventaire[0];
     int key_press = 0;
     int position_cursor = 0;
     sfClock *timed = sfClock_create();
@@ -110,7 +112,6 @@ float inventory_scene(int **tab_stock, the_window *windows)
     sfRenderWindow_setView(windows->window, windows->camera);
 
     while (windows->state == 1 && sfRenderWindow_isOpen(windows->window)) {
-        printf("%d\n", key_press);
         set_and_draw(windows, position_cursor, &item_select, key_press);
         use_and_drop_item(key_press, item_select, windows, position_cursor);
         key_press = 0;

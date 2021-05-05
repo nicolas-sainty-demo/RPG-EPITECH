@@ -13,6 +13,7 @@
 #define USE_KEY 1
 #define SELECT_KEY 2
 #define DROP_KEY 3
+#define EAT_KEY 4
 
 const sfVector2f inventory_space[] = {{-139, -158}, {-41, -158}, {57, -158}, {155, -158}, {253, -158}\
 , {-139, -62}, {-41, -62}, {57, -62}, {155, -62}, {253, -62}\
@@ -22,7 +23,7 @@ const sfVector2f inventory_space[] = {{-139, -158}, {-41, -158}, {57, -158}, {15
 
 const sfVector2f selec_space = {-282, -316};
 
-const char food_list[] = {34, '#', '$'};
+const char food_list[] = {34, '#', '$', '\0'};
 
 const char armor_list[] = {37, '&'};
 
