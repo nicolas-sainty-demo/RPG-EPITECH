@@ -27,7 +27,8 @@
 
 void gameplay_scene(the_window *windows);
 
-float speek(the_window *windows, char **conversation);
+float speek\
+(the_window *windows, char **conversation, entity_passive_t *passif);
 
 float inventory_scene(the_window *windows);
 
