@@ -11,6 +11,7 @@
 #include <SFML/Graphics/RenderWindow.h>
 #include "scene.h"
 #include "gameplay/inventory_struct.h"
+#include "gameplay/dead_menu_struct.h"
 
 typedef struct the_window
 {
@@ -21,6 +22,7 @@ typedef struct the_window
     sfView *camera;
     int state;
     inventory *inv;
+    dead_me *d_menu;
 } the_window;
 
 #endif /* !WINDOW_STRUC_H_ */

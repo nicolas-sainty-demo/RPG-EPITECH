@@ -45,8 +45,6 @@ void verif_close(the_window *windows)
 
 float inventory_scene(int **tab_stock, the_window *windows)
 {
-    sfEvent *test;
-    sfMouseButton mouse;
     sfClock *timed = sfClock_create();
     sfVector2f camera_center = sfView_getCenter(windows->camera);
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});

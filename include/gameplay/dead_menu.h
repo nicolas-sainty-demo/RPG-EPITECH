@@ -8,5 +8,13 @@
 #ifndef DEAD_MENU_H_
 #define DEAD_MENU_H_
 
+#include <SFML/System/Clock.h>
+#include <SFML/System/Time.h>
+#include "window_struc.h"
+#include "dead_menu_struct.h"
+
+dead_me *init_struct_dead_menu();
+void init_dead_menu(dead_me *d_menu);
+float dead_menu(the_window *windows);
 
 #endif /* !DEAD_MENU_H_ */

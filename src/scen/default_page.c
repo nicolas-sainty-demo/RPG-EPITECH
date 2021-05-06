@@ -62,6 +62,8 @@ static void update(the_window *windows)
         ennemies_deal_damage(windows->scene->enemy[i], windows->scene->player);
         
     }
+    if (windows->scene->player->hp <= 0)
+        windows->state = 2;
     sfRenderWindow_setView(windows->window, windows->camera);
     anim_player(windows->scene->player);
     move_player(windows);
@@ -81,9 +83,15 @@ void default_page(the_window *windows)
         if (windows->state == 0) {
             sfRenderWindow_clear(windows->window, sfBlack);
             update(windows);
+            is_collision_proj_ennemy(windows);
+            path_fining(windows);
         } else if (windows->state == 1) {
             inventory_scene(tab, windows);
             windows->state = 0;
+        }
+        if (windows->state == 2) {
+            sfRenderWindow_clear(windows->window, sfBlack);
+            dead_menu(windows);
         }
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
             if (windows->event.type == sfEvtClosed)
@@ -94,8 +102,6 @@ void default_page(the_window *windows)
                 windows->state = 1;
             }
         }
-        is_collision_proj_ennemy(windows);
-        path_fining(windows);
         sfRenderWindow_display(windows->window);
     }
     free_projectile(windows->scene->player->proj);
