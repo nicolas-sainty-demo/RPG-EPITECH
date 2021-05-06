@@ -9,6 +9,10 @@
 #include <malloc.h>
 #include <stdlib.h>
 
+#define PARTICl_RAND (sfVector2f){0, 360}
+
+void ennemies_deal_damage(entity_enemy_t *ennemies, player_t *player);
+
 int get_tab_len(entity_enemy_t *const *ennemies)
 {
     int i = 0;
@@ -99,5 +103,15 @@ void handle_death_ennemies(entity_enemy_t ***ennemies, the_window *windows)
 
 void update_ennemies(the_window *windows)
 {
+    sfTime elapsed = sfTime_Zero;
+    particules_t particl;
+    entity_enemy_t *ennemie;
+
     handle_death_ennemies(&windows->scene->enemy, windows);
+    for (int i = 0; windows->scene->enemy && windows->scene->enemy[i]; i++) {
+        ennemie = windows->scene->enemy[i];
+        sfSprite_setPosition(ennemie->sprite\
+        , ennemie->current_pos);
+        ennemies_deal_damage(ennemie, windows->scene->player);
+    }
 }
