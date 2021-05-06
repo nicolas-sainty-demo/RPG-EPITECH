@@ -9,7 +9,7 @@
 
 #include "button.h"
 
-static void check_condition_buttons(struct_button_t *button, the_window *p)
+static void is_need_to_rect(struct_button_t *button, the_window *p)
 {
     if ((*button).state == released) {
         (*button).ptr(p);
@@ -26,14 +26,14 @@ static void check_condition_buttons(struct_button_t *button, the_window *p)
     }
 }
 
-static void is_rect_need_to_change(struct_button_t *button, the_window *p\
-, sfVector2i pos_mouse)
+static void change_the_rec(struct_button_t *button, the_window *p\
+, sfVector2f pos_mouse)
 {
     sfFloatRect bound_sprite = sfSprite_getGlobalBounds(button->sprite);
 
     if (sfFloatRect_contains(&bound_sprite, pos_mouse.x, pos_mouse.y)\
      == sfTrue) {
-        check_condition_buttons(button, p);
+        is_need_to_rect(button, p);
     }
     else {
         button->bound.left = 0;
@@ -44,13 +44,23 @@ static void is_rect_need_to_change(struct_button_t *button, the_window *p\
 
 void update_button(the_window *p, struct_button_t *button)
 {
-    sfVector2i pos_mouse = sfMouse_getPositionRenderWindow(p->window);
+    sfVector2i pos_mouse = { 0 };
+    sfVector2f pos_mouse_coords = { 0 };
+    pos_mouse = sfMouse_getPositionRenderWindow(p->window);
+    pos_mouse_coords = sfRenderWindow_mapPixelToCoords(p->window\
+    , pos_mouse, p->camera);
 
-    is_rect_need_to_change(button, p, pos_mouse);
+    change_the_rec(button, p, pos_mouse_coords);
 }
 
 void button_event(the_window *p, struct_button_t *button)
 {
     if (p->event.type == sfEvtMouseButtonReleased)
         button->state = released;
+}
+
+void free_button(struct_button_t *button)
+{
+    sfSprite_destroy(button->sprite);
+    sfTexture_destroy(button->texture);
 }

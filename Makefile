@@ -36,6 +36,7 @@ SRC		=	main.c											\
 			ennemies/show_healbar_ennemies.c				\
 			ennemies/ennemies_attack.c						\
 			ennemies/path_finding.c							\
+			pause_menu/pause_menu.c							\
 			button/init_button.c							\
 			button/update_button.c							\
 			button/update_tab_button.c						\

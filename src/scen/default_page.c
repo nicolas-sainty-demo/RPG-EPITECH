@@ -20,6 +20,8 @@
 #include "particules.h"
 #include "gameplay/inventory.h"
 #include "ennemies.h"
+#include "dead_menu.h"
+#include "pause.h"
 
 #define PARTICl_RAND (sfVector2f){0, 360}
 
@@ -98,6 +100,9 @@ void update_particules_for_player(player_t *player)
 
 static void update(the_window *windows)
 {
+    if (windows->scene->player->hp <= 0) {
+        windows->state = 2;
+    }
     update_all_projectiles(windows->scene->player->proj);
     update_ennemies(windows);
     sfRenderWindow_setView(windows->window, windows->camera);
@@ -131,6 +136,9 @@ void default_page(the_window *windows)
             sfRenderWindow_clear(windows->window, sfBlack);
             dead_menu(windows);
         }
+        if (windows->state == 3) {
+            pause_menu(windows);
+        }
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
             if (windows->event.type == sfEvtClosed)
                 sfRenderWindow_close(windows->window);
@@ -138,6 +146,9 @@ void default_page(the_window *windows)
              windows);
             if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyE) {
                 windows->state = 1;
+            }
+            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyTab) {
+                windows->state = 3;
             }
         }
         sfRenderWindow_display(windows->window);
