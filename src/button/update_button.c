@@ -11,9 +11,8 @@
 
 static void is_need_to_rect(struct_button_t *button, the_window *p)
 {
-    if ((*button).state == released) {
+    if ((*button).state == released)
         (*button).ptr(p);
-    }
     if (p->click == sfTrue) {
         button->bound.left = button->bound.width * 2;
         sfSprite_setTextureRect((*button).sprite, button->bound);
