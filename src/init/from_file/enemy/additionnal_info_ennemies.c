@@ -5,22 +5,37 @@
 ** additionnal_info_ennemies
 */
 
+#include "projectile.h"
 #include "from_file.h"
 
-void set_type_radius(entity_enemy_t *ennemie)
+void add_proj(entity_enemy_t *ennemie)
 {
-    int radius[] = {300, 200, 400};
-    int cooldown[] = {4, 2, 10};
+    int reload_time = 3;
+
+    if (ennemie->type == 1) {
+        ennemie->proj = init_projectile\
+        (PATH_PROJ, RADIUS_PROJ, SPEED_PROJ, reload_time);
+    }
+}
+
+void add_additionnal_info(entity_enemy_t *ennemie)
+{
+    int area_vision[] = {300, 500, 400};
+    int area_shoot[] = {0, 300, 0};
+    int cooldown[] = {4, 0, 10};
 
     for (int i = 0; i < 3; i++) {
         if (ennemie->type >= 0 && ennemie->type <= 2) {
-            ennemie->radius = radius[ennemie->type];
+            ennemie->area_vision = area_vision[ennemie->type];
+            ennemie->area_shoot = area_shoot[ennemie->type];
             ennemie->coold = cooldown[ennemie->type];
         }
         else {
-            ennemie->radius = radius[0];
-            ennemie->coold = radius[0];
+            ennemie->area_vision = area_vision[0];
+            ennemie->coold = area_vision[0];
+            ennemie->area_shoot = area_shoot[ennemie->type];
         }
         ennemie->state = passive;
     }
+    add_proj(ennemie);
 }

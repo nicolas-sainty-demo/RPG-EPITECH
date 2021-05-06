@@ -17,22 +17,23 @@
 #include <stdlib.h>
 #include "draw.h"
 #include "from_file.h"
-
+#include "particules.h"
 #include "gameplay/inventory.h"
 #include "ennemies.h"
+
+#define PARTICl_RAND (sfVector2f){0, 360}
 
 bool is_collision_proj_ennemy(the_window *window);
 
 void print_item(the_window *windows);
-
-void ennemies_deal_damage(entity_enemy_t *ennemies, player_t *player);
 
 void draw_heal_bar_player(player_t *player, the_window *window)
 {
     sfVector2f heal_min_max = {player->hp, player->hp_max};
     sfVector2i pos = {30, 30};
 
-    sfVector2f pos_2 = sfRenderWindow_mapPixelToCoords(window->window, pos, window->camera);
+    sfVector2f pos_2 = \
+    sfRenderWindow_mapPixelToCoords(window->window, pos, window->camera);
     draw_heal_bar((sfVector2f){200, 50}, heal_min_max, pos_2, window->window);
 }
 
@@ -49,22 +50,61 @@ static void draw(the_window *windows)
     }
     print_item(windows);
     draw_all_projectiles(windows->window, windows->scene->player->proj);
+    for (int i = 0; windows->scene->player->proj[i]; i++) {
+        sfRenderWindow_drawPrimitives(windows->window, windows->scene->player->proj[i]->particl.m_vertices,\
+            windows->scene->player->proj[i]->particl.nb_particules, sfPoints, NULL);
+    }
+    sfRenderWindow_drawPrimitives(windows->window, \
+    windows->scene->player->particl.m_vertices, windows->scene->player->particl.nb_particules, sfPoints, NULL);
     draw_heal_bar_player(windows->scene->player, windows);
+}
+
+void update_the_particules(the_window *windows, projectile_t **proj)
+{
+    sfTime elapsed;
+    int i = 0;
+    particules_t particl;
+
+    while (proj[i]) {
+        particl = proj[i]->particl;
+        elapsed = sfClock_restart(proj[i]->particl.clock);
+        if (proj[i]->state == reload) {
+            update_particules(elapsed, &particl, proj[i]->init_pos, PARTICl_RAND);
+        }
+        i++;
+    }
+}
+
+void update_particules_for_player(player_t *player)
+{
+    sfVector2f pos = sfSprite_getPosition(player->sprite);
+    sfFloatRect bound_p = sfSprite_getGlobalBounds(player->sprite);
+    sfTime elapsed = sfClock_restart(player->particl.clock);
+    static int is_reset = 0;
+
+    pos.x += bound_p.width/2;
+    pos.y += bound_p.height;
+    if (player->anime != player_stay) {
+        update_particules_player(elapsed, &player->particl, pos, PARTICl_RAND);
+        is_reset = 0;
+    }
+    else if (player->anime == player_stay && is_reset == 0) {
+        is_reset = 1;
+        for (int i = 0; i < player->particl.nb_particules; i++) {
+            reset_particule_player(&player->particl, i, PARTICl_RAND);        
+        }
+    }
 }
 
 static void update(the_window *windows)
 {
     update_all_projectiles(windows->scene->player->proj);
     update_ennemies(windows);
-    for (int i = 0; windows->scene->enemy && windows->scene->enemy[i]; i++) {
-        sfSprite_setPosition(windows->scene->enemy[i]->sprite\
-        , windows->scene->enemy[i]->current_pos);
-        ennemies_deal_damage(windows->scene->enemy[i], windows->scene->player);
-        
-    }
     sfRenderWindow_setView(windows->window, windows->camera);
     anim_player(windows->scene->player);
     move_player(windows);
+    update_particules_for_player(windows->scene->player);
+    update_the_particules(windows, windows->scene->player->proj);
     draw(windows);
 }
 

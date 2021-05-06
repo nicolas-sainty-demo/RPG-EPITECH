@@ -13,6 +13,7 @@
 #include <SFML/System/Time.h>
 
 #include "projectile_struct.h"
+#include "particules.h"
 
 typedef enum animation
 {
@@ -32,6 +33,7 @@ typedef struct player
     sfClock *animation_clock;
     sfBool flip;
     int speed;
+    particules_t particl;
     int damage;
     projectile_t **proj;
 } player_t;

@@ -11,6 +11,13 @@
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/System/Clock.h>
 
+#ifndef STRUCT_PROJ_H_
+#define STRUCT_PROJ_H_
+
+#include "struct_projectile.h"
+
+#endif 
+
 typedef struct entity_passive
 {
     sfSprite *sprite;
@@ -43,7 +50,8 @@ typedef struct entity_enemy
     sfSprite *sprite;
     char anime;
     int type;
-    int radius;
+    int area_vision;
+    int area_shoot;
     int hp;
     int hp_max;
     int speed;
@@ -54,6 +62,7 @@ typedef struct entity_enemy
     sfVector2f current_pos;
     sfVector2f speed_vector;
     sfClock *animation_clock;
+    projectile_t *proj;
     sfClock *delay_attack;
     sfBool flip;
 } entity_enemy_t;

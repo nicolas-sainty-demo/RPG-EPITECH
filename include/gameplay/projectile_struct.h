@@ -12,6 +12,8 @@
 #include <SFML/System/Clock.h>
 #include <SFML/Graphics/Sprite.h>
 
+#include "particules.h"
+
 enum state_projectile_e
 {
     no_shoot,
@@ -26,6 +28,8 @@ typedef struct projectile_s
     sfVector2f init_pos;
     sfVector2f final_pos;
     int speed_given;
+    int reload_time;
+    particules_t particl;
     sfVector2f vector_speed;
     sfSprite *spt_projectile;
     sfTexture *text_projectile;

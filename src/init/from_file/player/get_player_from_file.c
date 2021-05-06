@@ -12,6 +12,8 @@
 #include <sys/types.h>
 #include "from_file.h"
 
+#define BROWN (sfColor){39, 69, 19, 255}
+
 void init_elem_player(player_t *player);
 
 static void set_info(char **info, player_t *player)
@@ -88,5 +90,7 @@ int get_player_from_file(player_t *player, char *name_of_dir)
     free_char_tab(info);
     set_player_variable(player);
     player->hp_max = player->hp;
+    player->particl.nb_particules = 600;
+    player->particl = init_particl(player->particl.nb_particules, 4000, sfBlack);
     return (0);
 }

@@ -7,8 +7,6 @@
 
 #include "projectile.h"
 
-#define RELOAD_MUN_ 5
-
 float calc_distance(const float p1, const float p2);
 
 sfVector2f calc_speed_vector(const int speed, const sfVector2f depart_pos\
@@ -44,14 +42,14 @@ void is_projectile_arrived(projectile_t *prjt, sfFloatRect bounds)
     }
 }
 
-void reload_ammo(projectile_t *projectile)
+void reload_ammo(projectile_t *proj)
 {
-    int time = sfTime_asSeconds(sfClock_getElapsedTime(projectile->clock));
+    int time = sfTime_asSeconds(sfClock_getElapsedTime(proj->clock));
 
-    if (projectile->state == arrived) {
-        sfClock_restart(projectile->clock);
-        projectile->state = reload;
-    } else if (projectile->state == reload && time >= RELOAD_MUN_) {
-        projectile->state = no_shoot;
+    if (proj->state == arrived) {
+        sfClock_restart(proj->clock);
+        proj->state = reload;
+    } else if (proj->state == reload && time >= proj->reload_time) {
+        proj->state = no_shoot;
     }
 }

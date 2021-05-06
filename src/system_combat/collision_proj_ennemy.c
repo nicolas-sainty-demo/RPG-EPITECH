@@ -22,7 +22,8 @@ bool is_collision_proj_ennemy(the_window *window)
              && check_if_collision_btw_circle_square\
             (RADIUS_PROJ, window->scene->player->proj[i]->spt_projectile\
             , window->scene->enemy[j]->sprite)) {
-                display_square_hitbox_debug(window->scene->enemy[j]->sprite, window->window, sfRed);
+                display_square_hitbox_debug(window->scene->enemy[j]->sprite\
+                , window->window, sfRed);
                 window->scene->enemy[j]->hp -=  window->scene->player->damage;
                 window->scene->player->proj[i]->state = arrived;
                 return (true);
