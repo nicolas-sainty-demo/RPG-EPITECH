@@ -29,5 +29,6 @@ int get_map_from_file(map_t *map, char *name_of_dir);
 int set_passive_from_foalder(entity_passive_t **passive, char *name_of_dir);
 int set_enemy_from_foalders(entity_enemy_t **enemy, char *name_of_dir);
 int set_defo_scene(scene_t *scene, const char *scene_name);
+int get_quest(char **info, entity_passive_t *passive, int i);
 
 #endif /* !FROM_FILE_H_ */

@@ -61,11 +61,13 @@ static int get_primordial_variable\
 
 int get_passif_from_info(char **info, entity_passive_t *passive)
 {
+    passive->quest.dialoge = NULL;
+    passive->conversation = NULL;
     for (int i = 0; info[i] != NULL; i += 1) {
-        passive->conversation = NULL;
         if (get_primordial_variable(info, passive, i) == 84)
             return (84);
         get_basic_variable(info, passive, i);
+        get_quest(info, passive, i);
     }
     return (0);
 }

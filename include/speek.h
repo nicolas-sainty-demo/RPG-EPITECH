@@ -10,6 +10,6 @@
 
 #include "window_fonction.h"
 
-float speek(the_window *windows, char **conversation);
+float speek(the_window *windows, char **conversation, entity_passive_t *passif);
 
 #endif /* !SPEEK_H_ */

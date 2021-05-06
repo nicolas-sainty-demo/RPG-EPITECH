@@ -58,6 +58,7 @@ SRC_INIT	=	from_file/get_string_after_c.c						\
 				from_file/map/get_map_from_file.c					\
 				from_file/map/set_info.c							\
 				from_file/passif/set_passive_from_foalder.c			\
+				from_file/passif/get_quest.c						\
 				from_file/enemy/set_enemy_from_foalders.c			\
 				from_file/enemy/additionnal_info_ennemies.c			\
 				from_file/defo/set_default.c						\
