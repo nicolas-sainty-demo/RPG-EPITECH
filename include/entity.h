@@ -17,9 +17,16 @@
 #include "struct_projectile.h"
 
 #endif 
+typedef struct quest
+{
+    char *dialoge;
+    char *item_need;
+    int xp_win;
+} quest_t;
 
 typedef struct entity_passive
 {
+    quest_t quest;
     char **conversation;
     sfSprite *sprite;
     char anime;

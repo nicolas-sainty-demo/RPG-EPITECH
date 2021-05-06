@@ -24,7 +24,8 @@
 
 #define PARTICl_RAND (sfVector2f){0, 360}
 
-float speek(the_window *windows, char **conversation);
+float speek\
+(the_window *windows, char **conversation, entity_passive_t *passif);
 
 bool is_collision_proj_ennemy(the_window *window);
 
@@ -53,7 +54,7 @@ static void draw(the_window *windows)
         if (check_if_collision_btw_square_without_rotation\
         (windows->scene->passive[i]->sprite, windows->scene->player->sprite) \
         && windows->usekey == sfTrue)
-            speek(windows, windows->scene->passive[i]->conversation);
+            speek(windows, windows->scene->passive[i]->conversation,  windows->scene->passive[i]);
     }
     print_item(windows);
     draw_all_projectiles(windows->window, windows->scene->player->proj);
