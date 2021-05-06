@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics/RenderWindow.h>
 #include "scene.h"
+#include "struct_button.h"
 #include "gameplay/inventory_struct.h"
 
 typedef struct the_window
@@ -20,6 +21,7 @@ typedef struct the_window
     scene_t *scene;
     sfView *camera;
     int state;
+    sfBool click;
     inventory *inv;
 } the_window;
 
