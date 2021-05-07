@@ -15,6 +15,7 @@
 
 typedef struct the_window
 {
+    int quest_finiche;
     sfBool usekey;
     sfEvent event;
     sfRenderWindow *window;
