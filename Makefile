@@ -9,6 +9,7 @@
 SRC		=	main.c											\
 			reader.c										\
 			scen/default_page.c								\
+			scen/game.c										\
 			time/speed_of_game.c							\
 			time/time_to_float.c							\
 			draw/heal_bare.c								\
@@ -27,6 +28,8 @@ SRC		=	main.c											\
 			inventory/init_struct.c							\
 			inventory/open_inventory.c						\
 			inventory/tab_of_int.c							\
+			dead_menu/dead_windows.c						\
+			dead_menu/init_struct.c							\
 			system_combat/collision_proj_ennemy.c			\
 			system_combat/handle_item.c						\
 			ennemies/update_ennemies.c						\
@@ -34,9 +37,16 @@ SRC		=	main.c											\
 			ennemies/show_healbar_ennemies.c				\
 			ennemies/ennemies_attack.c						\
 			ennemies/path_finding.c							\
+			pause_menu/pause_menu.c							\
 			button/init_button.c							\
 			button/update_button.c							\
 			button/update_tab_button.c						\
+			menu/init_menu_struct.c							\
+			menu/fct_menu.c									\
+			menu/menu.c										\
+			settings/init_settings.c						\
+			settings/setting.c								\
+			settings/fct_setting.c							\
 			particules/particules.c							\
 			draw/map.c
 

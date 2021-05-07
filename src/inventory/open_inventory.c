@@ -53,7 +53,7 @@ void verif_key(the_window *windows, int *key_press)
 {
     if (windows->event.type == sfEvtKeyPressed) {
         if (windows->event.key.code == sfKeyE)
-            windows->state = 0;
+            windows->state = in_game;
         if (windows->event.key.code == sfKeyA)
             *key_press = SELECT_KEY;
         if (windows->event.key.code == sfKeyF)
@@ -101,7 +101,7 @@ void use_and_drop_item(const int key_press, char *item_select, the_window *windo
     }
 }
 
-float inventory_scene(int **tab_stock, the_window *windows)
+float inventory_scene(the_window *windows)
 {
     char *item_select = &windows->scene->player->inventaire[0];
     int key_press = 0;
@@ -111,7 +111,7 @@ float inventory_scene(int **tab_stock, the_window *windows)
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
 
-    while (windows->state == 1 && sfRenderWindow_isOpen(windows->window)) {
+    while (windows->state == in_inventory && sfRenderWindow_isOpen(windows->window)) {
         set_and_draw(windows, position_cursor, &item_select, key_press);
         use_and_drop_item(key_press, item_select, windows, position_cursor);
         key_press = 0;
@@ -127,5 +127,6 @@ float inventory_scene(int **tab_stock, the_window *windows)
     }
     sfView_setCenter(windows->camera, camera_center);
     float save = time_to_float(timed);
+    windows->state = in_game;
     return (save);
 }

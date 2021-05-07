@@ -17,7 +17,7 @@ struct_button_t init_button(void (*ptr) (void *), char *path, sfVector2f pos)
     new_button.ptr = ptr;
     new_button.sprite = sfSprite_create();
     new_button.texture = sfTexture_createFromFile(path, NULL);
-
+    new_button.state = normal;
     if (!new_button.sprite || !new_button.texture)
         return ((struct_button_t){0});
     new_button.pos = pos;
