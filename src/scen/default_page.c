@@ -58,6 +58,7 @@ void default_page(the_window *windows)
     windows->scene = get_scene_from_folder("res/scene/debut");
     windows->scene->pos_items = NULL;
     while (sfRenderWindow_isOpen(windows->window)) {
+        printf("%d\n", windows->quest_finiche);
         sfRenderWindow_clear(windows->window, sfBlack);
         speed_of_game((float)1/60);
         principal_scenes(windows);
