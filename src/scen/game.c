@@ -139,7 +139,6 @@ void gameplay_scene(the_window *windows)
     is_collision_proj_ennemy(windows);
     path_finding(windows);
     pick_the_item(windows);
-    windows->usekey = sfFalse;
     for (int i = 0; windows->scene->passive[i]; i += 1) {
         sfRenderWindow_drawSprite(windows->window, windows->scene->passive[i]->sprite, NULL);
         anim_passive(windows->scene->passive[i]);
