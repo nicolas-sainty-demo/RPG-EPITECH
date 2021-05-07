@@ -78,7 +78,8 @@ static void quest_dialog(the_window *windows, entity_passive_t *passif)
                 i = 1;
             if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyY)
                 if (quest_is_win(windows, passif)) {
-                    printf("yes\n");
+                    windows->quest_finiche += 1;
+                    passif->quest.dialoge = NULL;
                     i = 1;
                 }
             if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyN)
