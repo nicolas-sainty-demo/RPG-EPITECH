@@ -22,136 +22,45 @@
 #include "ennemies.h"
 #include "dead_menu.h"
 #include "pause.h"
+#include "main_menu.h"
 
 #define PARTICl_RAND (sfVector2f){0, 360}
 
-bool is_collision_proj_ennemy(the_window *window);
+void gameplay_scene(the_window *windows);
 
-void print_item(the_window *windows);
+float inventory_scene(the_window *windows);
 
-void draw_heal_bar_player(player_t *player, the_window *window)
+void principal_scenes(the_window *windows)
 {
-    sfVector2f heal_min_max = {player->hp, player->hp_max};
-    sfVector2i pos = {30, 30};
-
-    sfVector2f pos_2 = \
-    sfRenderWindow_mapPixelToCoords(window->window, pos, window->camera);
-    draw_heal_bar((sfVector2f){200, 50}, heal_min_max, pos_2, window->window);
+    if (windows->state == in_menu)
+        main_menu(windows);
+    if (windows->state == in_settings)
+        settings_menu(windows);
+    if (windows->state == in_game)
+        gameplay_scene(windows);
 }
 
-static void draw(the_window *windows)
+void secondary_scenes(the_window *windows)
 {
-    draw_map(windows, windows->scene->map);
-    sfRenderWindow_drawSprite\
-    (windows->window, windows->scene->player->sprite, NULL);
-    draw_ennemies(windows);
-    for (int i = 0; windows->scene->passive[i]; i += 1) {
-        sfRenderWindow_drawSprite(windows->window\
-        , windows->scene->passive[i]->sprite, NULL);
-        anim_passive(windows->scene->passive[i]);
-    }
-    print_item(windows);
-    draw_all_projectiles(windows->window, windows->scene->player->proj);
-    for (int i = 0; windows->scene->player->proj[i]; i++) {
-        sfRenderWindow_drawPrimitives(windows->window, windows->scene->player->proj[i]->particl.m_vertices,\
-            windows->scene->player->proj[i]->particl.nb_particules, sfPoints, NULL);
-    }
-    sfRenderWindow_drawPrimitives(windows->window, \
-    windows->scene->player->particl.m_vertices, windows->scene->player->particl.nb_particules, sfPoints, NULL);
-    draw_heal_bar_player(windows->scene->player, windows);
-}
-
-void update_the_particules(the_window *windows, projectile_t **proj)
-{
-    sfTime elapsed;
-    int i = 0;
-    particules_t particl;
-
-    while (proj[i]) {
-        particl = proj[i]->particl;
-        elapsed = sfClock_restart(proj[i]->particl.clock);
-        if (proj[i]->state == reload) {
-            update_particules(elapsed, &particl, proj[i]->init_pos, PARTICl_RAND);
-        }
-        i++;
-    }
-}
-
-void update_particules_for_player(player_t *player)
-{
-    sfVector2f pos = sfSprite_getPosition(player->sprite);
-    sfFloatRect bound_p = sfSprite_getGlobalBounds(player->sprite);
-    sfTime elapsed = sfClock_restart(player->particl.clock);
-    static int is_reset = 0;
-
-    pos.x += bound_p.width/2;
-    pos.y += bound_p.height;
-    if (player->anime != player_stay) {
-        update_particules_player(elapsed, &player->particl, pos, PARTICl_RAND);
-        is_reset = 0;
-    }
-    else if (player->anime == player_stay && is_reset == 0) {
-        is_reset = 1;
-        for (int i = 0; i < player->particl.nb_particules; i++) {
-            reset_particule_player(&player->particl, i, PARTICl_RAND);        
-        }
-    }
-}
-
-static void update(the_window *windows)
-{
-    if (windows->scene->player->hp <= 0) {
-        windows->state = in_death_menu;
-    }
-    update_all_projectiles(windows->scene->player->proj);
-    update_ennemies(windows);
-    sfRenderWindow_setView(windows->window, windows->camera);
-    anim_player(windows->scene->player);
-    move_player(windows);
-    update_particules_for_player(windows->scene->player);
-    update_the_particules(windows, windows->scene->player->proj);
-    draw(windows);
+    if (windows->state == in_inventory)
+        inventory_scene(windows);
+    if (windows->state == in_death_menu)
+        dead_menu(windows);
+    if (windows->state == in_pause)
+        pause_menu(windows);
 }
 
 void default_page(the_window *windows)
 {
-    int **tab;
-    windows->state = in_game;
+    windows->state = in_menu;
     windows->scene = get_scene_from_folder("res/scene/debut");
     windows->scene->pos_items = NULL;
 
     while (sfRenderWindow_isOpen(windows->window)) {
         sfRenderWindow_clear(windows->window, sfBlack);
         speed_of_game((float)1/60);
-        if (windows->state == in_menu) {
-            // menu_scene();
-        }
-        if (windows->state == in_game) {
-            update(windows);
-            is_collision_proj_ennemy(windows);
-            path_fining(windows);
-        } else if (windows->state == in_inventory) {
-            inventory_scene(tab, windows);
-            windows->state = in_game;
-        }
-        if (windows->state == in_death_menu) {
-            dead_menu(windows);
-        }
-        if (windows->state == in_pause) {
-            pause_menu(windows);
-        }
-        while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
-            if (windows->event.type == sfEvtClosed)
-                sfRenderWindow_close(windows->window);
-            event_projectile(windows->event, windows->scene->player->proj,\
-             windows);
-            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyE) {
-                windows->state = in_inventory;
-            }
-            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyTab) {
-                windows->state = in_pause;
-            }
-        }
+        principal_scenes(windows);
+        secondary_scenes(windows);
         sfRenderWindow_display(windows->window);
     }
     free_projectile(windows->scene->player->proj);

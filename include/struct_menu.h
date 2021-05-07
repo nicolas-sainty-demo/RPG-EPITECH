@@ -22,16 +22,22 @@ typedef enum button_menu_s
 {
     play,
     settings,
-    exit,
-    up_volume,
-    down_volume
+    the_exit
 } button_menu_t;
+
+enum button_settings_s
+{
+    up,
+    down,
+    leave
+};
 
 typedef struct main_menu_s
 {
-    sfSprite **sprites;
-    sfTexture **texture;
-    struct_button_t **button;
+    sfSprite *sprites;
+    sfTexture *texture;
+    struct_button_t *button;
+    int nb_button;
 } main_menu_t;
 
 #endif /* !MENU_H_ */

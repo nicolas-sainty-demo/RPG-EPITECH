@@ -6,7 +6,12 @@
 */
 
 #include "window_struc.h"
+#include "button.h"
 #include <SFML/Graphics/View.h>
+
+main_menu_t init_struct_menu(void);
+
+main_menu_t init_struct_setting(void);
 
 the_window init_window(const int x, const int y)
 {
@@ -21,5 +26,9 @@ the_window init_window(const int x, const int y)
     windows.camera = sfView_create();
     sfRenderWindow_setView(windows.window, windows.camera);
     sfView_setSize(windows.camera, (sfVector2f){x, y});
+    windows.m_menu = init_struct_menu();
+    windows.settings = init_struct_setting();
+    windows.volume_min_max = (sfVector2f){0, 100};
+    windows.volume = 0;
     return (windows);
 }
