@@ -14,6 +14,16 @@
 #include "gameplay/inventory_struct.h"
 #include "gameplay/dead_menu_struct.h"
 
+typedef enum state_window_e
+{
+    in_game,
+    in_inventory,
+    in_death_menu,
+    in_pause,
+    in_menu
+} state_window_t;
+
+
 typedef struct the_window
 {
     sfEvent event;
@@ -21,7 +31,7 @@ typedef struct the_window
     sfVideoMode Videomode;
     scene_t *scene;
     sfView *camera;
-    int state;
+    state_window_t state;
     sfBool click;
     inventory *inv;
     dead_me *d_menu;

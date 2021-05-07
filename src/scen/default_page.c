@@ -101,7 +101,7 @@ void update_particules_for_player(player_t *player)
 static void update(the_window *windows)
 {
     if (windows->scene->player->hp <= 0) {
-        windows->state = 2;
+        windows->state = in_death_menu;
     }
     update_all_projectiles(windows->scene->player->proj);
     update_ennemies(windows);
@@ -116,27 +116,28 @@ static void update(the_window *windows)
 void default_page(the_window *windows)
 {
     int **tab;
-    windows->state = 0;
+    windows->state = in_game;
     windows->scene = get_scene_from_folder("res/scene/debut");
     windows->scene->pos_items = NULL;
 
     while (sfRenderWindow_isOpen(windows->window)) {
         sfRenderWindow_clear(windows->window, sfBlack);
         speed_of_game((float)1/60);
-        if (windows->state == 0) {
-            sfRenderWindow_clear(windows->window, sfBlack);
+        if (windows->state == in_menu) {
+            menu_scene();
+        }
+        if (windows->state == in_game) {
             update(windows);
             is_collision_proj_ennemy(windows);
             path_fining(windows);
-        } else if (windows->state == 1) {
+        } else if (windows->state == in_inventory) {
             inventory_scene(tab, windows);
-            windows->state = 0;
+            windows->state = in_game;
         }
-        if (windows->state == 2) {
-            sfRenderWindow_clear(windows->window, sfBlack);
+        if (windows->state == in_death_menu) {
             dead_menu(windows);
         }
-        if (windows->state == 3) {
+        if (windows->state == in_pause) {
             pause_menu(windows);
         }
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
@@ -145,10 +146,10 @@ void default_page(the_window *windows)
             event_projectile(windows->event, windows->scene->player->proj,\
              windows);
             if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyE) {
-                windows->state = 1;
+                windows->state = in_inventory;
             }
             if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyTab) {
-                windows->state = 3;
+                windows->state = in_pause;
             }
         }
         sfRenderWindow_display(windows->window);
