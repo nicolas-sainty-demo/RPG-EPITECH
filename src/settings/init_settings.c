@@ -11,19 +11,17 @@
 #include "struct_menu.h"
 #include "button.h"
 
-#define NB_SPRITE 2
-#define BACKGRND "res/menu/fonts/background.png"
 #define SETTING "res/menu/fonts/menu.png"
-#define B_PLAY "res/dead_menu/resume.png"
 #define B_EXIT "res/dead_menu/resit_exit.png"
-#define B_SETTING "res/dead_menu/settings.png"
+#define B_UP "res/dead_menu/dede.png"
+#define B_DOWN "res/dead_menu/moins.png"
 #define NB_BUTTON 3
 
-void menu_play(void *ptr);
+void go_back_to_menu(void *ptr);
 
-void menu_exit(void *ptr);
+void up_song(void *ptr);
 
-void menu_settings(void *ptr);
+void down_song(void *ptr);
 
 static int set_sprite(char *const path, sfSprite **sprites\
 , sfTexture **textures)
@@ -41,10 +39,10 @@ static int alloc_my_button(struct_button_t *button)
 {
     int ret = 0;
 
-    button[play] = init_button(&menu_play, B_PLAY, (sfVector2f){100, 100});
-    button[the_exit] = init_button(&menu_exit, B_EXIT, (sfVector2f){100, 340});
-    button[settings] = init_button(&menu_settings\
-    , B_SETTING, (sfVector2f){100, 220});
+    button[leave] = init_button(&go_back_to_menu, B_EXIT, (sfVector2f){-150, 0});
+    button[down] = init_button(&up_song, B_UP, (sfVector2f){-500, -300});
+    button[up] = init_button(&down_song\
+    , B_DOWN, (sfVector2f){400, -300});
 
     if (!button[play].sprite || !button[the_exit].sprite \
     || !button[settings].sprite)
@@ -52,12 +50,12 @@ static int alloc_my_button(struct_button_t *button)
     return (ret);
 }
 
-main_menu_t init_struct_menu(void)
+main_menu_t init_struct_setting(void)
 {
     main_menu_t menu;
-    char *path_sprite = BACKGRND;
+    char *path_sprite = SETTING;
 
-    menu.button = malloc(sizeof(*menu.button) * (NB_BUTTON + 1));
+    menu.button = malloc(sizeof(*menu.button) * (NB_BUTTON));
     if (!menu.button || set_sprite(path_sprite, &menu.sprites\
     , &menu.texture) == 84)
         return ((main_menu_t){0});

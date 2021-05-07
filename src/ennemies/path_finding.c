@@ -52,7 +52,7 @@ void move_around_the_ennemies(entity_enemy_t *ennemie, sfSprite *player)
     }
 }
 
-void path_fining(the_window *windows)
+void path_finding(the_window *windows)
 {
     for (int i = 0; windows->scene->enemy[i]; i++) {
         is_need_to_move(windows->scene->enemy[i], \

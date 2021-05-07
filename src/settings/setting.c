@@ -15,14 +15,14 @@ static void set_and_pos(the_window *windows)
     sfRenderWindow_clear(windows->window, sfBlack);
     sfVector2f pos = {-960, -555};
 
-    sfSprite_setPosition(windows->m_menu.sprites, pos);
+    sfSprite_setPosition(windows->settings.sprites, pos);
     sfRenderWindow_drawSprite(windows->window, \
-    windows->m_menu.sprites, NULL);
+    windows->settings.sprites , NULL);
 }
 
-void main_menu_loop(the_window *windows, main_menu_t *main_menu)
+void settings_loop(the_window *windows, main_menu_t *settings)
 {
-    update_tab_button(windows, main_menu->button, main_menu->nb_button);
+    update_tab_button(windows, settings->button, settings->nb_button);
     set_and_pos(windows);
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
         if (windows->event.type == sfEvtClosed)
@@ -31,13 +31,13 @@ void main_menu_loop(the_window *windows, main_menu_t *main_menu)
             windows->click = sfTrue;
         else
             windows->click = sfFalse;
-        button_tab_event(windows, main_menu->button, main_menu->nb_button);
+        button_tab_event(windows, settings->button, settings->nb_button);
     }
-    button_tab_draw(windows, main_menu->button, main_menu->nb_button);
+    button_tab_draw(windows, settings->button, settings->nb_button);
     sfRenderWindow_display(windows->window);
 }
 
-float main_menu(the_window *windows)
+float settings_menu(the_window *windows)
 {
     sfClock *timed = sfClock_create();
     sfVector2f camera_center = sfView_getCenter(windows->camera);
@@ -45,8 +45,8 @@ float main_menu(the_window *windows)
 
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
-    while (windows->state == in_menu && sfRenderWindow_isOpen(windows->window))
-        main_menu_loop(windows, &windows->m_menu);
+    while (windows->state == in_settings && sfRenderWindow_isOpen(windows->window))
+        settings_loop(windows, &windows->settings);
     sfView_setCenter(windows->camera, camera_center);
     return (time_to_float(timed));
 }

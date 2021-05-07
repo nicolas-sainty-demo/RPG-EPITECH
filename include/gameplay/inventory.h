@@ -14,7 +14,7 @@
 #include "inventory_struct.h"
 
 inventory *init_struct();
-float inventory_scene(int **tab_stock, the_window *win);
+float inventory_scene(the_window *win);
 items_t *is_item_in_range(the_window *windows);
 void print_item(the_window *windows);
 

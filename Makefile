@@ -9,6 +9,7 @@
 SRC		=	main.c											\
 			reader.c										\
 			scen/default_page.c								\
+			scen/game.c										\
 			time/speed_of_game.c							\
 			time/time_to_float.c							\
 			draw/heal_bare.c								\
@@ -40,6 +41,12 @@ SRC		=	main.c											\
 			button/init_button.c							\
 			button/update_button.c							\
 			button/update_tab_button.c						\
+			menu/init_menu_struct.c							\
+			menu/fct_menu.c									\
+			menu/menu.c										\
+			settings/init_settings.c						\
+			settings/setting.c								\
+			settings/fct_setting.c							\
 			particules/particules.c							\
 			draw/map.c
 

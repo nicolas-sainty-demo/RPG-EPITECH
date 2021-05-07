@@ -6,6 +6,7 @@
 */
 
 #include "button.h"
+#include <malloc.h>
 
 void update_tab_button(the_window *p, struct_button_t *button, int const nb)
 {
