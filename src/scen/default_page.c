@@ -128,7 +128,6 @@ void pick_the_item(the_window *windows)
         i += 1;
     }
     if (i >= 20) {
-        printf("FULL\n");
         return;
     }
     windows->scene->player->inventaire[i] = item->type;
