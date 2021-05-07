@@ -124,7 +124,7 @@ void default_page(the_window *windows)
         sfRenderWindow_clear(windows->window, sfBlack);
         speed_of_game((float)1/60);
         if (windows->state == in_menu) {
-            menu_scene();
+            // menu_scene();
         }
         if (windows->state == in_game) {
             update(windows);
