@@ -59,7 +59,7 @@ static void go_resume(void *ptr)
 {
     the_window *windows = ptr;
 
-    windows->state = 0;
+    windows->state = in_game;
 }
 
 void pause_loop(the_window *windows, struct_button_t *button\
@@ -96,7 +96,7 @@ float pause_menu(the_window *windows)
 
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
-    while (windows->state == 3 && sfRenderWindow_isOpen(windows->window))
+    while (windows->state == in_pause && sfRenderWindow_isOpen(windows->window))
         pause_loop(windows, button, &pause, 3);
     sfView_setCenter(windows->camera, camera_center);
     button_tab_free(button, 3);

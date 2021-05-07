@@ -89,7 +89,7 @@ float dead_menu(the_window *windows)
 
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
-    while (windows->state == 2 && sfRenderWindow_isOpen(windows->window))
+    while (windows->state == in_death_menu && sfRenderWindow_isOpen(windows->window))
         dead_loop(windows, &button_menu, &button_ext);
     sfView_setCenter(windows->camera, camera_center);
     sfSprite_destroy(button_menu.sprite);
