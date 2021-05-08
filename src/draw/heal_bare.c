@@ -14,6 +14,8 @@ sfVector2f position, sfRenderWindow *window)
     sfRectangleShape *healbar = sfRectangleShape_create();
     sfRectangleShape *heal = sfRectangleShape_create();
 
+    if (!healbar || !heal)
+        return;
     sfRectangleShape_setFillColor(heal, sfGreen);
     sfRectangleShape_setFillColor(healbar, sfRed);
     sfRectangleShape_setSize(healbar, size);

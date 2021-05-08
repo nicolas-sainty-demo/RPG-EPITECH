@@ -42,6 +42,8 @@ char *int_to_str(int nb)
     int i = 0;
     char *str = malloc(sizeof(char) * (len+1));
 
+    if (!str)
+        return (NULL);
     for ( ; i < len; i++) {
         str[i] = (nb % 10) + '0';
         nb /= 10;

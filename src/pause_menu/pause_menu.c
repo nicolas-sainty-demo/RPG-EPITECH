@@ -24,7 +24,9 @@ void go_exit(void *ptr);
 
 void go_resume(void *ptr);
 
-struct pause_s init_pause_menu()
+void free_res_pause(struct pause_s pause, sfClock *timed);
+
+struct pause_s init_pause_menu(void)
 {
     struct pause_s pause;
 
@@ -63,6 +65,8 @@ void pause_loop(the_window *windows, struct_button_t *button\
 
 void init_all_buttons(struct_button_t *button)
 {
+    if (!button)
+        return;
     button[0] = init_button\
     (&go_resume, RESU_BUTOON, POS_RES);
     button[1] = init_button\
@@ -76,16 +80,19 @@ float pause_menu(the_window *windows)
     struct_button_t *button = malloc(sizeof(*button) * 4);
     sfClock *timed = sfClock_create();
     sfVector2f camera_center = sfView_getCenter(windows->camera);
+    float time = 0;
     init_all_buttons(button);
     windows->click = sfFalse;
 
+    if (!button || !timed)
+        return (-1);
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
     while (windows->state == in_pause && sfRenderWindow_isOpen(windows->window))
         pause_loop(windows, button, &pause, 3);
     sfView_setCenter(windows->camera, camera_center);
     button_tab_free(button, 3);
-    sfTexture_destroy(pause.texture);
-    sfSprite_destroy(pause.sprite);
-    return (time_to_float(timed));
+    time = time_to_float(timed);
+    free_res_pause(pause, timed);
+    return (time);
 }

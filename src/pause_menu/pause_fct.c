@@ -6,6 +6,7 @@
 */
 
 #include "window_struc.h"
+#include "pause.h"
 
 void go_menu(void *ptr)
 {
@@ -26,4 +27,11 @@ void go_resume(void *ptr)
     the_window *windows = ptr;
 
     windows->state = in_game;
+}
+
+void free_res_pause(struct pause_s pause, sfClock *timed)
+{
+    sfTexture_destroy(pause.texture);
+    sfSprite_destroy(pause.sprite);
+    sfClock_destroy(timed);
 }
