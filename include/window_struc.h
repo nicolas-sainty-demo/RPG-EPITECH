@@ -47,7 +47,6 @@ typedef struct the_window
     main_menu_t settings;
     int volume;
     sfVector2f volume_min_max;
-    win_me *w_menu;    
 } the_window;
 
 #endif /* !WINDOW_STRUC_H_ */
