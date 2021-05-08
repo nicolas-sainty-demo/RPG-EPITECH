@@ -13,6 +13,7 @@
 #include "struct_button.h"
 #include "gameplay/inventory_struct.h"
 #include "gameplay/dead_menu_struct.h"
+#include "gameplay/win_menu_struct.h"
 
 typedef enum state_window_e
 {
@@ -20,7 +21,8 @@ typedef enum state_window_e
     in_inventory,
     in_death_menu,
     in_pause,
-    in_menu
+    in_menu,
+    in_win_menu
 } state_window_t;
 
 
@@ -35,6 +37,7 @@ typedef struct the_window
     sfBool click;
     inventory *inv;
     dead_me *d_menu;
+    win_me *w_menu;    
 } the_window;
 
 #endif /* !WINDOW_STRUC_H_ */

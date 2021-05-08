@@ -29,6 +29,8 @@ SRC		=	main.c											\
 			inventory/tab_of_int.c							\
 			dead_menu/dead_windows.c						\
 			dead_menu/init_struct.c							\
+			win_menu/win_windows.c							\
+			win_menu/init_struct.c							\
 			system_combat/collision_proj_ennemy.c			\
 			system_combat/handle_item.c						\
 			ennemies/update_ennemies.c						\
