@@ -12,9 +12,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void get_basic_variable(char **info, entity_passive_t *passive, int i)
+int get_primordial_variable_ent\
+(char **info, entity_passive_t *passive, int i);
+
+static void get_the_conversation(char **info, entity_passive_t *passive, int i)
 {
-    sfVector2i to_convert = {0};
     char *text = NULL;
     char *segond_info = NULL;
 
@@ -23,6 +25,13 @@ static void get_basic_variable(char **info, entity_passive_t *passive, int i)
         if (my_reader(text, &segond_info) == 0)
             passive->conversation = str_to_a_tab(segond_info, '/');
     }
+}
+
+static void get_basic_variable(char **info, entity_passive_t *passive, int i)
+{
+    sfVector2i to_convert = {0};
+
+    get_the_conversation(info, passive, i);
     if (my_strcmp_to_c(info[i], "position=", '=')) {
         to_convert = get_the_vector_i_after_c(info[i], '=');
         sfSprite_setPosition\
@@ -35,34 +44,13 @@ static void get_basic_variable(char **info, entity_passive_t *passive, int i)
     }
 }
 
-static int get_primordial_variable\
-(char **info, entity_passive_t *passive, int i)
-{
-    if (my_strcmp_to_c(info[i], "sprite=", '=')) {
-        passive->sprite = get_sprite_after_c(info[i], '=');
-        if (passive->sprite == NULL)
-            return (84);
-    }
-    if (my_strcmp_to_c(info[i], "animeFrame=", '='))
-        passive->anime = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "speed=", '='))
-        passive->speed = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "hp=", '='))
-        passive->hp = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "damage=", '='))
-        passive->damage = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "type=", '='))
-        passive->type = get_the_int_after_c(info[i], '=');
-    return (0);
-}
-
 int get_passif_from_info(char **info, entity_passive_t *passive)
 {
     passive->quest.dialoge = NULL;
     passive->conversation = NULL;
     for (int i = 0; info[i] != NULL; i += 1) {
         passive->conversation = NULL;
-        if (get_primordial_variable(info, passive, i) == 84)
+        if (get_primordial_variable_ent(info, passive, i) == 84)
             return (84);
         get_basic_variable(info, passive, i);
         if (my_strcmp_to_c(info[i], "rec=", '='))

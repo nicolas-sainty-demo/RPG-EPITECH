@@ -19,18 +19,28 @@ static int str_len_after_i(const char *str, int i)
     return (len);
 }
 
+static int check_is_errors(const char *str, const char c)
+{
+    int i = 0;
+
+    if (str == NULL)
+        return (-1);
+    while (str[i] != '\0' && str[i] != c)
+        i += 1;
+    if (str[i] == '\0')
+        return (-1);
+    return (i);
+}
+
 char *get_string_after_c(const char *str, const char c)
 {
     char *dest = NULL;
     int i = 0;
     int j = 0;
 
-    if (str == NULL)
-        return (NULL);
-    while (str[i] != '\0' && str[i] != c)
-        i += 1;
-    if (str[i] == '\0')
-        return (NULL);
+    i = check_is_errors(str, c);
+    if (i == -1)
+        return (84);
     dest = malloc(sizeof(char) * (str_len_after_i(str, i++)));
     if (dest == NULL)
         return (NULL);

@@ -21,7 +21,6 @@ void button_tab_event(the_window *p, struct_button_t *button, int const nb)
         if (p->event.type == sfEvtMouseButtonReleased)
             button[i].state = released;
     }
-    
 }
 
 void button_tab_draw(the_window *p, struct_button_t *button, int const nb)

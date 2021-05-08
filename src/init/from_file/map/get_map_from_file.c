@@ -45,21 +45,30 @@ static void extract_the_folder_map\
     set_info(info, map);
 }
 
+static void fill_map(char **layer, char **coliton, int *x, int y)
+{
+    while (layer[y][*x] != '\0') {
+        if (layer[y][*x] == '0')
+            coliton[y][*x] = 1;
+        else
+            coliton[y][*x] = -1;
+        *x += 1;
+    }
+}
+
 char **get_tils_coliton(char **layer)
 {
     char **coliton = malloc(sizeof(char *) * (get_tab_max(layer) + 1));
     int x = 0;
     int y = 0;
 
+    if (!coliton)
+        return (NULL);
     while (layer[y] != NULL) {
         coliton[y] = malloc(sizeof(char) * (my_strlen(layer[y]) + 1));
-        while (layer[y][x] != '\0') {
-            if (layer[y][x] == '0')
-                coliton[y][x] = 1;
-            else
-                coliton[y][x] = -1;
-            x += 1;
-        }
+        if (!coliton[y])
+            return (NULL);
+        fill_map(layer, coliton, &x, y);
         coliton[y++][x] = '\0';
         x = 0;
     }
