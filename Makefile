@@ -28,6 +28,8 @@ SRC		=	main.c											\
 			init/player/player_projectile.c					\
 			inventory/init_struct.c							\
 			inventory/open_inventory.c						\
+			inventory/drow_inventory.c						\
+			inventory/invantory_up.c						\
 			inventory/tab_of_int.c							\
 			dead_menu/dead_windows.c						\
 			dead_menu/init_struct.c							\
@@ -69,9 +71,11 @@ SRC_INIT	=	from_file/get_string_after_c.c						\
 				from_file/player/get_inventaire_from_file.c			\
 				from_file/player/get_player_from_file.c				\
 				from_file/player/get_nbr_of_fil_in_folder.c			\
+				from_file/player/stonks.c							\
 				from_file/map/get_map_from_file.c					\
 				from_file/map/set_info.c							\
 				from_file/passif/set_passive_from_foalder.c			\
+				from_file/passif/get_passif_from_info.c				\
 				from_file/passif/get_quest.c						\
 				from_file/enemy/set_enemy_from_foalders.c			\
 				from_file/enemy/additionnal_info_ennemies.c			\

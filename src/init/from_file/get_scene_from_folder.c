@@ -16,9 +16,11 @@
 int set_entyte_from_folader\
 (entity_enemy_t **enemy, entity_passive_t **passive, const char *scene_name)
 {
-    if (set_enemy_from_foalders(enemy, my_strcat(scene_name, "/entity/enemy/")) == 84)
+    if (set_enemy_from_foalders\
+    (enemy, my_strcat(scene_name, "/entity/enemy/")) == 84)
         return (84);
-    if (set_passive_from_foalder(passive, my_strcat(scene_name, "/entity/passif/")) == 84)
+    if (set_passive_from_foalder\
+    (passive, my_strcat(scene_name, "/entity/passif/")) == 84)
         return (84);
     return (0);
 }
