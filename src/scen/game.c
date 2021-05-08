@@ -26,6 +26,9 @@
 
 #define PARTICl_RAND (sfVector2f){0, 360}
 
+float speek\
+(the_window *windows, char **conversation, entity_passive_t *passif);
+
 bool is_collision_proj_ennemy(the_window *window);
 
 void print_item(the_window *windows);
@@ -114,11 +117,41 @@ static void update(the_window *windows)
     draw(windows);
 }
 
+void pick_the_item(the_window *windows)
+{
+    items_t *item = is_item_in_range(windows);
+    int i = 0;
+
+    if (item == NULL)
+        return;
+    while (windows->scene->player->inventaire[i] != '\0' \
+    && windows->scene->player->inventaire[i] != '!') {
+        i += 1;
+    }
+    if (i >= 20) {
+        printf("FULL\n");
+        return;
+    }
+    windows->scene->player->inventaire[i] = item->type;
+    delete_node(&windows->scene->pos_items, item);
+}
+
 void gameplay_scene(the_window *windows)
 {
     update(windows);
     is_collision_proj_ennemy(windows);
     path_finding(windows);
+    pick_the_item(windows);
+    for (int i = 0; windows->scene->passive[i]; i += 1) {
+        sfRenderWindow_drawSprite(windows->window\
+        , windows->scene->passive[i]->sprite, NULL);
+        anim_passive(windows->scene->passive[i]);
+        if (check_if_collision_btw_square_without_rotation\
+        (windows->scene->passive[i]->sprite, windows->scene->player->sprite) \
+        && windows->usekey == sfTrue)
+            speek(windows, windows->scene->passive[i]->conversation,  windows->scene->passive[i]);
+    }
+    windows->usekey = sfFalse;
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
         if (windows->event.type == sfEvtClosed)
             sfRenderWindow_close(windows->window);
@@ -130,5 +163,8 @@ void gameplay_scene(the_window *windows)
         if (windows->event.type == sfEvtKeyPressed \
         && windows->event.key.code == sfKeyTab)
             windows->state = in_pause;
+        if (windows->event.type == sfEvtKeyPressed \
+        && windows->event.key.code == sfKeyF)
+            windows->usekey = sfTrue;
     }
 }

@@ -117,9 +117,6 @@ float inventory_scene(the_window *windows)
         key_press = 0;
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
             position_cursor += cursor_move(windows);
-            if (windows->event.type == sfEvtMouseButtonPressed) {
-                printf("%f\t\t%f\n", sfRenderWindow_mapPixelToCoords(windows->window, sfMouse_getPositionRenderWindow(windows->window), windows->camera).x, sfRenderWindow_mapPixelToCoords(windows->window, sfMouse_getPositionRenderWindow(windows->window), windows->camera).y);
-            }
             verif_key(windows, &key_press);
         }
         if (position_cursor < 0 || position_cursor > 21)

@@ -1,6 +1,6 @@
 sprite=res/image/stick_man/stickman.png
 rec=0,0,64,64
-position=250,500
+position=600,600
 hp=50
 type=0
 damage=0
@@ -8,6 +8,6 @@ size=1,1
 animeFrame=14
 speed=100
 speek=res/speak_defaut
-quest_dialog=donne moi 10 tomate
-quest_item=""""""""""
+quest_dialog=donne moi 4 tomate
+quest_item=""""
 xp_win=10

@@ -17,6 +17,7 @@ the_window init_window(const int x, const int y)
 {
     the_window windows;
 
+    windows.quest_finiche = 0;
     windows.Videomode = (sfVideoMode){x, y, 32};
     windows.window = sfRenderWindow_create\
     (windows.Videomode, "Nom de la fenaitre", sfClose | sfNone, NULL);

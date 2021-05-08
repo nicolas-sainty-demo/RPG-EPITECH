@@ -10,6 +10,7 @@ SRC		=	main.c											\
 			reader.c										\
 			scen/default_page.c								\
 			scen/game.c										\
+			scen/speek.c									\
 			time/speed_of_game.c							\
 			time/time_to_float.c							\
 			draw/heal_bare.c								\
@@ -32,6 +33,7 @@ SRC		=	main.c											\
 			dead_menu/init_struct.c							\
 			system_combat/collision_proj_ennemy.c			\
 			system_combat/handle_item.c						\
+			system_combat/drop_items.c						\
 			ennemies/update_ennemies.c						\
 			ennemies/draw_ennemies.c						\
 			ennemies/show_healbar_ennemies.c				\
@@ -70,9 +72,11 @@ SRC_INIT	=	from_file/get_string_after_c.c						\
 				from_file/map/get_map_from_file.c					\
 				from_file/map/set_info.c							\
 				from_file/passif/set_passive_from_foalder.c			\
+				from_file/passif/get_quest.c						\
 				from_file/enemy/set_enemy_from_foalders.c			\
 				from_file/enemy/additionnal_info_ennemies.c			\
 				from_file/defo/set_default.c						\
+				from_file/init_text.c								\
 				window/init_window.c
 
 SRC_PRE = ./src/

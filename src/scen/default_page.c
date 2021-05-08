@@ -17,14 +17,12 @@
 #include <stdlib.h>
 #include "draw.h"
 #include "from_file.h"
-#include "particules.h"
 #include "gameplay/inventory.h"
 #include "ennemies.h"
 #include "dead_menu.h"
 #include "pause.h"
 #include "main_menu.h"
-
-#define PARTICl_RAND (sfVector2f){0, 360}
+#include "text.h"
 
 void gameplay_scene(the_window *windows);
 
@@ -53,9 +51,9 @@ void secondary_scenes(the_window *windows)
 void default_page(the_window *windows)
 {
     windows->state = in_menu;
+    windows->usekey = sfFalse;
     windows->scene = get_scene_from_folder("res/scene/debut");
     windows->scene->pos_items = NULL;
-
     while (sfRenderWindow_isOpen(windows->window)) {
         sfRenderWindow_clear(windows->window, sfBlack);
         speed_of_game((float)1/60);
