@@ -22,6 +22,7 @@
 #include "pause.h"
 #include "main_menu.h"
 #include "text.h"
+#include "win_menu.h"
 
 void gameplay_scene(the_window *windows);
 
@@ -59,8 +60,7 @@ void default_page(the_window *windows)
         principal_scenes(windows);
         secondary_scenes(windows);
         if (windows->state == in_win) {
-            //fct théo
-            printf("win\n");
+            win_menu(windows);
         }
         sfRenderWindow_display(windows->window);
     }
