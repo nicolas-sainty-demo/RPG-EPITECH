@@ -16,7 +16,7 @@
 
 #include "struct_projectile.h"
 
-#endif 
+#endif
 typedef struct quest
 {
     char *dialoge;

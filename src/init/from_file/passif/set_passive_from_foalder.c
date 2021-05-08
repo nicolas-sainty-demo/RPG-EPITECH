@@ -14,7 +14,8 @@
 
 int get_passif_from_info(char **info, entity_passive_t *passive);
 
-int init_step_by_step(entity_passive_t **passive, char *name_of_dir, DIR *folder)
+int init_step_by_step\
+(entity_passive_t **passive, char *name_of_dir, DIR *folder)
 {
     char **info = NULL;
     struct dirent *dirdir = NULL;

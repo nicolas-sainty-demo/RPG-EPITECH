@@ -15,10 +15,14 @@
 
 void draw_invantory_(the_window *windows, const int position_cursor\
 , char **item_select, const int key_press);
+
 int cursor_move(the_window *windows);
+
 void verif_key(the_window *windows, int *key_press);
+
 void set_and_draw(the_window *windows, const int position_cursor, \
 char **item_select, const int key_press);
+
 void init_inventory(inventory *inv);
 
 void switch_in_invantory(char *a, char *b)

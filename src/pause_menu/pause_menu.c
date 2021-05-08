@@ -18,6 +18,12 @@
 #define POS_MENU (sfVector2f){-180, -100}
 #define POS_EXIT (sfVector2f){-180, 30}
 
+void go_menu(void *ptr);
+
+void go_exit(void *ptr);
+
+void go_resume(void *ptr);
+
 struct pause_s init_pause_menu()
 {
     struct pause_s pause;
@@ -39,27 +45,6 @@ static void set_and_pos(struct pause_s *pause, the_window *windows)
     sfSprite_setPosition(pause->sprite, pos);
     sfRenderWindow_drawSprite(windows->window, \
     pause->sprite , NULL);
-}
-
-static void go_menu(void *ptr)
-{
-    the_window *windows = ptr;
-
-    windows->state = 4;
-}
-
-static void go_exit(void *ptr)
-{
-    the_window *windows = ptr;
-
-    sfRenderWindow_close(windows->window);
-}
-
-static void go_resume(void *ptr)
-{
-    the_window *windows = ptr;
-
-    windows->state = in_game;
 }
 
 void pause_loop(the_window *windows, struct_button_t *button\

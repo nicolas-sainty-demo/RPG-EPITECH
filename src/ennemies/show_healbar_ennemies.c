@@ -13,9 +13,9 @@ void show_healbar(the_window *windows, int const i)
             , windows->scene->enemy[i]->hp_max};
     sfVector2f pos_ennemie = sfSprite_getPosition\
     (windows->scene->enemy[i]->sprite);
-    sfFloatRect bound_sprite = \
+    sfFloatRect bnd_sprite = \
     sfSprite_getGlobalBounds(windows->scene->enemy[i]->sprite);
-    sfVector2f size_bar_heal = (sfVector2f){bound_sprite.width, SIZE_BAR_HEAL.y};
+    sfVector2f size_bar_heal = (sfVector2f){bnd_sprite.width, SIZE_BAR_HEAL.y};
     pos_ennemie.y -= SIZE_BAR_HEAL.y;
     draw_heal_bar(size_bar_heal, heal_min_max, pos_ennemie, windows->window);
 }

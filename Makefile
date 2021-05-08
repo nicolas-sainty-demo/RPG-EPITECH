@@ -11,6 +11,7 @@ SRC		=	main.c											\
 			scen/default_page.c								\
 			scen/game.c										\
 			scen/speek.c									\
+			scen/draw_game.c								\
 			time/speed_of_game.c							\
 			time/time_to_float.c							\
 			draw/heal_bare.c								\
@@ -42,6 +43,7 @@ SRC		=	main.c											\
 			ennemies/ennemies_attack.c						\
 			ennemies/path_finding.c							\
 			pause_menu/pause_menu.c							\
+			pause_menu/pause_fct.c							\
 			button/init_button.c							\
 			button/update_button.c							\
 			button/update_tab_button.c						\
@@ -52,6 +54,7 @@ SRC		=	main.c											\
 			settings/setting.c								\
 			settings/fct_setting.c							\
 			particules/particules.c							\
+			particules/update_particules.c					\
 			draw/map.c
 
 SRC_COLLISION	=	collision_square.c						\

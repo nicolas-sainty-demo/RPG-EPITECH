@@ -15,6 +15,10 @@
 #define POS_RESET (sfVector2f){-180, -100}
 #define POS_EXIT (sfVector2f){-180, 30}
 
+void go_menu(void *ptr);
+
+void go_exit(void *ptr);
+
 void init_dead_menu(dead_me *d_menu)
 {
     d_menu->d_menu_texture = sfTexture_createFromFile
@@ -31,20 +35,6 @@ static void set_and_pos(the_window *windows)
     sfSprite_setPosition(windows->d_menu->d_menu_sprite, pos);
     sfRenderWindow_drawSprite(windows->window, \
     windows->d_menu->d_menu_sprite , NULL);
-}
-
-static void go_menu(void *ptr)
-{
-    the_window *windows = ptr;
-
-    windows->state = 4;
-}
-
-static void go_exit(void *ptr)
-{
-    the_window *windows = ptr;
-
-    sfRenderWindow_close(windows->window);
 }
 
 void dead_loop(the_window *windows, struct_button_t *button_menu\
@@ -79,7 +69,8 @@ float dead_menu(the_window *windows)
 
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
-    while (windows->state == in_death_menu && sfRenderWindow_isOpen(windows->window))
+    while (windows->state == in_death_menu \
+    && sfRenderWindow_isOpen(windows->window))
         dead_loop(windows, &button_menu, &button_ext);
     sfView_setCenter(windows->camera, camera_center);
     sfSprite_destroy(button_menu.sprite);

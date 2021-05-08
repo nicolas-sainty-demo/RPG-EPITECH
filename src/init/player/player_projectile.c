@@ -10,6 +10,6 @@
 
 void init_elem_player(player_t *player)
 {
-    player->proj =\
-     init_tab_projectile(PATH_PROJ, RADIUS_PROJ, SPEED_PROJ, NB_PROJ);
+    player->proj \
+    = init_tab_projectile(PATH_PROJ, RADIUS_PROJ, SPEED_PROJ, NB_PROJ);
 }

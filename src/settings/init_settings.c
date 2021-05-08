@@ -39,7 +39,8 @@ static int alloc_my_button(struct_button_t *button)
 {
     int ret = 0;
 
-    button[leave] = init_button(&go_back_to_menu, B_EXIT, (sfVector2f){-150, 0});
+    button[leave] = init_button(&go_back_to_menu, B_EXIT\
+    , (sfVector2f){-150, 0});
     button[down] = init_button(&up_song, B_UP, (sfVector2f){-500, -300});
     button[up] = init_button(&down_song\
     , B_DOWN, (sfVector2f){400, -300});

@@ -6,6 +6,7 @@
 */
 
 #include "window_struc.h"
+#include "inventory.h"
 #include "collision.h"
 #include <malloc.h>
 
@@ -34,6 +35,24 @@ void print_item(the_window *windows)
         (windows->window, windows->inv->inventory_sp_item, NULL);
         tmp_head = tmp_head->next;
     }
+}
+
+void pick_the_item(the_window *windows)
+{
+    items_t *item = is_item_in_range(windows);
+    int i = 0;
+
+    if (item == NULL)
+        return;
+    while (windows->scene->player->inventaire[i] != '\0' \
+    && windows->scene->player->inventaire[i] != '!') {
+        i += 1;
+    }
+    if (i >= 20) {
+        return;
+    }
+    windows->scene->player->inventaire[i] = item->type;
+    delete_node(&windows->scene->pos_items, item);
 }
 
 void free_items(items_t *head)

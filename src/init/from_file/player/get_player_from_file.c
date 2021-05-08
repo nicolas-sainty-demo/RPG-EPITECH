@@ -15,6 +15,7 @@
 #define BROWN (sfColor){39, 69, 19, 255}
 
 void init_elem_player(player_t *player);
+
 void stonks(char *info, player_t *player);
 
 static void set_info(char **info, player_t *player)

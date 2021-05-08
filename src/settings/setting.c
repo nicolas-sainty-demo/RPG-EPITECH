@@ -45,7 +45,8 @@ float settings_menu(the_window *windows)
 
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
-    while (windows->state == in_settings && sfRenderWindow_isOpen(windows->window))
+    while (windows->state == in_settings \
+    && sfRenderWindow_isOpen(windows->window))
         settings_loop(windows, &windows->settings);
     sfView_setCenter(windows->camera, camera_center);
     return (time_to_float(timed));
