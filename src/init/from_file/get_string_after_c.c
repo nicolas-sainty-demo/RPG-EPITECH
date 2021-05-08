@@ -40,7 +40,7 @@ char *get_string_after_c(const char *str, const char c)
 
     i = check_is_errors(str, c);
     if (i == -1)
-        return (84);
+        return (NULL);
     dest = malloc(sizeof(char) * (str_len_after_i(str, i++)));
     if (dest == NULL)
         return (NULL);

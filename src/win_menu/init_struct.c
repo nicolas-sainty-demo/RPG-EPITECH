@@ -18,3 +18,11 @@ win_me *init_struct_win_menu(void)
     w_menu->pos_menu.y = 0;
     return (w_menu);
 }
+
+void init_win_menu(win_me *w_menu)
+{
+    w_menu->w_menu_texture = sfTexture_createFromFile
+    ("res/win_menu/win_rpg.png", NULL);
+    w_menu->w_menu_sprite = sfSprite_create();
+    sfSprite_setTexture(w_menu->w_menu_sprite, w_menu->w_menu_texture, sfTrue);
+}

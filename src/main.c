@@ -23,7 +23,7 @@ int core(void)
     the_window windows = init_window(1920, 1080);
     inventory *inv = init_struct();
     dead_me *d_menu = init_struct_dead_menu();
-    dead_me *w_menu = init_struct_win_menu();
+    win_me *w_menu = init_struct_win_menu();
     init_inventory(inv);
     init_dead_menu(d_menu);
     init_win_menu(w_menu);
