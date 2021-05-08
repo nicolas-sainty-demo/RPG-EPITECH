@@ -31,7 +31,8 @@ static void basic_dialog(the_window *windows, char **conversation)
         sfText_setString(text, conversation[i]);
         sfRenderWindow_drawText(windows->window, text, NULL);
         while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
-            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyF)
+            if (windows->event.type == sfEvtKeyPressed \
+            && windows->event.key.code == sfKeyF)
                 i += 1;
         }
         sfRenderWindow_display(windows->window);
@@ -39,15 +40,14 @@ static void basic_dialog(the_window *windows, char **conversation)
     sfText_destroy(text);
 }
 
-int quest_is_win(the_window *windows, entity_passive_t *passif)
+int quest_is_win(the_window *windows, entity_passive_t *passif, int i)
 {
-    int i = 0;
     int j = 0;
 
-    while (passif->quest.item_need[j])
-    {
+    while (passif->quest.item_need[j]) {
         while (windows->scene->player->inventaire[i] != '\0') {
-            if (passif->quest.item_need[j] == windows->scene->player->inventaire[i]) {
+            if (passif->quest.item_need[j] \
+            == windows->scene->player->inventaire[i]) {
                 passif->quest.item_need[j] = '!';
                 windows->scene->player->inventaire[i] = '!';
             }
@@ -57,12 +57,30 @@ int quest_is_win(the_window *windows, entity_passive_t *passif)
         j += 1;
     }
     j = 0;
-    while (passif->quest.item_need[j] != '\0') {
-        if (passif->quest.item_need[j] != '!')
+    while (passif->quest.item_need[j] != '\0')
+        if (passif->quest.item_need[j++] != '!')
             return (0);
-        j += 1;
-    }
     return (1);
+}
+
+static void quest_dialog_event\
+(the_window *windows, entity_passive_t *passif, int *i)
+{
+    while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
+        if (windows->event.type == sfEvtKeyPressed \
+        && windows->event.key.code == sfKeyF)
+            *i = 1;
+        if (windows->event.type == sfEvtKeyPressed \
+        && windows->event.key.code == sfKeyY)
+            if (quest_is_win(windows, passif, 0)) {
+                windows->quest_finiche += 1;
+                passif->quest.dialoge = NULL;
+                *i = 1;
+            }
+        if (windows->event.type == sfEvtKeyPressed \
+        && windows->event.key.code == sfKeyN)
+            *i = 1;
+    }
 }
 
 static void quest_dialog(the_window *windows, entity_passive_t *passif)
@@ -75,18 +93,7 @@ static void quest_dialog(the_window *windows, entity_passive_t *passif)
         sfRenderWindow_clear(windows->window, sfBlack);
         sfText_setString(text, passif->quest.dialoge);
         sfRenderWindow_drawText(windows->window, text, NULL);
-        while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
-            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyF)
-                i = 1;
-            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyY)
-                if (quest_is_win(windows, passif)) {
-                    windows->quest_finiche += 1;
-                    passif->quest.dialoge = NULL;
-                    i = 1;
-                }
-            if (windows->event.type == sfEvtKeyPressed && windows->event.key.code == sfKeyN)
-                i = 1;
-        }
+        quest_dialog_event(windows, passif, &i);
         sfRenderWindow_display(windows->window);
     }
     sfText_destroy(text);

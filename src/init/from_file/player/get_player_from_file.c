@@ -15,31 +15,12 @@
 #define BROWN (sfColor){39, 69, 19, 255}
 
 void init_elem_player(player_t *player);
+void stonks(char *info, player_t *player);
 
 static void set_info(char **info, player_t *player)
 {
     for (int i = 0; info[i] != NULL; i += 1) {
-        if (my_strcmp_to_c(info[i], "inventaire", '='))
-            player->inventaire = get_string_after_c(info[i], '=');
-        if (my_strcmp_to_c(info[i], "hp", '='))
-            player->hp = get_the_int_after_c(info[i], '=');
-        if (my_strcmp_to_c(info[i], "anime", '='))
-            player->anime = (char)get_the_int_after_c(info[i], '=');
-        if (my_strcmp_to_c(info[i], "sprite", '='))
-            player->sprite = get_sprite_after_c(info[i], '=');
-        if (my_strcmp_to_c(info[i], "sprite_rec", '=')) {
-            sfSprite_setTextureRect\
-            (player->sprite, get_sf_int_rect_after_c(info[i], '='));
-        }
-        if (my_strcmp_to_c(info[i], "damage", '='))
-            player->damage = get_the_int_after_c(info[i], '=');
-        if (my_strcmp_to_c(info[i], "position", '=')) {
-            sfVector2i pos = get_the_vector_i_after_c(info[i], '=');
-            sfSprite_setPosition(player->sprite, (sfVector2f){pos.x, pos.y});
-        }
-        if (my_strcmp_to_c(info[i], "projectile", '=')) {
-            get_string_after_c(info[i], '=');
-        }
+        stonks(info[i], player);
     }
 }
 
@@ -79,9 +60,8 @@ int get_player_from_file(player_t *player, char *name_of_dir)
     if (name_of_dir == NULL)
         return (84);
     folder = opendir(name_of_dir);
-    if (folder == NULL) {
+    if (folder == NULL)
         return (84);
-    }
     extract_the_folder_player(folder, &info, name_of_dir);
     init_elem_player(player);
     free (name_of_dir);
@@ -91,6 +71,7 @@ int get_player_from_file(player_t *player, char *name_of_dir)
     set_player_variable(player);
     player->hp_max = player->hp;
     player->particl.nb_particules = 600;
-    player->particl = init_particl(player->particl.nb_particules, 4000, sfBlack);
+    player->particl = init_particl\
+    (player->particl.nb_particules, 4000, sfBlack);
     return (0);
 }

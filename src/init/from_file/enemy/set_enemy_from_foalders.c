@@ -98,7 +98,8 @@ int set_enemy_from_foalders(entity_enemy_t **enemy, char *name_of_dir)
         return (84);
     dirdir = readdir(folder);
     for (int i = 0; enemy[i] != NULL && dirdir != NULL; i += 1) {
-        return_v = get_an_enemy_from_file(&dirdir, folder, name_of_dir, enemy[i]);
+        return_v = get_an_enemy_from_file\
+        (&dirdir, folder, name_of_dir, enemy[i]);
         if (return_v == 84)
             break;
         add_additionnal_info(enemy[i]);

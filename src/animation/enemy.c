@@ -26,7 +26,8 @@ void anim_enemy(entity_enemy_t *enemy)
         if (rec.width < 0)
             rec.width *= -1;
         sfSprite_setTextureRect(enemy->sprite, (sfIntRect)\
-        {time * rec.width + rec.width, rec.height * 0, -1 * rec.width, rec.height});
+        {time * rec.width + rec.width, rec.height * 0, -1 * \
+        rec.width, rec.height});
     }
     if (rec.width < 0)
         rec.width *= -1;
@@ -48,6 +49,7 @@ void anim_passive(entity_passive_t *passive)
         if (rec.width < 0)
             rec.width *= -1;
         sfSprite_setTextureRect(passive->sprite, (sfIntRect)\
-        {time * rec.width + rec.width, rec.height * 4, -1 * rec.width, rec.height});
+        {time * rec.width + rec.width, rec.height * 4, -1 * \
+        rec.width, rec.height});
     }
 }
