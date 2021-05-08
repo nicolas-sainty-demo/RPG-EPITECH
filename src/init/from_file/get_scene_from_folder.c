@@ -25,6 +25,22 @@ int set_entyte_from_folader\
     return (0);
 }
 
+static int fetch_information_from_folder\
+(scene_t *scene, const char *scene_name, struct dirent *dirdir)
+{
+    if (my_strcmp(dirdir->d_name, "player"))
+        get_player_from_file\
+        (scene->player, my_strcat(scene_name, "/player"));
+    if (my_strcmp(dirdir->d_name, "map"))
+        get_map_from_file\
+        (scene->map, my_strcat(scene_name, "/map"));
+    if (my_strcmp(dirdir->d_name, "entity"))
+        if (set_entyte_from_folader\
+        (scene->enemy, scene->passive, scene_name) == 84)
+            return (84);
+    return (0);
+}
+
 static int extract_the_folder\
 (DIR *folder, scene_t *scene, const char *scene_name)
 {
@@ -34,16 +50,8 @@ static int extract_the_folder\
     dirdir = readdir(folder);
     while (dirdir != NULL) {
         if (dirdir->d_name[0] != '.') {
-            if (my_strcmp(dirdir->d_name, "player"))
-                get_player_from_file\
-                (scene->player, my_strcat(scene_name, "/player"));
-            if (my_strcmp(dirdir->d_name, "map"))
-                get_map_from_file\
-                (scene->map, my_strcat(scene_name, "/map"));
-            if (my_strcmp(dirdir->d_name, "entity"))
-                if (set_entyte_from_folader\
-                (scene->enemy, scene->passive, scene_name) == 84)
-                    return (84);
+            if (fetch_information_from_folder(scene, scene_name, dirdir) == 84)
+                return (84);
         }
         dirdir = readdir(folder);
     }

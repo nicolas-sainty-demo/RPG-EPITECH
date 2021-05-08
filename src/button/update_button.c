@@ -30,8 +30,8 @@ static void change_the_rec(struct_button_t *button, the_window *p\
 {
     sfFloatRect bound_sprite = sfSprite_getGlobalBounds(button->sprite);
 
-    if (sfFloatRect_contains(&bound_sprite, pos_mouse.x, pos_mouse.y)\
-     == sfTrue) {
+    if (sfFloatRect_contains\
+    (&bound_sprite, pos_mouse.x, pos_mouse.y) == sfTrue) {
         is_need_to_rect(button, p);
     }
     else {

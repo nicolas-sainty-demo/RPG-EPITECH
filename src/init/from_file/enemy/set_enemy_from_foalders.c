@@ -14,48 +14,9 @@
 
 void add_additionnal_info(entity_enemy_t *ennemie);
 
-static int get_primordial_variable(char **info, entity_enemy_t *enemy, int i)
-{
-    if (my_strcmp_to_c(info[i], "sprite=", '=')) {
-        enemy->sprite = get_sprite_after_c(info[i], '=');
-        if (enemy->sprite == NULL)
-            return (84);
-    }
-    if (my_strcmp_to_c(info[i], "speed=", '='))
-        enemy->speed = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "hp=", '=')) {
-        enemy->hp = get_the_int_after_c(info[i], '=');
-        enemy->hp_max =enemy-> hp;
-    }
-    if (my_strcmp_to_c(info[i], "damage=", '='))
-        enemy->damage = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "type=", '='))
-        enemy->type = get_the_int_after_c(info[i], '=');
-    if (my_strcmp_to_c(info[i], "animeFrame=", '='))
-        enemy->anime = get_the_int_after_c(info[i], '=');
-    return (0);
-}
+int get_primordial_variable(char **info, entity_enemy_t *enemy, int i);
 
-static int get_basic_variable(char **info, entity_enemy_t *enemy, int i)
-{
-    sfVector2i to_convert = {0};
-
-    if (my_strcmp_to_c(info[i], "position=", '=')) {
-        to_convert = get_the_vector_i_after_c(info[i], '=');
-        enemy->current_pos = (sfVector2f){to_convert.x, to_convert.y};
-        sfSprite_setPosition\
-        (enemy->sprite, enemy->current_pos);
-    }
-    if (my_strcmp_to_c(info[i], "rec=", '='))
-        sfSprite_setTextureRect\
-        (enemy->sprite, get_sf_int_rect_after_c(info[i], '='));
-    if (my_strcmp_to_c(info[i], "size=", '=')) {
-        to_convert = get_the_vector_i_after_c(info[i], '=');
-        sfSprite_setScale\
-        (enemy->sprite, (sfVector2f){to_convert.x, to_convert.y});
-    }
-    return (0);
-}
+int get_basic_variable(char **info, entity_enemy_t *enemy, int i);
 
 int get_enemy_from_info(char **info, entity_enemy_t *enemy)
 {

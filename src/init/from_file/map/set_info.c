@@ -12,15 +12,20 @@
 #include <sys/types.h>
 #include "from_file.h"
 
+static void take_layer(char **info, map_t *map, int i)
+{
+    if (my_strcmp_to_c(info[i], "layer_a", '='))
+        map->layer_a = get_sprite_after_c(info[i], '=');
+    if (my_strcmp_to_c(info[i], "layer_b", '='))
+        map->layer_b = get_sprite_after_c(info[i], '=');
+    if (my_strcmp_to_c(info[i], "layer_c", '='))
+        map->layer_c = get_sprite_after_c(info[i], '=');
+}
+
 static void get_sprite_layer(char **info, map_t *map)
 {
     for (int i = 0; info[i] != NULL; i += 1) {
-        if (my_strcmp_to_c(info[i], "layer_a", '='))
-            map->layer_a = get_sprite_after_c(info[i], '=');
-        if (my_strcmp_to_c(info[i], "layer_b", '='))
-            map->layer_b = get_sprite_after_c(info[i], '=');
-        if (my_strcmp_to_c(info[i], "layer_c", '='))
-            map->layer_c = get_sprite_after_c(info[i], '=');
+        take_layer(info, map, i);
     }
 }
 
