@@ -32,6 +32,15 @@ void switch_in_invantory(char *a, char *b)
     *b = c;
 }
 
+void eat_food(player_t *player)
+{
+    if (player->hp < player->hp_max) {
+        player->hp += ((player->hp * 10) / 100);
+        if (player->hp > player->hp_max)
+            player->hp = player->hp_max;
+    }
+}
+
 void use_and_drop_item(const int key_press, char *item_select\
 , the_window *windows, int position_cursor)
 {
@@ -43,6 +52,7 @@ void use_and_drop_item(const int key_press, char *item_select\
     if (key_press == EAT_KEY) {
         if (c_is_in_str(*item_select, food_list)) {
             *item_select = '!';
+            eat_food(windows->scene->player);
         }
     }
 }
