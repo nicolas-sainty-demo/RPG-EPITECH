@@ -26,6 +26,9 @@
 
 #define PARTICl_RAND (sfVector2f){0, 360}
 
+float speek\
+(the_window *windows, char **conversation, entity_passive_t *passif);
+
 bool is_collision_proj_ennemy(the_window *window);
 
 void print_item(the_window *windows);
@@ -148,6 +151,7 @@ void gameplay_scene(the_window *windows)
         && windows->usekey == sfTrue)
             speek(windows, windows->scene->passive[i]->conversation,  windows->scene->passive[i]);
     }
+    windows->usekey = sfFalse;
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
         if (windows->event.type == sfEvtClosed)
             sfRenderWindow_close(windows->window);
@@ -161,6 +165,6 @@ void gameplay_scene(the_window *windows)
             windows->state = in_pause;
         if (windows->event.type == sfEvtKeyPressed \
         && windows->event.key.code == sfKeyF)
-                windows->usekey = sfTrue;
+            windows->usekey = sfTrue;
     }
 }
