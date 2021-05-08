@@ -39,7 +39,7 @@ void memset_tab(int **tab, const int cols, const char c)
     }
 }
 
-int free_tab(const int rows, int **tab)
+void free_tab(const int rows, int **tab)
 {
     for (int i = 0; i < rows; i++) {
         free(tab[i]);

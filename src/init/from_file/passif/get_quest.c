@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int get_quest(char **info, entity_passive_t *passive, int i)
+void get_quest(char **info, entity_passive_t *passive, int i)
 {
     if (my_strcmp_to_c(info[i], "quest_dialog=", '='))
         passive->quest.dialoge = get_string_after_c(info[i], '=');

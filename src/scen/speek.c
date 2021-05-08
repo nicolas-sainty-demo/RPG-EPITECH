@@ -18,6 +18,8 @@
 #include "text.h"
 #include "time.h"
 
+float time_to_float(sfClock *time);
+
 static void basic_dialog(the_window *windows, char **conversation)
 {
     int i = 0;

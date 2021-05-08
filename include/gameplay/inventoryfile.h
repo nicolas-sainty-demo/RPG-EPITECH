@@ -23,7 +23,7 @@ const sfVector2f inventory_space[] = {{-139, -158}, {-41, -158}, {57, -158}, {15
 
 const sfVector2f selec_space = {-282, -316};
 
-const char food_list[] = {34, '#', '$', '\0'};
+char food_list[] = {34, '#', '$', '\0'};
 
 const char armor_list[] = {37, '&'};
 

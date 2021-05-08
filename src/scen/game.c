@@ -65,7 +65,7 @@ static void draw(the_window *windows)
     draw_heal_bar_player(windows->scene->player, windows);
 }
 
-void update_the_particules(the_window *windows, projectile_t **proj)
+void update_the_particules(projectile_t **proj)
 {
     sfTime elapsed;
     int i = 0;
@@ -96,7 +96,7 @@ void update_particules_for_player(player_t *player)
     }
     else if (player->anime == player_stay && is_reset == 0) {
         is_reset = 1;
-        for (int i = 0; i < player->particl.nb_particules; i++) {
+        for (unsigned int i = 0; i < player->particl.nb_particules; i++) {
             reset_particule_player(&player->particl, i, PARTICl_RAND);        
         }
     }
@@ -113,7 +113,7 @@ static void update(the_window *windows)
     anim_player(windows->scene->player);
     move_player(windows);
     update_particules_for_player(windows->scene->player);
-    update_the_particules(windows, windows->scene->player->proj);
+    update_the_particules(windows->scene->player->proj);
     draw(windows);
 }
 
@@ -129,7 +129,6 @@ void pick_the_item(the_window *windows)
         i += 1;
     }
     if (i >= 20) {
-        printf("FULL\n");
         return;
     }
     windows->scene->player->inventaire[i] = item->type;

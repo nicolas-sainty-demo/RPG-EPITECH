@@ -33,16 +33,6 @@ static void set_and_pos(the_window *windows)
     windows->d_menu->d_menu_sprite , NULL);
 }
 
-int button_press(the_window *windows)
-{
-    sfVector2i pos_mouse = { 0 };
-    sfVector2f pos_mouse_coords = { 0 };
-
-    pos_mouse = sfMouse_getPositionRenderWindow(windows->window);
-    pos_mouse_coords = sfRenderWindow_mapPixelToCoords(windows->window\
-    , pos_mouse, windows->camera);
-}
-
 static void go_menu(void *ptr)
 {
     the_window *windows = ptr;

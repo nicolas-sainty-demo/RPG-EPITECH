@@ -5,12 +5,15 @@
 ** main
 */
 
+#include <stdlib.h>
 #include "window_fonction.h"
 #include "gameplay/inventory.h"
 #include "gameplay/dead_menu.h"
 #include "str.h"
 #include <time.h>
 #include <SFML/Graphics.h>
+
+void init_inventory(inventory *inv);
 
 int core(void)
 {

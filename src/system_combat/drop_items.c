@@ -31,7 +31,6 @@ int add_node(items_t **tab_pos, sfVector2f new_pos)
 {
     items_t *new_node = create_node(new_pos);
     items_t *tmp_head = *tab_pos;
-    int i = 0;
 
     if (!new_node)
         return (84);
