@@ -16,6 +16,10 @@
 void draw_invantory_(the_window *windows, const int position_cursor\
 , char **item_select, const int key_press);
 
+void event_interaction_iventory(the_window *windows, int *key_press);
+
+int event_movement_cursor(the_window *windows);
+
 void init_inventory(inventory *inv)
 {
     inv->inventory_texture = sfTexture_createFromFile
@@ -55,12 +59,7 @@ void verif_key(the_window *windows, int *key_press)
             windows->state = in_game;
         if (windows->event.key.code == sfKeyA)
             *key_press = SELECT_KEY;
-        if (windows->event.key.code == sfKeyF)
-            *key_press = USE_KEY;
-        if (windows->event.key.code == sfKeyJ)
-            *key_press = DROP_KEY;
-        if (windows->event.key.code == sfKeyG)
-            *key_press = EAT_KEY;
+        event_interaction_iventory(windows, key_press);
     }
 }
 
@@ -71,14 +70,5 @@ int cursor_move(the_window *windows)
     if (windows->event.type == sfEvtKeyPressed \
     && windows->event.key.code == sfKeyD)
         return (1);
-    if (windows->event.type == sfEvtKeyPressed \
-    && windows->event.key.code == sfKeyQ)
-        return (-1);
-    if (windows->event.type == sfEvtKeyPressed \
-    && windows->event.key.code == sfKeyS)
-        return (5);
-    if (windows->event.type == sfEvtKeyPressed \
-    && windows->event.key.code == sfKeyZ)
-        return (-5);
-    return (0);
+    return (event_movement_cursor(windows));
 }

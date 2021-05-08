@@ -41,9 +41,8 @@ void deal_range_damage(entity_enemy_t *ennemie, player_t *player)
     pos_player.x += player_bound.width/2;
     pos_player.y += player_bound.height/2;
     if (check_if_collision_btw_circle_square(ennemie->area_shoot\
-    , ennemie->sprite, player->sprite) && ennemie->proj->state == no_shoot) {
+    , ennemie->sprite, player->sprite) && ennemie->proj->state == no_shoot)
         shoot_projectile(ennemie->proj, pos_ennemie, pos_player);
-    }
     if (check_if_collision_btw_circle_square(ennemie->proj->radius, \
     ennemie->proj->spt_projectile, player->sprite) && \
     ennemie->proj->state == shooted) {

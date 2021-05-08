@@ -20,6 +20,14 @@ static void set_and_pos(the_window *windows)
     windows->m_menu.sprites, NULL);
 }
 
+static void is_click(the_window *windows)
+{
+    if (windows->event.type == sfEvtMouseButtonPressed)
+        windows->click = sfTrue;
+    else
+        windows->click = sfFalse;
+}
+
 void main_menu_loop(the_window *windows, main_menu_t *main_menu)
 {
     update_tab_button(windows, main_menu->button, main_menu->nb_button);
@@ -27,10 +35,7 @@ void main_menu_loop(the_window *windows, main_menu_t *main_menu)
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
         if (windows->event.type == sfEvtClosed)
             sfRenderWindow_close(windows->window);
-        if (windows->event.type == sfEvtMouseButtonPressed)
-            windows->click = sfTrue;
-        else
-            windows->click = sfFalse;
+        is_click(windows);
         button_tab_event(windows, main_menu->button, main_menu->nb_button);
     }
     button_tab_draw(windows, main_menu->button, main_menu->nb_button);

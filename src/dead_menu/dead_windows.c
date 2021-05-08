@@ -24,6 +24,8 @@ void init_dead_menu(dead_me *d_menu)
     d_menu->d_menu_texture = sfTexture_createFromFile
     ("res/dead_menu/rpg_over.png", NULL);
     d_menu->d_menu_sprite = sfSprite_create();
+    if (!d_menu->d_menu_texture || !d_menu->d_menu_sprite)
+        return;
     sfSprite_setTexture(d_menu->d_menu_sprite, d_menu->d_menu_texture, sfTrue);
 }
 
@@ -58,24 +60,34 @@ void dead_loop(the_window *windows, struct_button_t *button_menu\
     sfRenderWindow_display(windows->window);
 }
 
-float dead_menu(the_window *windows)
+static void free_res(struct_button_t button_menu\
+, struct_button_t button_ext, sfClock *timed)
+{
+    sfClock_destroy(timed);
+    sfSprite_destroy(button_menu.sprite);
+    sfTexture_destroy(button_menu.texture);
+    sfSprite_destroy(button_ext.sprite);
+    sfTexture_destroy(button_ext.texture);
+}
+
+float dead_menu(the_window *win)
 {
     struct_button_t button_menu = init_button\
     (&go_menu, MENU_BUTTON, POS_RESET);
     struct_button_t button_ext = init_button(&go_exit, EXIT_BUTTON, POS_EXIT);
     sfClock *timed = sfClock_create();
-    sfVector2f camera_center = sfView_getCenter(windows->camera);
-    windows->click = sfFalse;
+    sfVector2f camera_center = sfView_getCenter(win->camera);
+    win->click = sfFalse;
+    float time = 0;
 
-    sfView_setCenter(windows->camera, (sfVector2f){0, 0});
-    sfRenderWindow_setView(windows->window, windows->camera);
-    while (windows->state == in_death_menu \
-    && sfRenderWindow_isOpen(windows->window))
-        dead_loop(windows, &button_menu, &button_ext);
-    sfView_setCenter(windows->camera, camera_center);
-    sfSprite_destroy(button_menu.sprite);
-    sfTexture_destroy(button_menu.texture);
-    sfSprite_destroy(button_ext.sprite);
-    sfTexture_destroy(button_ext.texture);
-    return (time_to_float(timed));
+    sfView_setCenter(win->camera, (sfVector2f){0, 0});
+    sfRenderWindow_setView(win->window, win->camera);
+    if (!button_menu.sprite || !button_ext.sprite || !timed)
+        return (84);
+    while (win->state == in_death_menu && sfRenderWindow_isOpen(win->window))
+        dead_loop(win, &button_menu, &button_ext);
+    sfView_setCenter(win->camera, camera_center);
+    time = time_to_float(timed);
+    free_res(button_menu, button_ext, timed);
+    return (time);
 }

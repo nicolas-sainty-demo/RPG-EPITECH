@@ -10,6 +10,18 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+int read_information(char **buffer, struct stat size, int fd)
+{
+    ssize_t stock = 0;
+
+    if ((*buffer) == NULL)
+        return (-1);
+    stock = read(fd, (*buffer), size.st_size);
+    if (stock == - 1)
+        return (-1);
+    return (stock);
+}
+
 int my_reader(const char *nom, char **buffer)
 {
     ssize_t stock = 0;
@@ -22,10 +34,10 @@ int my_reader(const char *nom, char **buffer)
         return (84);
     *buffer = malloc(sizeof(char) * (size.st_size ) + 1);
     if ((*buffer) == NULL)
-        return (84);
+        return (-1);
     stock = read(fd, (*buffer), size.st_size);
     if (stock == - 1)
-        return (84);
+        return (-1);
     (*buffer)[stock] = '\0';
     return (0);
 }

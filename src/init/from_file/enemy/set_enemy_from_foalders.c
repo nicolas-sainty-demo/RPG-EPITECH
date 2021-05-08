@@ -92,12 +92,13 @@ int set_enemy_from_foalders(entity_enemy_t **enemy, char *name_of_dir)
     DIR *folder;
     struct dirent *dirdir = NULL;
     int return_v = 0;
+    int i = 0;
 
     folder = opendir(name_of_dir);
     if (folder == NULL)
         return (84);
     dirdir = readdir(folder);
-    for (int i = 0; enemy[i] != NULL && dirdir != NULL; i += 1) {
+    for ( ; enemy[i] != NULL && dirdir != NULL; i += 1) {
         return_v = get_an_enemy_from_file\
         (&dirdir, folder, name_of_dir, enemy[i]);
         if (return_v == 84)

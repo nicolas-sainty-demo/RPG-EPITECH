@@ -8,10 +8,12 @@
 
 SRC		=	main.c											\
 			reader.c										\
+			is_env.c										\
 			scen/default_page.c								\
 			scen/game.c										\
 			scen/speek.c									\
 			scen/draw_game.c								\
+			scen/fct_quest.c								\
 			time/speed_of_game.c							\
 			time/time_to_float.c							\
 			draw/heal_bare.c								\
@@ -31,12 +33,14 @@ SRC		=	main.c											\
 			inventory/open_inventory.c						\
 			inventory/drow_inventory.c						\
 			inventory/invantory_up.c						\
+			inventory/inventory_event.c						\
 			inventory/tab_of_int.c							\
 			dead_menu/dead_windows.c						\
 			dead_menu/init_struct.c							\
 			system_combat/collision_proj_ennemy.c			\
 			system_combat/handle_item.c						\
 			system_combat/drop_items.c						\
+			system_combat/delete_items.c					\
 			ennemies/update_ennemies.c						\
 			ennemies/draw_ennemies.c						\
 			ennemies/show_healbar_ennemies.c				\

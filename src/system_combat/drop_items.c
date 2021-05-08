@@ -27,6 +27,15 @@ items_t *create_node(sfVector2f new_pos)
     return (item);
 }
 
+static void is_need_to_change_head(items_t **tab_pos\
+, items_t *tmp_head, items_t *new_node)
+{
+    if (tmp_head)
+        tmp_head->next = new_node;
+    else
+        *tab_pos = new_node;
+}
+
 int add_node(items_t **tab_pos, sfVector2f new_pos)
 {
     items_t *new_node = create_node(new_pos);
@@ -37,32 +46,8 @@ int add_node(items_t **tab_pos, sfVector2f new_pos)
     while (tmp_head && tmp_head->next) {
         tmp_head = tmp_head->next;
     }
-    if (tmp_head)
-        tmp_head->next = new_node;
-    else
-        *tab_pos = new_node;
+    is_need_to_change_head(tab_pos, tmp_head, new_node);
     return (1);
-}
-
-void delete_node(items_t **pos_items, items_t *to_del)
-{
-    items_t *tmp_head = *pos_items;
-
-    if (tmp_head == to_del && !tmp_head->next) {
-        *pos_items = NULL;
-        free(to_del);
-        return;
-    }
-    if (tmp_head == to_del && tmp_head->next) {
-        *pos_items = tmp_head->next;
-        free(to_del);
-        return;
-    }
-    while (tmp_head->next != to_del)
-        tmp_head = tmp_head->next;
-    if (to_del)
-        tmp_head->next = to_del->next;
-    free(to_del);
 }
 
 int drop_the_item(items_t **pos_items, sfSprite *sprite)

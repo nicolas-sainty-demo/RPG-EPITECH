@@ -20,6 +20,14 @@ static void set_and_pos(the_window *windows)
     windows->settings.sprites , NULL);
 }
 
+static void is_click(the_window *windows)
+{
+    if (windows->event.type == sfEvtMouseButtonPressed)
+        windows->click = sfTrue;
+    else
+        windows->click = sfFalse;
+}
+
 void settings_loop(the_window *windows, main_menu_t *settings)
 {
     update_tab_button(windows, settings->button, settings->nb_button);
@@ -27,10 +35,7 @@ void settings_loop(the_window *windows, main_menu_t *settings)
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
         if (windows->event.type == sfEvtClosed)
             sfRenderWindow_close(windows->window);
-        if (windows->event.type == sfEvtMouseButtonPressed)
-            windows->click = sfTrue;
-        else
-            windows->click = sfFalse;
+        is_click(windows);
         button_tab_event(windows, settings->button, settings->nb_button);
     }
     button_tab_draw(windows, settings->button, settings->nb_button);

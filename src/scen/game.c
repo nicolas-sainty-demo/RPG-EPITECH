@@ -69,6 +69,19 @@ static void update(the_window *windows)
     draw(windows);
 }
 
+static void is_change_scene(the_window *windows)
+{
+    if (windows->event.type == sfEvtKeyPressed \
+    && windows->event.key.code == sfKeyE)
+        windows->state = in_inventory;
+    if (windows->event.type == sfEvtKeyPressed \
+    && windows->event.key.code == sfKeyTab)
+        windows->state = in_pause;
+    if (windows->event.type == sfEvtKeyPressed \
+    && windows->event.key.code == sfKeyF)
+        windows->usekey = sfTrue;
+}
+
 static void handle_event(the_window *windows)
 {
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
@@ -76,15 +89,7 @@ static void handle_event(the_window *windows)
             sfRenderWindow_close(windows->window);
         event_projectile(windows->event, windows->scene->player->proj\
         , windows);
-        if (windows->event.type == sfEvtKeyPressed \
-        && windows->event.key.code == sfKeyE)
-            windows->state = in_inventory;
-        if (windows->event.type == sfEvtKeyPressed \
-        && windows->event.key.code == sfKeyTab)
-            windows->state = in_pause;
-        if (windows->event.type == sfEvtKeyPressed \
-        && windows->event.key.code == sfKeyF)
-            windows->usekey = sfTrue;
+        is_change_scene(windows);
     }
 }
 

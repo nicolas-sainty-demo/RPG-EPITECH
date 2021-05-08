@@ -10,6 +10,15 @@
 
 void show_healbar(the_window *windows, int const i);
 
+static void drawn_ennemies_info(the_window *windows, int i)
+{
+    if (windows->scene->enemy[i]->hp != \
+    windows->scene->enemy[i]->hp_max && windows->scene->enemy[i]->hp > 0)
+        show_healbar(windows, i);
+    if (windows->scene->enemy[i]->type)
+        draw_projectile(windows->window, windows->scene->enemy[i]->proj);
+}
+
 void draw_ennemies(the_window *windows)
 {
     for (int i = 0; windows->scene->enemy[i]; i += 1) {
@@ -20,11 +29,6 @@ void draw_ennemies(the_window *windows)
             windows->scene->enemy[i]->flip = sfFalse;
         } else
             windows->scene->enemy[i]->flip = sfTrue;
-        if (windows->scene->enemy[i]->hp != \
-        windows->scene->enemy[i]->hp_max && windows->scene->enemy[i]->hp > 0)
-            show_healbar(windows, i);
-        if (windows->scene->enemy[i]->type) {
-            draw_projectile(windows->window, windows->scene->enemy[i]->proj);
-        }
+        drawn_ennemies_info(windows, i);
     }
 }

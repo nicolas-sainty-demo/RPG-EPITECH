@@ -20,6 +20,11 @@
 
 float time_to_float(sfClock *time);
 
+void remove_item_from_inventory(the_window *windows\
+, entity_passive_t *passif, int i);
+
+void leave_quest(the_window *windows, int *i);
+
 static void basic_dialog(the_window *windows, char **conversation)
 {
     int i = 0;
@@ -44,19 +49,7 @@ int quest_is_win(the_window *windows, entity_passive_t *passif, int i)
 {
     int j = 0;
 
-    while (passif->quest.item_need[j]) {
-        while (windows->scene->player->inventaire[i] != '\0') {
-            if (passif->quest.item_need[j] \
-            == windows->scene->player->inventaire[i]) {
-                passif->quest.item_need[j] = '!';
-                windows->scene->player->inventaire[i] = '!';
-            }
-            i += 1;
-        }
-        i = 0;
-        j += 1;
-    }
-    j = 0;
+    remove_item_from_inventory(windows, passif, i);
     while (passif->quest.item_need[j] != '\0')
         if (passif->quest.item_need[j++] != '!')
             return (0);
@@ -67,9 +60,7 @@ static void quest_dialog_event\
 (the_window *windows, entity_passive_t *passif, int *i)
 {
     while (sfRenderWindow_pollEvent(windows->window, &windows->event)) {
-        if (windows->event.type == sfEvtKeyPressed \
-        && windows->event.key.code == sfKeyF)
-            *i = 1;
+        leave_quest(windows, i);
         if (windows->event.type == sfEvtKeyPressed \
         && windows->event.key.code == sfKeyY)
             if (quest_is_win(windows, passif, 0)) {
@@ -77,9 +68,6 @@ static void quest_dialog_event\
                 passif->quest.dialoge = NULL;
                 *i = 1;
             }
-        if (windows->event.type == sfEvtKeyPressed \
-        && windows->event.key.code == sfKeyN)
-            *i = 1;
     }
 }
 
@@ -104,12 +92,14 @@ float speek(the_window *windows, char **conversation, entity_passive_t *passif)
     sfClock *timed = sfClock_create();
     sfVector2f camera_center = sfView_getCenter(windows->camera);
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
+    float save = 0;
 
     if (conversation != NULL)
         basic_dialog(windows, conversation);
     if (passif->quest.dialoge != NULL)
         quest_dialog(windows, passif);
     sfView_setCenter(windows->camera, camera_center);
-    float save = time_to_float(timed);
+    save = time_to_float(timed);
+    sfClock_destroy(timed);
     return (save);
 }
