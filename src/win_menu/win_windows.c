@@ -57,7 +57,7 @@ void win_loop(the_window *windows, struct_button_t *button_menu\
     sfRenderWindow_display(windows->window);
 }
 
-void free_res_win_menu\
+static void free_res_win_menu\
 (struct_button_t button_menu, struct_button_t button_ext, sfClock *timed)
 {
     sfSprite_destroy(button_menu.sprite);
