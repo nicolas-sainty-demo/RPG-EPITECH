@@ -5,9 +5,9 @@
 ## Makefile
 ##
 
+ENTRYPOINT		=	main.c
 
-SRC		=	main.c											\
-			reader.c										\
+SRC		=	reader.c										\
 			is_env.c										\
 			scen/default_page.c								\
 			scen/game.c										\
@@ -101,7 +101,9 @@ INIT_PRE = ./src/init/
 COLLISION_PRE	=	./src/collision/
 
 
-OBJ     =	$(addprefix $(SRC_PRE), $(SRC:.c=.o)) $(addprefix $(INIT_PRE), $(SRC_INIT:.c=.o))\
+OBJ     =	$(addprefix $(SRC_PRE), $(ENTRYPOINT:.c=.o)) \
+			$(addprefix $(SRC_PRE), $(SRC:.c=.o)) \
+			$(addprefix $(INIT_PRE), $(SRC_INIT:.c=.o))\
 			$(addprefix $(COLLISION_PRE), $(SRC_COLLISION:.c=.o))
 
 NAME    =       my_rpg
