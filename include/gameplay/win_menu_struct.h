@@ -15,6 +15,6 @@ typedef struct win_menu_s
     sfVector2f pos_menu;
     sfSprite *w_menu_sprite;
     sfTexture *w_menu_texture;
-}win_me;
+} win_me;
 
 #endif /* !WIN_MENU_STRUCT_H_ */
