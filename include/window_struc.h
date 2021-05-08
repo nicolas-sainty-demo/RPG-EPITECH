@@ -14,6 +14,7 @@
 #include "gameplay/inventory_struct.h"
 #include "gameplay/dead_menu_struct.h"
 #include "gameplay/win_menu_struct.h"
+#include "struct_menu.h"
 
 typedef enum state_window_e
 {
@@ -23,6 +24,7 @@ typedef enum state_window_e
     in_pause,
     in_menu,
     in_win_menu
+    in_settings
 } state_window_t;
 
 
@@ -38,6 +40,10 @@ typedef struct the_window
     inventory *inv;
     dead_me *d_menu;
     win_me *w_menu;    
+    main_menu_t m_menu;
+    main_menu_t settings;
+    int volume;
+    sfVector2f volume_min_max;
 } the_window;
 
 #endif /* !WINDOW_STRUC_H_ */

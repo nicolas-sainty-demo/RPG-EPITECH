@@ -101,7 +101,7 @@ void use_and_drop_item(const int key_press, char *item_select, the_window *windo
     }
 }
 
-float inventory_scene(int **tab_stock, the_window *windows)
+float inventory_scene(the_window *windows)
 {
     char *item_select = &windows->scene->player->inventaire[0];
     int key_press = 0;
@@ -127,5 +127,6 @@ float inventory_scene(int **tab_stock, the_window *windows)
     }
     sfView_setCenter(windows->camera, camera_center);
     float save = time_to_float(timed);
+    windows->state = in_game;
     return (save);
 }
