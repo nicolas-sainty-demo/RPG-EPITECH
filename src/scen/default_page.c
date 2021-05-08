@@ -6,7 +6,6 @@
 */
 
 #include <stdbool.h>
-#include "window_struc.h"
 #include "window_fonction.h"
 #include "map.h"
 #include "collision.h"
@@ -59,6 +58,8 @@ void default_page(the_window *windows)
         speed_of_game((float)1/60);
         principal_scenes(windows);
         secondary_scenes(windows);
+        if (windows->state == in_win)
+            //fct théo
         sfRenderWindow_display(windows->window);
     }
     free_projectile(windows->scene->player->proj);
