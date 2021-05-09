@@ -56,6 +56,11 @@ SRC		=	reader.c										\
 			menu/init_menu_struct.c							\
 			menu/fct_menu.c									\
 			menu/menu.c										\
+			free_all_res/free_ennemies.c					\
+			free_all_res/free_entity.c						\
+			free_all_res/free_player.c						\
+			free_all_res/free_secondary.c					\
+			free_all_res/free_scene.c						\
 			settings/init_settings.c						\
 			settings/setting.c								\
 			settings/fct_setting.c							\

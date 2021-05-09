@@ -23,6 +23,7 @@
 #include "main_menu.h"
 #include "text.h"
 #include "win_menu.h"
+#include "free_res.h"
 
 void gameplay_scene(the_window *windows);
 
@@ -52,6 +53,7 @@ void default_page(the_window *windows)
 {
     windows->state = in_menu;
     windows->usekey = sfFalse;
+    windows->is_reset = false;
     windows->scene = get_scene_from_folder("res/scene/debut");
     windows->scene->pos_items = NULL;
     while (sfRenderWindow_isOpen(windows->window)) {
@@ -64,5 +66,5 @@ void default_page(the_window *windows)
         }
         sfRenderWindow_display(windows->window);
     }
-    free_projectile(windows->scene->player->proj);
+    reset_scene_struct(windows, windows->is_reset, "res/scene/debut");
 }

@@ -8,6 +8,7 @@
 #include "window_fonction.h"
 #include "struct_menu.h"
 #include <stdio.h>
+#include "free_res.h"
 #include "button.h"
 
 static void set_and_pos(the_window *windows)
@@ -48,6 +49,10 @@ float main_menu(the_window *windows)
     sfVector2f camera_center = sfView_getCenter(windows->camera);
     windows->click = sfFalse;
 
+    if (windows->is_reset == sfTrue) {
+        reset_scene_struct(windows, windows->is_reset, "res/scene/debut");
+        // windows->scene->pos_items = NULL;
+    }
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
     while (windows->state == in_menu && sfRenderWindow_isOpen(windows->window))

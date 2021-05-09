@@ -86,5 +86,6 @@ float win_menu(the_window *windows)
     sfView_setCenter(windows->camera, camera_center);
     time = time_to_float(timed);
     free_res_win_menu(button_menu, button_ext, timed);
+    windows->is_reset = sfTrue;
     return (time);
 }

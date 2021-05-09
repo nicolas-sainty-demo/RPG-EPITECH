@@ -8,6 +8,7 @@
 #ifndef WINDOW_STRUC_H_
 #define WINDOW_STRUC_H_
 
+#include <stdbool.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include "scene.h"
 #include "struct_button.h"
@@ -46,6 +47,7 @@ typedef struct the_window
     main_menu_t m_menu;
     main_menu_t settings;
     int volume;
+    bool is_reset;
     sfVector2f volume_min_max;
 } the_window;
 

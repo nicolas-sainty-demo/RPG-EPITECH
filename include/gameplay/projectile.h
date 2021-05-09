@@ -56,6 +56,8 @@ void draw_projectile(sfRenderWindow *win\
 void draw_all_projectiles(sfRenderWindow *win\
 , projectile_t *const *basic_projectile);
 
-void free_projectile(projectile_t **projectiles);
+void free_tab_projectile(projectile_t **projectiles);
+
+void free_projectile(projectile_t *projectiles);
 
 #endif /* !PROJECTILE_H_ */
