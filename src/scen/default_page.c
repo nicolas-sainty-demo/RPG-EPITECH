@@ -45,8 +45,10 @@ void secondary_scenes(the_window *windows)
 {
     if (windows->state == in_inventory)
         inventory_scene(windows);
-    if (windows->state == in_death_menu)
+    if (windows->state == in_death_menu) {
+        windows->index = 0;
         dead_menu(windows);
+    }
     if (windows->state == in_pause)
         pause_menu(windows);
 }
