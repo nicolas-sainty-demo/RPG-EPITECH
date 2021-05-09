@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include "str.h"
 
+void check_drop_key(const int key_press, char *item_select);
+
 void draw_invantory_(the_window *windows, const int position_cursor\
 , char **item_select, const int key_press);
 
@@ -44,8 +46,7 @@ void eat_food(player_t *player)
 void use_and_drop_item(const int key_press, char *item_select\
 , the_window *windows, int position_cursor)
 {
-    if (key_press == DROP_KEY)
-        *item_select = '!';
+    check_drop_key(key_press, item_select);
     if (key_press == USE_KEY)
         switch_in_invantory(item_select\
         , &windows->scene->player->inventaire[position_cursor]);
@@ -81,12 +82,16 @@ float inventory_scene(the_window *windows)
 {
     sfClock *timed = sfClock_create();
     sfVector2f camera_center = sfView_getCenter(windows->camera);
+    float save = time_to_float(timed);
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
 
+    if (!timed)
+        return (0);
     invantory_word(windows);
     sfView_setCenter(windows->camera, camera_center);
-    float save = time_to_float(timed);
+    save = time_to_float(timed);
     windows->state = in_game;
+    sfClock_destroy(timed);
     return (save);
 }

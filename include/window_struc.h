@@ -46,7 +46,7 @@ typedef struct the_window
     sfBool click;
     inventory *inv;
     dead_me *d_menu;
-    win_me *w_menu;    
+    win_me *w_menu;
     main_menu_t m_menu;
     main_menu_t settings;
     int volume;

@@ -34,6 +34,7 @@ SRC		=	reader.c										\
 			inventory/drow_inventory.c						\
 			inventory/invantory_up.c						\
 			inventory/inventory_event.c						\
+			inventory/fct_inventory.c					\
 			inventory/tab_of_int.c							\
 			dead_menu/dead_windows.c						\
 			dead_menu/init_struct.c							\

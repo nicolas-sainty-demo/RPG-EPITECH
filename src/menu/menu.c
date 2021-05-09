@@ -52,7 +52,8 @@ float main_menu(the_window *windows)
     windows->click = sfFalse;
 
     if (windows->is_reset == sfTrue) {
-        reset_scene_struct(windows, windows->is_reset, path_all[windows->index]);
+        reset_scene_struct\
+        (windows, windows->is_reset, path_all[windows->index]);
     }
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);

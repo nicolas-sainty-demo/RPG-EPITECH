@@ -86,6 +86,8 @@ float status_menus(the_window *windows)
     sfVector2f camera_center = sfView_getCenter(windows->camera);
     windows->click = sfFalse;
 
+    if (!timed || !status)
+        return (0);
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);
     while (windows->state == in_status \
@@ -93,6 +95,7 @@ float status_menus(the_window *windows)
         status_loop(windows, status, &button_exit);
     sfView_setCenter(windows->camera, camera_center);
     free_button(&button_exit);
+    sfClock_destroy(timed);
     sfText_destroy(status);
     return (time_to_float(timed));
 }
