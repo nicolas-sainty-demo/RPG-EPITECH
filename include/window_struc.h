@@ -27,7 +27,8 @@ typedef enum state_window_e
     in_pause,
     in_menu,
     in_settings,
-    in_win
+    in_win,
+    in_status
 } state_window_t;
 
 
@@ -45,7 +46,7 @@ typedef struct the_window
     sfBool click;
     inventory *inv;
     dead_me *d_menu;
-    win_me *w_menu;    
+    win_me *w_menu;
     main_menu_t m_menu;
     main_menu_t settings;
     int volume;

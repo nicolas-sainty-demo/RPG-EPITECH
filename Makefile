@@ -34,6 +34,7 @@ SRC		=	reader.c										\
 			inventory/drow_inventory.c						\
 			inventory/invantory_up.c						\
 			inventory/inventory_event.c						\
+			inventory/fct_inventory.c					\
 			inventory/tab_of_int.c							\
 			dead_menu/dead_windows.c						\
 			dead_menu/init_struct.c							\
@@ -50,6 +51,7 @@ SRC		=	reader.c										\
 			ennemies/path_finding.c							\
 			pause_menu/pause_menu.c							\
 			pause_menu/pause_fct.c							\
+			status_menu/status_menu.c						\
 			button/init_button.c							\
 			button/update_button.c							\
 			button/update_tab_button.c						\
