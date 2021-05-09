@@ -14,6 +14,8 @@
 #include <SFML/System/Time.h>
 #include <SFML/System/Clock.h>
 
+#define PARTICl_RAND (sfVector2f){0, 360}
+
 typedef struct info_particule_s
 {
     sfVector2f velocity;

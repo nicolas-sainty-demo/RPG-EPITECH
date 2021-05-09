@@ -13,8 +13,6 @@
 
 #include "projectile.h"
 
-#define RELOAD_MUN_ 5
-
 projectile_t *init_projectile(char *path_projectile, int radius, int speed\
 , int reload_time)
 {

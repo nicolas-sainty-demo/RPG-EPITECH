@@ -24,8 +24,6 @@
 #include "pause.h"
 #include "main_menu.h"
 
-#define QUESTS_TO_FINISH 2
-
 float speek\
 (the_window *windows, char **conversation, entity_passive_t *passif);
 

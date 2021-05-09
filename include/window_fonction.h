@@ -8,6 +8,10 @@
 #ifndef WINDOW_FONCTION_H_
 #define WINDOW_FONCTION_H_
 
+#define NB_SCENES 3
+
+#define QUESTS_TO_FINISH 2
+
 #include "window_struc.h"
 
 the_window init_window(const int x, const int y);

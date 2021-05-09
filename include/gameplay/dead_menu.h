@@ -13,6 +13,9 @@
 #include "window_struc.h"
 #include "dead_menu_struct.h"
 
+#define POS_RESET (sfVector2f){-180, -100}
+#define POS_EXIT (sfVector2f){-180, 30}
+
 dead_me *init_struct_dead_menu();
 void init_dead_menu(dead_me *d_menu);
 float dead_menu(the_window *windows);

@@ -11,14 +11,6 @@
 #include "struct_menu.h"
 #include "button.h"
 
-#define NB_SPRITE 2
-#define BACKGRND "res/menu/fonts/background.png"
-#define SETTING "res/menu/fonts/menu.png"
-#define B_PLAY "res/dead_menu/resume.png"
-#define B_EXIT "res/dead_menu/resit_exit.png"
-#define B_SETTING "res/dead_menu/settings.png"
-#define NB_BUTTON 3
-
 void menu_play(void *ptr);
 
 void menu_exit(void *ptr);

@@ -9,8 +9,6 @@
 #include <malloc.h>
 #include <stdlib.h>
 
-#define PARTICl_RAND (sfVector2f){0, 360}
-
 void ennemies_deal_damage(entity_enemy_t *ennemies, player_t *player);
 
 int drop_the_item(items_t **pos_items, sfSprite *sprite);

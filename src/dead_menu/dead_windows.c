@@ -10,11 +10,6 @@
 #include <stdio.h>
 #include "button.h"
 
-#define MENU_BUTTON "res/dead_menu/reset_dead_menu.png"
-#define EXIT_BUTTON "res/dead_menu/resit_exit.png"
-#define POS_RESET (sfVector2f){-180, -100}
-#define POS_EXIT (sfVector2f){-180, 30}
-
 void go_menu(void *ptr);
 
 void go_exit(void *ptr);

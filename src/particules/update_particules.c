@@ -10,8 +10,6 @@
 #include "window_struc.h"
 #include "particules.h"
 
-#define PARTICl_RAND (sfVector2f){0, 360}
-
 void update_particules_player(sfTime elapsed, particules_t *particl, \
 sfVector2f pos, sfVector2f min_max)
 {

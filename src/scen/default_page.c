@@ -25,8 +25,6 @@
 #include "win_menu.h"
 #include "free_res.h"
 
-#define NB_SCENES 3
-
 void gameplay_scene(the_window *windows);
 
 float inventory_scene(the_window *windows);

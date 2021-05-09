@@ -15,6 +15,7 @@
 #include "projectile_struct.h"
 #include "window_struc.h"
 
+#define RELOAD_MUN_ 5
 #define PATH_PROJ "./res/projectile/bullet.png"
 #define RADIUS_PROJ 50
 #define SPEED_PROJ 10

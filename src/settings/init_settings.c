@@ -11,12 +11,6 @@
 #include "struct_menu.h"
 #include "button.h"
 
-#define SETTING "res/menu/fonts/menu.png"
-#define B_EXIT "res/dead_menu/resit_exit.png"
-#define B_UP "res/dead_menu/dede.png"
-#define B_DOWN "res/dead_menu/moins.png"
-#define NB_BUTTON 3
-
 void go_back_to_menu(void *ptr);
 
 void up_song(void *ptr);

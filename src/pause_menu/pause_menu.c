@@ -11,13 +11,6 @@
 #include "pause.h"
 #include <stdlib.h>
 
-#define RESU_BUTOON "res/dead_menu/resume.png"
-#define MENU_BUTTON "res/dead_menu/reset_dead_menu.png"
-#define EXIT_BUTTON "res/dead_menu/resit_exit.png"
-#define POS_RES (sfVector2f){-180, -220}
-#define POS_MENU (sfVector2f){-180, -100}
-#define POS_EXIT (sfVector2f){-180, 30}
-
 void go_menu(void *ptr);
 
 void go_exit(void *ptr);
