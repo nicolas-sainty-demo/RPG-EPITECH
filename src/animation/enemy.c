@@ -8,29 +8,37 @@
 #include "entity.h"
 #include "window_fonction.h"
 
+static void reset_clock(int time, char anim_clock, sfClock *clock)
+{
+    if (time >= anim_clock) {
+        time = 0;
+        sfClock_restart(clock);
+    }
+}
+
+static void fliping(int *rec)
+{
+    if (*rec < 0)
+        *rec *= -1;
+}
+
 void anim_enemy(entity_enemy_t *enemy)
 {
     int time = (int)(time_to_float(enemy->animation_clock) * 10);
     sfIntRect rec = sfSprite_getTextureRect(enemy->sprite);
 
-    if (time >= enemy->anime) {
-        time = 0;
-        sfClock_restart(enemy->animation_clock);
-    }
+    reset_clock(time, enemy->anime, enemy->animation_clock);
     if (enemy->flip == sfFalse) {
-        if (rec.width < 0)
-            rec.width *= -1;
+        fliping(&rec.width);
         sfSprite_setTextureRect(enemy->sprite, (sfIntRect)\
         {time * rec.width, rec.height * 0, rec.width, rec.height});
     } else {
-        if (rec.width < 0)
-            rec.width *= -1;
+        fliping(&rec.width);
         sfSprite_setTextureRect(enemy->sprite, (sfIntRect)\
         {time * rec.width + rec.width, rec.height * 0, -1 * \
         rec.width, rec.height});
     }
-    if (rec.width < 0)
-        rec.width *= -1;
+    fliping(&rec.width);
 }
 
 void anim_passive(entity_passive_t *passive)
@@ -38,16 +46,12 @@ void anim_passive(entity_passive_t *passive)
     int time = (int)(time_to_float(passive->animation_clock) * 10);
     sfIntRect rec = sfSprite_getTextureRect(passive->sprite);
 
-    if (time >= passive->anime) {
-        time = 0;
-        sfClock_restart(passive->animation_clock);
-    }
+    reset_clock(time, passive->anime, passive->animation_clock);
     if (passive->flip == sfFalse) {
         sfSprite_setTextureRect(passive->sprite, (sfIntRect)\
         {time * rec.width, rec.height * 0, rec.width, rec.height});
     } else {
-        if (rec.width < 0)
-            rec.width *= -1;
+        fliping(&rec.width);
         sfSprite_setTextureRect(passive->sprite, (sfIntRect)\
         {time * rec.width + rec.width, rec.height * 4, -1 * \
         rec.width, rec.height});

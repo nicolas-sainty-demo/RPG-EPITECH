@@ -95,6 +95,8 @@ static void handle_event(the_window *windows)
 
 void gameplay_scene(the_window *windows)
 {
+    if (windows->quest_finiche >= 2)
+        windows->state = in_win;
     update(windows);
     is_collision_proj_ennemy(windows);
     path_finding(windows);

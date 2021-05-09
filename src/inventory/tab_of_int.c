@@ -46,14 +46,3 @@ void free_tab(const int rows, int **tab)
     }
     free(tab);
 }
-
-int display_tab(const int rows, const int cols, int **tab)
-{
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("%d", tab[i][j]);
-        }
-        printf("\n");
-    }
-    return (0);
-}

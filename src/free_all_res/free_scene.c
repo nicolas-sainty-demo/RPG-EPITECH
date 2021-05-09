@@ -7,6 +7,7 @@
 
 #include "free_res.h"
 #include "from_file.h"
+#include <stdlib.h>
 
 void reset_scene_struct(the_window *windows, bool is_reset, char *path)
 {
