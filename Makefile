@@ -147,15 +147,19 @@ re:	fclean all
 NAME_CRIT	=	unit_tests
 
 SRC_CRIT	=	tests/src_tests/collision/test_collision_square.c		\
-				tests/src_tests/collision/test_collision_circle.c
+				tests/src_tests/collision/test_collision_circle.c		\
+				tests/src_tests/system_combat/test_drop_item.c
 
-SRC_FOR_CRIT	=	$(addprefix $(COLLISION_PRE), $(SRC_COLLISION))
+SRC_FOR_CRIT	=	$(addprefix $(COLLISION_PRE), $(SRC_COLLISION))		\
+					$(addprefix $(SRC_PRE), $(SRC))						\
+					$(addprefix $(INIT_PRE), $(SRC_INIT))
 
-T_LDFLAGS	+= -lcriterion
+T_LDFLAGS	+= -lcriterion -L. -lstr -ltools
 
 tests_run : $(NAME_CRIT)
 
 $(NAME_CRIT):
+	$(MAKE) -C lib
 	$(CC) -o $(NAME_CRIT) $(SRC_CRIT) $(SRC_FOR_CRIT) $(CFLAGS) $(T_LDFLAGS) --coverage
 	./unit_tests
 

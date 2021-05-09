@@ -9,7 +9,7 @@
 #include <malloc.h>
 #include <stdlib.h>
 
-items_t *create_node(sfVector2f new_pos)
+static items_t *create_node(sfVector2f new_pos)
 {
     items_t *item = malloc(sizeof(items_t));
     static int random = 0;
@@ -36,7 +36,7 @@ static void is_need_to_change_head(items_t **tab_pos\
         *tab_pos = new_node;
 }
 
-int add_node(items_t **tab_pos, sfVector2f new_pos)
+static int add_node(items_t **tab_pos, sfVector2f new_pos)
 {
     items_t *new_node = create_node(new_pos);
     items_t *tmp_head = *tab_pos;
