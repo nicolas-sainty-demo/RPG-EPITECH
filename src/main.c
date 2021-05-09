@@ -31,22 +31,23 @@ void start_music(the_window *windows)
 int core(void)
 {
     the_window windows = init_window(1920, 1080);
-
-    start_music(&windows);
+    int ret = 0;
     inventory *inv = init_struct();
     dead_me *d_menu = init_struct_dead_menu();
     win_me *w_menu = init_struct_win_menu();
+
+    start_music(&windows);
     init_inventory(inv);
     init_dead_menu(d_menu);
     init_win_menu(w_menu);
     windows.inv = inv;
     windows.d_menu = d_menu;
     windows.w_menu = w_menu;
-
-    if (!windows.inv || !windows.d_menu || !windows.w_menu)
+    if (!windows.inv || !windows.d_menu || !windows.w_menu || !windows.window)
         return (84);
+    ret = default_page(&windows);
     sfMusic_destroy(windows.music);
-    return (default_page(&windows));
+    return (ret);
 }
 
 int main(int argc, char const *argv[], char **env)
