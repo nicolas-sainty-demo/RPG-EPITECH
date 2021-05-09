@@ -25,6 +25,8 @@
 #include "win_menu.h"
 #include "free_res.h"
 
+#define NB_SCENES 3
+
 void gameplay_scene(the_window *windows);
 
 float inventory_scene(the_window *windows);
@@ -49,22 +51,44 @@ void secondary_scenes(the_window *windows)
         pause_menu(windows);
 }
 
-void default_page(the_window *windows)
+void victory_scene(the_window *windows)
+{
+    char *path_all[] = {"res/scene/debut"\
+    , "res/scene/nivo_b", "res/scene/nivo_c"};
+
+    if (windows->state == in_win) {
+        windows->index++;
+        if (windows->index > NB_SCENES - 1) {
+            win_menu(windows);
+            windows->index = 0;
+            windows->state = in_menu;
+        } else {
+            windows->is_reset = sfTrue;
+            reset_scene_struct(windows, windows->is_reset\
+            , path_all[windows->index]);
+            windows->state = in_game;
+        }
+    }
+}
+
+int default_page(the_window *windows)
 {
     windows->state = in_menu;
     windows->usekey = sfFalse;
     windows->is_reset = false;
+    windows->index = 0;
     windows->scene = get_scene_from_folder("res/scene/debut");
+    if (!windows->scene)
+        return (84);
     windows->scene->pos_items = NULL;
     while (sfRenderWindow_isOpen(windows->window)) {
         sfRenderWindow_clear(windows->window, sfBlack);
         speed_of_game((float)1/60);
         principal_scenes(windows);
         secondary_scenes(windows);
-        if (windows->state == in_win) {
-            win_menu(windows);
-        }
+        victory_scene(windows);
         sfRenderWindow_display(windows->window);
     }
     reset_scene_struct(windows, windows->is_reset, "res/scene/debut");
+    return (0);
 }

@@ -45,13 +45,14 @@ void main_menu_loop(the_window *windows, main_menu_t *main_menu)
 
 float main_menu(the_window *windows)
 {
+    char *path_all[] = {"res/scene/debut"\
+    , "res/scene/nivo_b", "res/scene/nivo_c"};
     sfClock *timed = sfClock_create();
     sfVector2f camera_center = sfView_getCenter(windows->camera);
     windows->click = sfFalse;
 
     if (windows->is_reset == sfTrue) {
-        reset_scene_struct(windows, windows->is_reset, "res/scene/debut");
-        // windows->scene->pos_items = NULL;
+        reset_scene_struct(windows, windows->is_reset, path_all[windows->index]);
     }
     sfView_setCenter(windows->camera, (sfVector2f){0, 0});
     sfRenderWindow_setView(windows->window, windows->camera);

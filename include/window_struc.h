@@ -48,6 +48,7 @@ typedef struct the_window
     main_menu_t settings;
     int volume;
     bool is_reset;
+    int index;
     sfVector2f volume_min_max;
 } the_window;
 

@@ -12,7 +12,7 @@
 
 the_window init_window(const int x, const int y);
 void speed_of_game(float s);
-void default_page(the_window *windows);
+int default_page(the_window *windows);
 
 float time_to_float(sfClock *time);
 

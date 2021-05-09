@@ -24,6 +24,8 @@
 #include "pause.h"
 #include "main_menu.h"
 
+#define QUESTS_TO_FINISH 2
+
 float speek\
 (the_window *windows, char **conversation, entity_passive_t *passif);
 
@@ -95,7 +97,7 @@ static void handle_event(the_window *windows)
 
 void gameplay_scene(the_window *windows)
 {
-    if (windows->quest_finiche >= 2)
+    if (windows->quest_finiche >= QUESTS_TO_FINISH)
         windows->state = in_win;
     update(windows);
     is_collision_proj_ennemy(windows);

@@ -31,8 +31,9 @@ int core(void)
     windows.d_menu = d_menu;
     windows.w_menu = w_menu;
 
-    default_page(&windows);
-    return (0);
+    if (!windows.inv || !windows.d_menu || !windows.w_menu)
+        return (84);
+    return (default_page(&windows));
 }
 
 int main(int argc, char const *argv[], char **env)
