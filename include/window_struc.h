@@ -8,6 +8,7 @@
 #ifndef WINDOW_STRUC_H_
 #define WINDOW_STRUC_H_
 
+#include <SFML/Audio.h>
 #include <stdbool.h>
 #include <SFML/Graphics/RenderWindow.h>
 #include "scene.h"
@@ -32,6 +33,7 @@ typedef enum state_window_e
 
 typedef struct the_window
 {
+    sfMusic *music;
     int quest_finiche;
     sfBool usekey;
     sfEvent event;
