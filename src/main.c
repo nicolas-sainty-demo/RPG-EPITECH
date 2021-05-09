@@ -53,6 +53,8 @@ int core(void)
 int main(int argc, char const *argv[], char **env)
 {
     srand(time(NULL));
+    (void)argc;
+    (void)argv;
     if (is_env(env) == 84)
         return (84);
     return (core());
