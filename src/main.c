@@ -18,9 +18,21 @@ void init_inventory(inventory *inv);
 
 int is_env(char **env);
 
+void start_music(the_window *windows)
+{
+    windows->music = sfMusic_createFromFile("res/song/il_cour_le_furet.ogg");
+    if (windows->music != NULL) {
+        sfMusic_play(windows->music);
+        sfMusic_setLoop(windows->music, 1);
+    }
+    sfMusic_setVolume(windows->music , 10);
+}
+
 int core(void)
 {
     the_window windows = init_window(1920, 1080);
+
+    start_music(&windows);
     inventory *inv = init_struct();
     dead_me *d_menu = init_struct_dead_menu();
     win_me *w_menu = init_struct_win_menu();
@@ -32,6 +44,7 @@ int core(void)
     windows.w_menu = w_menu;
 
     default_page(&windows);
+    sfMusic_destroy(windows.music);
     return (0);
 }
 

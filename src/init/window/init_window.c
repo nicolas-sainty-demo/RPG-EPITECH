@@ -30,6 +30,6 @@ the_window init_window(const int x, const int y)
     windows.m_menu = init_struct_menu();
     windows.settings = init_struct_setting();
     windows.volume_min_max = (sfVector2f){0, 100};
-    windows.volume = 0;
+    windows.volume = 10;
     return (windows);
 }

@@ -21,6 +21,7 @@ void up_song(void *ptr)
     if (window->volume <= window->volume_min_max.y) {
         window->volume += 10;
     }
+    sfMusic_setVolume(window->music , (float)window->volume);
 }
 
 void down_song(void *ptr)
@@ -30,4 +31,5 @@ void down_song(void *ptr)
     if (window->volume >= window->volume_min_max.x) {
         window->volume -= 10;
     }
+    sfMusic_setVolume(window->music , (float)window->volume);
 }
