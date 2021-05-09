@@ -29,6 +29,8 @@ void gameplay_scene(the_window *windows);
 
 float inventory_scene(the_window *windows);
 
+float status_menus(the_window *windows);
+
 void principal_scenes(the_window *windows)
 {
     if (windows->state == in_menu)
@@ -47,6 +49,12 @@ void secondary_scenes(the_window *windows)
         dead_menu(windows);
     if (windows->state == in_pause)
         pause_menu(windows);
+}
+
+void third_scene(the_window *windows)
+{
+    if (windows->state == in_status)
+        status_menus(windows);
 }
 
 void victory_scene(the_window *windows)
@@ -85,6 +93,7 @@ int default_page(the_window *windows)
         principal_scenes(windows);
         secondary_scenes(windows);
         victory_scene(windows);
+        third_scene(windows);
         sfRenderWindow_display(windows->window);
     }
     reset_scene_struct(windows, windows->is_reset, "res/scene/debut");

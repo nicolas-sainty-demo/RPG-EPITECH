@@ -27,7 +27,8 @@ typedef enum state_window_e
     in_pause,
     in_menu,
     in_settings,
-    in_win
+    in_win,
+    in_status
 } state_window_t;
 
 

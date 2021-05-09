@@ -89,6 +89,9 @@ static void handle_event(the_window *windows)
             sfRenderWindow_close(windows->window);
         event_projectile(windows->event, windows->scene->player->proj\
         , windows);
+        if (windows->event.type == sfEvtKeyPressed \
+    && windows->event.key.code == sfKeyR)
+        windows->state = in_status;
         is_change_scene(windows);
     }
 }
